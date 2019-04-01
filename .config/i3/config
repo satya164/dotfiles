@@ -167,6 +167,14 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Audio Keys
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+bindsym XF86AudioMute exec amixer -q set Master mute
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 set $base00 #292D3E
 set $base01 #444267
 set $base02 #32374D
@@ -218,4 +226,5 @@ client.background       $base07
 
 exec --no-startup-id compton
 exec --no-startup-id feh --bg-fill /home/satya/.wallpaper.jpg
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id tint2
