@@ -93,6 +93,7 @@ export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 # Language
 export LANGUAGE=en
 export LANG="en_US.utf8"
+export LC_ALL=en_US.UTF-8
 
 export EDITOR=nano
 

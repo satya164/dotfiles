@@ -13,3 +13,6 @@ export EDITOR=/usr/bin/nano
 if [ -f ~/.git-completion.sh ]; then
   . ~/.git-completion.sh
 fi
+
+if [ -f ~/.secrets.bash.inc ]; then source ~/.secrets.bash.inc; fi
+if [ -f ~/.local_config.bash.inc ]; then source ~/.local_config.bash.inc; fi
