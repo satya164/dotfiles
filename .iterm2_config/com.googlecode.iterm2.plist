@@ -6,12 +6,16 @@
 	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
+	<key>ApplePressAndHoldEnabled</key>
+	<false/>
 	<key>AppleScrollAnimationEnabled</key>
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
 	<key>AppleWindowTabbingMode</key>
 	<string>manual</string>
+	<key>BootstrapDaemon</key>
+	<false/>
 	<key>CheckTestRelease</key>
 	<true/>
 	<key>CompactMinimalTabBarHeight</key>
@@ -422,7 +426,7 @@
 	dWxs0g0ODxJaTlMub2JqZWN0c1YkY2xhc3OiEBGAAoAKgA3TFA0OFRkdV05TLmtleXOj
 	FhcYgAOABIAFoxobHIAGgAeACIAJWklkZW50aWZpZXJVV2lkdGhWSGlkZGVuUTAjQGjA
 	AAAAAAAI0iUmJyhaJGNsYXNzbmFtZVgkY2xhc3Nlc1xOU0RpY3Rpb25hcnmiJylYTlNP
-	YmplY3TTFA0OKy8doxYXGIADgASABaMwMRyAC4AMgAiACVExI0B0oZ2yLQ5W0iUmNzhe
+	YmplY3TTFA0OKy8doxYXGIADgASABaMwMRyAC4AMgAiACVExI0BzsZ2yLQ5W0iUmNzhe
 	TlNNdXRhYmxlQXJyYXmjNzkpV05TQXJyYXkACAARABoAJAApADIANwBJAEwAUgBUAGMA
 	aQBuAHkAgACDAIUAhwCJAJAAmACcAJ4AoACiAKYAqACqAKwArgC5AL8AxgDIANEA0gDX
 	AOIA6wD4APsBBAELAQ8BEQETARUBGQEbAR0BHwEhASMBLAExAUABRAAAAAAAAAIBAAAA
@@ -452,7 +456,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>258 48 918 471 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>704 17 570 385 0 0 1440 900 </string>
+	<string>-1024 434 906 550 -1116 364 1116 756 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>176 2 570 452 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
@@ -1209,9 +1213,10 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
-		<string>3.3.7beta3</string>
-		<string>3.3.0beta1</string>
 		<string>3.3.4beta1</string>
+		<string>3.3.0beta1</string>
+		<string>3.3.7beta3</string>
+		<string>3.3.10beta3</string>
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
@@ -1222,9 +1227,9 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1440, 900}}</string>
+		<string>{{0, 0}, {1792, 1120}}</string>
 		<key>topLeft</key>
-		<string>{337, 656}</string>
+		<string>{269, 595}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -1233,7 +1238,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>A38CBAD8-CC85-4411-9F86-B7A002F4C0AD</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>837</integer>
+	<integer>928</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2394,17 +2399,6 @@
 	</dict>
 	<key>NoSyncSaveDocumentAsPathSet_saveDocumentAs:</key>
 	<true/>
-	<key>NoSyncSearchHistory2</key>
-	<array>
-		<string>error</string>
-		<string>gesture han</string>
-		<string>GEst</string>
-		<string>dtrace</string>
-		<string>DTraceProviderBinding</string>
-		<string>dtrace-provider</string>
-		<string>back</string>
-		<string>getting</string>
-	</array>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>560117842.51962399</real>
 	<key>NoSyncVeryOldNightlyBuildWarning_SilenceUntil</key>
@@ -2471,7 +2465,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-11-10T18:04:00Z</date>
+	<date>2020-04-12T19:55:25Z</date>
 	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>Secure Input</key>
@@ -2509,7 +2503,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.7beta3</string>
+	<string>3.3.10beta3</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
