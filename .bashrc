@@ -16,3 +16,5 @@ fi
 
 if [ -f ~/.secrets.bash.inc ]; then source ~/.secrets.bash.inc; fi
 if [ -f ~/.local_config.bash.inc ]; then source ~/.local_config.bash.inc; fi
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
