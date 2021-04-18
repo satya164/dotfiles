@@ -10,11 +10,11 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 export EDITOR=/usr/bin/nano
 
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+
 if [ -f ~/.git-completion.sh ]; then
   . ~/.git-completion.sh
 fi
 
-if [ -f ~/.secrets.bash.inc ]; then source ~/.secrets.bash.inc; fi
-if [ -f ~/.local_config.bash.inc ]; then source ~/.local_config.bash.inc; fi
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+if [ -f ~/.bashrc_secrets ]; then source ~/.bashrc_secrets; fi
+if [ -f ~/.bash_local.inc ]; then source ~/.bash_local.inc; fi

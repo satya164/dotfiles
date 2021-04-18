@@ -99,5 +99,12 @@ export EDITOR=nano
 
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
-if [ -f ~/.secrets.zsh.inc ]; then source ~/.secrets.zsh.inc; fi
-if [ -f ~/.local_config.zsh.inc ]; then source ~/.local_config.zsh.inc; fi
+if [ -f ~/.zsh_secrets.inc ]; then source ~/.zsh_secrets.inc; fi
+if [ -f ~/.zsh_local.inc ]; then source ~/.zsh_local.inc; fi
+
+
+
+
+
+
+
