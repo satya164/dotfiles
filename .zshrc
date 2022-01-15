@@ -36,7 +36,7 @@ zstyle ':completion:::::' completer _expand _complete _ignored _approximate # en
 source <(antibody init)
 
 # Plugins
-antibody bundle zdharma/fast-syntax-highlighting
+antibody bundle zdharma-continuum/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zsh-users/zsh-completions
