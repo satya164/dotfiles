@@ -1,15 +1,18 @@
 [user]
-  name = Satyajit Sahoo
-  email = satyajit.happy@gmail.com
+	name = Satyajit Sahoo
+	email = satyajit.happy@gmail.com
+[init]
+	defaultBranch = main
 [push]
-  default = current
-  followTags = true
+	default = current
+	autoSetupRemote = true
+	followTags = true
 [core]
-  editor = nano
-  excludesfile = ~/.gitignore_global
+	editor = nano
+	excludesfile = ~/.gitignore_global
 [diff]
-  tool = vimdiff
-  compactionHeuristic = true
+	tool = vimdiff
+	compactionHeuristic = true
 [merge]
 	conflictstyle = diff3
 [status]
@@ -18,14 +21,11 @@
 	rebase = true
 
 [filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 
 [alias]
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-  pr = "!f() { git fetch -fu ${2:-$(git remote | grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
-  track = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)"
-[init]
-	defaultBranch = main
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	pr = "!f() { git fetch -fu ${2:-$(git remote | grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
