@@ -1,6 +1,7 @@
 [user]
 	name = Satyajit Sahoo
 	email = satyajit.happy@gmail.com
+  signingkey = D81AF82D6284948B709BA6F1D8A1262EFC5369A8
 [init]
 	defaultBranch = main
 [push]
@@ -19,6 +20,12 @@
 	submoduleSummary = true
 [pull]
 	rebase = true
+[help]
+  autocorrect = 30
+[commit]
+  gpgsign = true
+[gpg]
+  program = gpg
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f

@@ -373,7 +373,7 @@
 	<key>DoubleClickPerformsSmartSelection</key>
 	<true/>
 	<key>EnableAPIServer</key>
-	<string>1</string>
+	<false/>
 	<key>EnableDivisionView</key>
 	<true/>
 	<key>FastTrackpad</key>

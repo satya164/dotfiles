@@ -15,6 +15,10 @@ HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
 SAVEHIST=$HISTSIZE
 
+# Stop zsh autocorrect from suggesting undesired completions
+CORRECT_IGNORE_FILE=".*"
+CORRECT_IGNORE="_*"
+
 # Options
 setopt auto_cd # cd by typing directory name if it's not a command
 setopt auto_list # automatically list choices on ambiguous completion
@@ -63,7 +67,7 @@ SPACESHIP_PROMPT_ORDER=(
   jobs          # Background jobs indicator
   exit_code     # Exit code section
   sudo          # Sudo indicator
-  line_sep       # Line break
+  line_sep      # Line break
   char          # Prompt character
 )
 
