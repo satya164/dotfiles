@@ -10,6 +10,9 @@ fi
 
 zmodload -i zsh/complist
 
+# Enable hooks
+autoload -U add-zsh-hook
+
 # Save history so we get auto suggestions
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
@@ -85,6 +88,21 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
 
   chpwd
 fi
+
+# Use correct node version based on .nvmrc
+switch-node() {
+  if [[ (( $+commands[n] )) && -f ".nvmrc" ]]; then
+    local node_auto_version="v$(n ls-remote auto 2>/dev/null)"
+    local node_active_version="$(node --version 2>/dev/null)"
+
+    if [[ "$node_auto_version" != "$node_active_version" ]]; then
+      n auto
+    fi
+  fi
+}
+
+add-zsh-hook chpwd switch-node
+switch-node
 
 # Zsh notify configuration
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
