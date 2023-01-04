@@ -1,7 +1,6 @@
 [user]
 	name = Satyajit Sahoo
 	email = satyajit.happy@gmail.com
-  signingkey = D81AF82D6284948B709BA6F1D8A1262EFC5369A8
 [init]
 	defaultBranch = main
 [push]
@@ -22,10 +21,6 @@
 	rebase = true
 [help]
   autocorrect = 30
-[commit]
-  gpgsign = true
-[gpg]
-  program = gpg
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -36,3 +31,4 @@
 [alias]
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	pr = "!f() { git fetch -fu ${2:-$(git remote | grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+	track = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)"
