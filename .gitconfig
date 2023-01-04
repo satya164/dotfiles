@@ -7,6 +7,8 @@
 	default = current
 	autoSetupRemote = true
 	followTags = true
+[commit]
+	gpgsign = true
 [core]
 	editor = nano
 	excludesfile = ~/.gitignore_global
