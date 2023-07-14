@@ -39,24 +39,6 @@ zstyle ':completion:*' menu select # select completions with arrow keys
 zstyle ':completion:*' group-name '' # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
 
-# Load zgen plugin manager
-source "$HOME/.zgen/zgen.zsh"
-
-# Plugins
-zgen load zdharma-continuum/fast-syntax-highlighting
-zgen load zsh-users/zsh-autosuggestions
-zgen load zsh-users/zsh-history-substring-search
-zgen load zsh-users/zsh-completions
-zgen load t413/zsh-background-notify
-zgen load rapgenic/zsh-git-complete-urls
-zgen load buonomo/yarn-completion
-
-# Keybindings
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey '^[[3~' delete-char
-bindkey '^[3;5~' delete-char
-
 # Theme
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
@@ -78,7 +60,29 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 
-zgen load spaceship-prompt/spaceship-prompt spaceship
+# Load zgen plugin manager
+source "$HOME/.zgen/zgen.zsh"
+
+if ! zgen saved; then
+  # Plugins
+  zgen load zdharma-continuum/fast-syntax-highlighting
+  zgen load zsh-users/zsh-autosuggestions
+  zgen load zsh-users/zsh-history-substring-search
+  zgen load zsh-users/zsh-completions
+  zgen load t413/zsh-background-notify
+  zgen load rapgenic/zsh-git-complete-urls
+  zgen load buonomo/yarn-completion
+  zgen load spaceship-prompt/spaceship-prompt spaceship
+
+  # generate the init script from plugins above
+  zgen save
+fi
+
+# Keybindings
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[[3~' delete-char
+bindkey '^[3;5~' delete-char
 
 # Open new tabs in same directory
 if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
@@ -92,7 +96,7 @@ fi
 # Use correct node version based on .nvmrc
 switch-node() {
   if [[ (( $+commands[n] )) && -f ".nvmrc" ]]; then
-    local node_auto_version="v$(n ls-remote auto 2>/dev/null)"
+    local node_auto_version="v$(n ls-remote auto --all 2>/dev/null | head -n 1)"
     local node_active_version="$(node --version 2>/dev/null)"
 
     if [[ "$node_auto_version" != "$node_active_version" ]]; then
