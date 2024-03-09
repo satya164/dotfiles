@@ -16,5 +16,8 @@ if [ -f ~/.git-completion.sh ]; then
   . ~/.git-completion.sh
 fi
 
-if [ -f ~/.bashrc_secrets ]; then source ~/.bashrc_secrets; fi
-if [ -f ~/.bash_local.inc ]; then source ~/.bash_local.inc; fi
+if [ -f ~/.bash_secrets.sh ]; then source ~/.bash_secrets.sh; fi
+if [ -f ~/.bash_local.sh ]; then source ~/.bash_local.sh; fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

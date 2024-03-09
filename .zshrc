@@ -93,6 +93,21 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
   chpwd
 fi
 
+# Zsh notify configuration
+export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
+
+# Language
+export LANGUAGE=en
+export LANG="en_US.utf8"
+export LC_ALL=en_US.UTF-8
+
+export EDITOR=nano
+
+alias dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+
+if [ -f ~/.zsh_secrets.zsh ]; then source ~/.zsh_secrets.zsh; fi
+if [ -f ~/.zsh_local.zsh ]; then source ~/.zsh_local.zsh; fi
+
 # Use correct node version based on .nvmrc
 switch-node() {
   if [[ (( $+commands[n] )) && -f ".nvmrc" ]]; then
@@ -108,17 +123,18 @@ switch-node() {
 add-zsh-hook chpwd switch-node
 switch-node
 
-# Zsh notify configuration
-export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
 
-# Language
-export LANGUAGE=en
-export LANG="en_US.utf8"
-export LC_ALL=en_US.UTF-8
+if [[ $(uname -s) == Darwin* ]];then
+  # pnpm
+  export PNPM_HOME="$HOME/Library/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+  # pnpm end
+fi
 
-export EDITOR=nano
-
-alias dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
-
-if [ -f ~/.zsh_secrets.inc ]; then source ~/.zsh_secrets.inc; fi
-if [ -f ~/.zsh_local.inc ]; then source ~/.zsh_local.inc; fi
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
