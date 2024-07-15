@@ -123,18 +123,11 @@ switch-node() {
 add-zsh-hook chpwd switch-node
 switch-node
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 if [[ $(uname -s) == Darwin* ]];then
-  # pnpm
-  export PNPM_HOME="$HOME/Library/pnpm"
-  case ":$PATH:" in
-    *":$PNPM_HOME:"*) ;;
-    *) export PATH="$PNPM_HOME:$PATH" ;;
-  esac
-  # pnpm end
+  eval "$(zoxide init zsh)"
+
+  alias cd="z"
+  alias ls="eza --icons=auto"
 fi
 
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
