@@ -98,15 +98,41 @@ export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 
 # Language
 export LANGUAGE=en
-export LANG="en_US.utf8"
+export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export EDITOR=nano
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
-if [ -f ~/.zsh_secrets.zsh ]; then source ~/.zsh_secrets.zsh; fi
-if [ -f ~/.zsh_local.zsh ]; then source ~/.zsh_local.zsh; fi
+if [[ -f ~/.zsh_secrets.zsh ]]; then source ~/.zsh_secrets.zsh; fi
+if [[ -f ~/.zsh_local.zsh ]]; then source ~/.zsh_local.zsh; fi
+
+# Setup keybindings for fuzzy finder and zoxide
+if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
+if [[ -x $(command -v zoxide) ]]; then eval "$(zoxide init zsh)"; fi
+
+# Use fd for fzf if available
+if [[ -x $(command -v fd) ]]; then
+  export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git"
+
+  _fzf_compgen_path() {
+    fd --hidden --exclude .git . "$1"
+  }
+
+  _fzf_compgen_dir() {
+    fd --type d --hidden --exclude .git . "$1"
+  }
+fi
+
+# Setup aliases for alternative commands
+if [[ -x $(command -v z) ]]; then alias cd="z"; fi
+if [[ -x $(command -v eza) ]]; then alias ls="eza --icons=auto"; fi
+if [[ -x $(command -v bat) ]]; then alias cat="bat"; fi
+
+export BAT_THEME="OneHalfDark"
 
 # Use correct node version based on .nvmrc
 switch-node() {
@@ -122,12 +148,5 @@ switch-node() {
 
 add-zsh-hook chpwd switch-node
 switch-node
-
-if [[ $(uname -s) == Darwin* ]];then
-  eval "$(zoxide init zsh)"
-
-  alias cd="z"
-  alias ls="eza --icons=auto"
-fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

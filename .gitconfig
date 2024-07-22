@@ -11,10 +11,18 @@
 	gpgsign = true
 [core]
 	editor = nano
+  pager = delta
 	excludesfile = ~/.gitignore_global
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  side-by-side = true
+  line-numbers = true
 [diff]
 	tool = vimdiff
 	compactionHeuristic = true
+  colorMoved = default
 [merge]
 	conflictstyle = diff3
 [status]
