@@ -27,8 +27,10 @@ setopt auto_cd # cd by typing directory name if it's not a command
 setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
+setopt hist_expire_dups_first # expire duplicate entries first when trimming history
 setopt hist_ignore_all_dups # remove older duplicate entries from history
 setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt hist_verify # don't execute immediately upon history expansion
 setopt inc_append_history # save history entries as soon as they are entered
 setopt share_history # share history between different instances
 setopt correct_all # autocorrect commands
@@ -114,16 +116,16 @@ if [[ -x $(command -v zoxide) ]]; then eval "$(zoxide init zsh)"; fi
 
 # Use fd for fzf if available
 if [[ -x $(command -v fd) ]]; then
-  export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
+  export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git --exclude .npm --exclude .cache'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git"
+  export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git --exclude .npm --exclude .cache"
 
   _fzf_compgen_path() {
-    fd --hidden --exclude .git . "$1"
+    fd --hidden --exclude .git --exclude .npm --exclude .cache . "$1"
   }
 
   _fzf_compgen_dir() {
-    fd --type d --hidden --exclude .git . "$1"
+    fd --type d --hidden --exclude .git --exclude .npm --exclude .cache . "$1"
   }
 fi
 
