@@ -151,7 +151,7 @@ switch-node() {
 add-zsh-hook chpwd switch-node
 switch-node
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+if [[ -x $(command -v tmux) ]] && [[ -n "$PS1" ]] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [[ -z "$TMUX" ]] && [[ ! $TERM_PROGRAM =~ vscode ]]; then
   exec tmux
 fi
 
