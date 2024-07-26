@@ -151,8 +151,4 @@ switch-node() {
 add-zsh-hook chpwd switch-node
 switch-node
 
-if [[ -x $(command -v tmux) ]] && [[ -n "$PS1" ]] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [[ -z "$TMUX" ]] && [[ ! $TERM_PROGRAM =~ vscode ]]; then
-  exec tmux
-fi
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
