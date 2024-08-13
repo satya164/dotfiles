@@ -134,6 +134,10 @@ if [[ -x $(command -v z) ]]; then alias cd="z"; fi
 if [[ -x $(command -v eza) ]]; then alias ls="eza --icons=auto"; fi
 if [[ -x $(command -v bat) ]]; then alias cat="bat"; fi
 
+if [[ $(uname) == "Darwin" ]]; then
+  alias nix-rebuild="nix run nix-darwin -- switch --flake ~/.config/nix-darwin"
+fi
+
 export BAT_THEME="OneHalfDark"
 
 # Use correct node version based on .nvmrc
