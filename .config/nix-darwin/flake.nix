@@ -25,7 +25,6 @@
         ccache
         fd # find replacement
         fzf # fuzzy finder
-        rbenv
         pinentry_mac # gpg agent
         scrcpy # android screen mirroring
         tmux
@@ -38,6 +37,17 @@
         gh
       ];
 
+      homebrew = {
+        enable = true;
+        taps = [];
+        brews = [];
+        casks = [
+          "aerospace"
+          "expo-orbit"
+          "jordanbaird-ice"
+        ];
+      };
+
       services.nix-daemon.enable = true;
 
       nix.settings.experimental-features = "nix-command flakes";
@@ -49,7 +59,7 @@
       system.configurationRevision = self.rev or self.dirtyRev or null;
       system.stateVersion = 4;
 
-      nixpkgs.hostPlatform = "x86_64-darwin";
+      nixpkgs.hostPlatform = "aarch64-darwin";
 
       system.defaults = {
         dock.autohide = true;
@@ -63,7 +73,5 @@
     darwinConfigurations."INV-0068" = nix-darwin.lib.darwinSystem {
       modules = [ configuration ];
     };
-
-    darwinPackages = self.darwinConfigurations."INV-0068".pkgs;
   };
 }
