@@ -35,6 +35,7 @@
         idb-companion
         cloudflared
         gh
+        yt-dlp
       ];
 
       homebrew = {
@@ -42,7 +43,10 @@
         taps = [
           "nikitabobko/tap"
         ];
-        brews = [];
+        brews = [
+          "n"
+          "yarn"
+        ];
         casks = [
           "aerospace"
           "expo-orbit"
@@ -68,7 +72,7 @@
   in
   {
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
-      system = "x86_64-darwin";
+      system = "aarch64-darwin";
       modules = [ configuration ];
     };
 
