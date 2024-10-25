@@ -30,6 +30,7 @@
         tmux
         tree
         watchman
+        cocoapods
         xcbeautify
         gitmux
         idb-companion
