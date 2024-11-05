@@ -138,6 +138,10 @@ if [[ $(uname) == "Darwin" ]]; then
   alias nix-rebuild="nix run --extra-experimental-features 'nix-command flakes' nix-darwin -- switch --flake ~/.config/nix-darwin"
 fi
 
+if [[ $(uname) == "Linux" && -f "/DATA/nixos/flake.nix" ]]; then
+  alias nix-rebuild="sudo nixos-rebuild switch --flake /DATA/nixos"
+fi
+
 export BAT_THEME="OneHalfDark"
 
 # Use correct node version based on .nvmrc
