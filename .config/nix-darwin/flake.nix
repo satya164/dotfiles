@@ -49,6 +49,7 @@
           "yarn"
         ];
         casks = [
+          "ghostty"
           "aerospace"
           "expo-orbit"
           "jordanbaird-ice"
