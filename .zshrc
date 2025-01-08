@@ -151,11 +151,11 @@ if [[ -x $(command -v z) ]]; then alias cd="z"; fi
 if [[ -x $(command -v eza) ]]; then alias ls="eza --icons=auto"; fi
 
 if [[ $(uname) == "Darwin" ]]; then
-  alias nix-rebuild="nix run --extra-experimental-features 'nix-command flakes' nix-darwin -- switch --flake $HOME/.config/nix-darwin"
+  alias nix-rebuild="nix run --extra-experimental-features 'nix-command flakes' nix-darwin -- switch --flake $HOME/.nix/darwin"
 fi
 
-if [[ $(uname) == "Linux" && -f "$HOME/.config/nixos/flake.nix" ]]; then
-  alias nix-rebuild="sudo nixos-rebuild switch --flake $HOME/.config/nixos"
+if [[ $(uname) == "Linux" && -f "$HOME/.nix/$(hostname)/flake.nix" ]]; then
+  alias nix-rebuild="sudo nixos-rebuild switch --flake $HOME/.nix/$(hostname)"
 fi
 
 export BAT_THEME="OneHalfDark"
