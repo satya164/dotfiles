@@ -154,8 +154,8 @@ if [[ $(uname) == "Darwin" ]]; then
   alias nix-rebuild="nix run --extra-experimental-features 'nix-command flakes' nix-darwin -- switch --flake $HOME/.config/nix-darwin"
 fi
 
-if [[ $(uname) == "Linux" && -f "/DATA/nixos/flake.nix" ]]; then
-  alias nix-rebuild="sudo nixos-rebuild switch --flake /DATA/nixos"
+if [[ $(uname) == "Linux" && -f "$HOME/.config/nixos/flake.nix" ]]; then
+  alias nix-rebuild="sudo nixos-rebuild switch --flake $HOME/.config/nixos"
 fi
 
 export BAT_THEME="OneHalfDark"
