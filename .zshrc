@@ -174,5 +174,3 @@ switch-node() {
 
 add-zsh-hook chpwd switch-node
 switch-node
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
