@@ -13,6 +13,9 @@ zmodload -i zsh/complist
 # Enable hooks
 autoload -U add-zsh-hook
 
+# Enable zsh recompilation
+autoload -Uz zrecompile
+
 # Save history so we get auto suggestions
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
@@ -62,23 +65,37 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 
-# Load zgen plugin manager
-source "$HOME/.zgen/zgen.zsh"
+# Install and load plugins
+plugins=(
+  zdharma-continuum/fast-syntax-highlighting
+  zsh-users/zsh-autosuggestions
+  zsh-users/zsh-history-substring-search
+  zsh-users/zsh-completions
+  t413/zsh-background-notify
+  rapgenic/zsh-git-complete-urls
+  buonomo/yarn-completion
+  spaceship-prompt/spaceship-prompt
+)
 
-if ! zgen saved; then
-  # Plugins
-  zgen load zdharma-continuum/fast-syntax-highlighting
-  zgen load zsh-users/zsh-autosuggestions
-  zgen load zsh-users/zsh-history-substring-search
-  zgen load zsh-users/zsh-completions
-  zgen load t413/zsh-background-notify
-  zgen load rapgenic/zsh-git-complete-urls
-  zgen load buonomo/yarn-completion
-  zgen load spaceship-prompt/spaceship-prompt spaceship
+PLUGIN_DIR=$HOME/.zsh_plugins
 
-  # generate the init script from plugins above
-  zgen save
-fi
+for plugin in $plugins; do
+  if [[ ! -d $PLUGIN_DIR/${plugin:t} ]]; then
+    git clone --depth 1 https://github.com/${plugin} $PLUGIN_DIR/${plugin:t}
+
+    for f in $PLUGIN_DIR/${plugin:t}/**/*.zsh; do
+      echo "Recompiling $f"
+      zrecompile -pq "$f"
+    done
+  fi
+
+  if [[ -f $PLUGIN_DIR/${plugin:t}/${plugin:t}.plugin.zsh ]]; then
+    source $PLUGIN_DIR/${plugin:t}/${plugin:t}.plugin.zsh
+  fi
+done
+
+# Load spaceship prompt
+source $PLUGIN_DIR/spaceship-prompt/spaceship.zsh
 
 # Keybindings
 bindkey '^[[A' history-substring-search-up
