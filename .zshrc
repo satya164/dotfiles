@@ -1,7 +1,7 @@
 # Enable autocompletions
 autoload -Uz compinit
 
-typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+typeset -i updated_at=$(date +'%j' -r $HOME/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' $HOME/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
   compinit -i
 else
@@ -124,8 +124,8 @@ export EDITOR=nano
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
-if [[ -f ~/.zsh_secrets.zsh ]]; then source ~/.zsh_secrets.zsh; fi
-if [[ -f ~/.zsh_local.zsh ]]; then source ~/.zsh_local.zsh; fi
+if [[ -f $HOME/.zsh_secrets.zsh ]]; then source $HOME/.zsh_secrets.zsh; fi
+if [[ -f $HOME/.zsh_local.zsh ]]; then source $HOME/.zsh_local.zsh; fi
 
 # Setup keybindings for fuzzy finder and zoxide
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
@@ -151,7 +151,7 @@ if [[ -x $(command -v z) ]]; then alias cd="z"; fi
 if [[ -x $(command -v eza) ]]; then alias ls="eza --icons=auto"; fi
 
 if [[ $(uname) == "Darwin" ]]; then
-  alias nix-rebuild="nix run --extra-experimental-features 'nix-command flakes' nix-darwin -- switch --flake ~/.config/nix-darwin"
+  alias nix-rebuild="nix run --extra-experimental-features 'nix-command flakes' nix-darwin -- switch --flake $HOME/.config/nix-darwin"
 fi
 
 if [[ $(uname) == "Linux" && -f "/DATA/nixos/flake.nix" ]]; then
