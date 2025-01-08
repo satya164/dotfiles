@@ -1,0 +1,28 @@
+auto-update = download
+shell-integration-features = sudo
+adjust-cursor-thickness = 2
+cursor-invert-fg-bg = true
+font-family = FiraCode Nerd Font Mono
+font-size = 12
+font-thicken = true
+
+palette = 0=#697098
+palette = 1=#F78C6C
+palette = 2=#C3E88D
+palette = 3=#ffcb6b
+palette = 4=#82AAFF
+palette = 5=#c792ea
+palette = 6=#89DDFF
+palette = 7=#a5adce
+palette = 8=#697098
+palette = 9=#FF9E80
+palette = 10=#C5E1A5
+palette = 11=#FFD54F
+palette = 12=#82B1FF
+palette = 13=#EA80FC
+palette = 14=#80D8FF
+palette = 15=#B0BEC5
+background = 2a2d3d
+foreground = bfc7d5
+selection-background = 424762
+selection-foreground = eeffff
