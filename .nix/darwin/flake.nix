@@ -59,6 +59,11 @@
         ];
       };
 
+      fonts.packages = with pkgs; [
+        fira-code
+        fira-code-nerdfont
+      ];
+
       programs.zsh.enable = true;
 
       security.pam.enableSudoTouchIdAuth = true;
