@@ -54,8 +54,16 @@
         casks = [
           "ghostty"
           "aerospace"
-          "expo-orbit"
           "jordanbaird-ice"
+          "ente-auth"
+          "home-assistant"
+          "maccy"
+          "obsidian"
+          "pika"
+          "shottr"
+          "syncthing"
+          "the-unarchiver"
+          "expo-orbit"
         ];
       };
 
