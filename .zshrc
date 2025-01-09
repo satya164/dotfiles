@@ -156,12 +156,12 @@ if [[ -x $(command -v rbenv) ]]; then
 fi
 
 # Setup sdkman if available
-if [[ -x $(command -v brew) ]]; then
-  SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+if [[ -z "$SDKMAN_DIR" && -x $(command -v brew) ]]; then
+  export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+fi
 
-  if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
-    source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-  fi
+if [[ ! -z "$SDKMAN_DIR" && -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
+  source "$SDKMAN_DIR/bin/sdkman-init.sh"
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
