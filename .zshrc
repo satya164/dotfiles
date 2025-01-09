@@ -150,6 +150,20 @@ fi
 if [[ -x $(command -v z) ]]; then alias cd="z"; fi
 if [[ -x $(command -v eza) ]]; then alias ls="eza --icons=auto"; fi
 
+# Setup rbenv if available
+if [[ -x $(command -v rbenv) ]]; then
+  eval "$(rbenv init - --no-rehash zsh)"
+fi
+
+# Setup sdkman if available
+if [[ -x $(command -v brew) ]]; then
+  SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+
+  if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
+    source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+  fi
+fi
+
 if [[ $(uname) == "Darwin" ]]; then
   alias nix-rebuild="nix run --extra-experimental-features 'nix-command flakes' nix-darwin -- switch --flake $HOME/.nix/darwin"
 fi

@@ -30,7 +30,6 @@
         tmux
         tree
         watchman
-        cocoapods
         xcbeautify
         gitmux
         idb-companion
@@ -42,11 +41,15 @@
       homebrew = {
         enable = true;
         taps = [
+          "sdkman/tap"
           "nikitabobko/tap"
         ];
         brews = [
           "n"
           "yarn"
+          "sdkman-cli"
+          "rbenv"
+          "ruby-build"
         ];
         casks = [
           "ghostty"
