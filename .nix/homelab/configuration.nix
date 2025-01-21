@@ -168,6 +168,12 @@
     };
   };
 
+  services.journald = {
+    extraConfig = ''
+      SystemMaxUse=100M
+    '';
+  };
+
   networking.firewall.allowedTCPPorts = [
     # Home Assistant
     8123
