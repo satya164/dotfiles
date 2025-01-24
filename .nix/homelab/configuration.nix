@@ -196,7 +196,76 @@
     enable = true;
     daemon.settings = {
       userland-proxy = false;
+      data-root = "/mnt/External/Docker";
     };
+  };
+
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      traefik = {
+        autoStart = true;
+        image = "traefik:latest";
+        hostname = "traefik";
+        serviceName = "traefik";
+        ports = [
+          "80:80"
+          "443:443"
+          "8080:8080"
+        ];
+        volumes = [
+          "/DATA/AppData/traefik:/etc/traefik"
+          "/var/run/docker.sock:/var/run/docker.sock"
+        ];
+        environment = {
+          PUID = "1000";
+          PGID = "1000";
+          TZ = "Europe/Warsaw";
+        };
+        labels = {
+          "traefik.http.routers.traefik.rule" = "Host(`traefik.satya164.homes`)";
+          "traefik.http.services.traefik.loadbalancer.server.port" = "8080";
+        };
+        extraOptions = [ "--network=traefik" ];
+      };
+      portainer = {
+        autoStart = true;
+        image = "portainer/portainer-ce:latest";
+        hostname = "portainer";
+        serviceName = "portainer";
+        ports = [ "9000:9000" ];
+        volumes = [
+          "/DATA/AppData/portainer:/data"
+          "/var/run/docker.sock:/var/run/docker.sock"
+        ];
+        environment = {
+          APPDATA = "/DATA/AppData";
+          EXTERNAL = "/mnt/External";
+          DOMAIN = "satya164.homes";
+          PUID = "1000";
+          PGID = "1000";
+          TZ = "Europe/Warsaw";
+        };
+        labels = {
+          "traefik.http.routers.portainer.rule" = "Host(`portainer.satya164.homes`)";
+          "traefik.http.services.portainer.loadbalancer.server.port" = "9000";
+        };
+        extraOptions = [ "--network=traefik" ];
+      };
+    };
+  };
+
+  systemd.services.traefik-network = {
+    description = "Create the network bridge for traefik.";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      check=$(${pkgs.docker}/bin/docker network ls | grep "traefik" || true)
+      if [ -z "$check" ]; then
+        ${pkgs.docker}/bin/docker network create traefik
+      fi
+    '';
   };
 
   system.stateVersion = "24.11";
