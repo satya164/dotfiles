@@ -11,6 +11,7 @@
   let
     configuration = { pkgs, ... }: {
       environment.systemPackages = with pkgs; [
+        nixfmt-rfc-style
         nano
         neovim
         git
