@@ -138,15 +138,6 @@
         "browseable" = "yes";
       };
 
-      "DATA" = {
-        "path" = "/DATA";
-        "browseable" = "yes";
-        "read only" = "no";
-        "guest ok" = "no";
-        "create mask" = "0644";
-        "directory mask" = "0755";
-        "force user" = "satya";
-      };
       "External" = {
         "path" = "/mnt/External";
         "browseable" = "yes";
@@ -214,7 +205,7 @@
           "8080:8080"
         ];
         volumes = [
-          "/DATA/AppData/traefik:/etc/traefik"
+          "/mnt/External/AppData/traefik:/etc/traefik"
           "/var/run/docker.sock:/var/run/docker.sock"
         ];
         environment = {
@@ -235,11 +226,11 @@
         serviceName = "portainer";
         ports = [ "9000:9000" ];
         volumes = [
-          "/DATA/AppData/portainer:/data"
+          "/mnt/External/AppData/portainer:/data"
           "/var/run/docker.sock:/var/run/docker.sock"
         ];
         environment = {
-          APPDATA = "/DATA/AppData";
+          APPDATA = "/mnt/External/AppData";
           EXTERNAL = "/mnt/External";
           DOMAIN = "satya164.homes";
           PUID = "1000";
