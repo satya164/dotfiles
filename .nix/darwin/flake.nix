@@ -54,7 +54,6 @@
         ];
         casks = [
           "ghostty"
-          "aerospace"
           "jordanbaird-ice"
           "ente-auth"
           "home-assistant"
