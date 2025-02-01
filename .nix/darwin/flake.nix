@@ -37,6 +37,9 @@
         cloudflared
         gh
         yt-dlp
+        podman
+        vfkit # needed for podman
+        lazydocker
       ];
 
       homebrew = {

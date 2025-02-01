@@ -150,6 +150,11 @@ fi
 if [[ -x $(command -v z) ]]; then alias cd="z"; fi
 if [[ -x $(command -v eza) ]]; then alias ls="eza --icons=auto"; fi
 
+# Setup podman if available
+if [[ -x $(command -v podman) ]]; then
+  export DOCKER_HOST="unix://$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')"
+fi
+
 # Setup rbenv if available
 if [[ -x $(command -v rbenv) ]]; then
   eval "$(rbenv init - --no-rehash zsh)"
