@@ -103,9 +103,10 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    docker-compose
     git
     tailscale
+    docker-compose
+    lazydocker
   ];
 
   programs.gnupg.agent = {
@@ -195,10 +196,8 @@
     backend = "docker";
     containers = {
       traefik = {
-        autoStart = true;
         image = "traefik:latest";
         hostname = "traefik";
-        serviceName = "traefik";
         ports = [
           "80:80"
           "443:443"
@@ -220,10 +219,8 @@
         extraOptions = [ "--network=traefik" ];
       };
       portainer = {
-        autoStart = true;
         image = "portainer/portainer-ce:latest";
         hostname = "portainer";
-        serviceName = "portainer";
         ports = [ "9000:9000" ];
         volumes = [
           "/mnt/External/AppData/portainer:/data"
