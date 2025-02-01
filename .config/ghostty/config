@@ -1,5 +1,6 @@
-auto-update = download
-shell-integration-features = sudo
+shell-integration-features = cursor,title,sudo
+
+
 adjust-cursor-thickness = 2
 cursor-invert-fg-bg = true
 font-family = FiraCode Nerd Font Mono
@@ -26,3 +27,5 @@ background = 2a2d3d
 foreground = bfc7d5
 selection-background = 424762
 selection-foreground = eeffff
+
+macos-titlebar-proxy-icon = hidden
