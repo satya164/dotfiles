@@ -98,5 +98,10 @@
       system = "aarch64-darwin";
       modules = [ configuration ];
     };
+
+    darwinConfigurations."INV-0281" = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      modules = [ configuration ];
+    };
   };
 }
