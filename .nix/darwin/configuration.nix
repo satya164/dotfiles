@@ -5,32 +5,33 @@
     nixfmt-rfc-style
     nano
     neovim
+    wget
     git
     git-extras
     git-lfs
+    gitmux
+    tmux
+    tree
     gnupg
     jq # json parser
     mosh # ssh replacement
-    zsh
-    asciinema
-    bat # cat replacement
-    ccache
     fd # find replacement
     fzf # fuzzy finder
+    yazi # file manager
+    ncdu # disk usage
     pinentry_mac # gpg agent
     scrcpy # android screen mirroring
-    tmux
-    tree
     watchman
-    xcbeautify
-    gitmux
+    ccache
     idb-companion
+    xcbeautify
     cloudflared
-    gh
     yt-dlp
+    asciinema
     podman
     vfkit # needed for podman
     lazydocker
+    gh
   ];
 
   homebrew = {

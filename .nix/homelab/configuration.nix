@@ -102,9 +102,21 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    vim
+    nixfmt-rfc-style
+    nano
+    neovim
     wget
     git
+    git-extras
+    git-lfs
+    gitmux
+    tmux
+    tree
+    jq # json parser
+    fd # find replacement
+    fzf # fuzzy finder
+    yazi # file manager
+    ncdu # disk usage
     tailscale
     docker-compose
     lazydocker
