@@ -1,0 +1,7 @@
+# always use extended mode
+--extended
+--color=dark
+# use MB, GB, etc. instead of MiB, GiB, etc.
+--si
+--group-directories-first
+--confirm-quit
