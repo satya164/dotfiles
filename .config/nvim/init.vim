@@ -65,6 +65,8 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
+set guifont=Fira\ Code\ Nerd\ Font\ Mono
+
 set background=dark
 colorscheme palenight
 
