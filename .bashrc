@@ -1,3 +1,8 @@
+# Shell integration for ghostty
+if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
+  builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/bash/ghostty.bash"
+fi
+
 if [[ `command -v brew` && -f `brew --prefix`/etc/bash_completion ]]; then
     . `brew --prefix`/etc/bash_completion
 fi
