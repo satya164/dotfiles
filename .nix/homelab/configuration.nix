@@ -87,10 +87,8 @@
       "wheel"
       "docker"
     ];
-    packages = with pkgs; [ ];
+    uid = 1000;
   };
-
-  users.groups.docker.gid = lib.mkForce 1000;
 
   services.getty.autologinUser = "satya";
 
@@ -220,8 +218,8 @@
           APPDATA = "/mnt/External/AppData";
           EXTERNAL = "/mnt/External";
           DOMAIN = "satya164.homes";
-          PUID = "1000";
-          PGID = "1000";
+          PUID = "${toString config.users.users.satya.uid}";
+          PGID = "${toString config.ids.gids.${toString config.users.users.satya.group}}";
           TZ = "Europe/Warsaw";
         };
         labels = {
