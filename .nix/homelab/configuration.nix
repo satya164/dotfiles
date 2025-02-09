@@ -208,29 +208,6 @@
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {
-      traefik = {
-        image = "traefik:latest";
-        hostname = "traefik";
-        ports = [
-          "80:80"
-          "443:443"
-          "8080:8080"
-        ];
-        volumes = [
-          "/mnt/External/AppData/traefik:/etc/traefik"
-          "/var/run/docker.sock:/var/run/docker.sock"
-        ];
-        environment = {
-          PUID = "1000";
-          PGID = "1000";
-          TZ = "Europe/Warsaw";
-        };
-        labels = {
-          "traefik.http.routers.traefik.rule" = "Host(`traefik.satya164.homes`)";
-          "traefik.http.services.traefik.loadbalancer.server.port" = "8080";
-        };
-        extraOptions = [ "--network=traefik" ];
-      };
       portainer = {
         image = "portainer/portainer-ce:latest";
         hostname = "portainer";
