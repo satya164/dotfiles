@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  specialArgs,
   ...
 }:
 
@@ -24,7 +25,7 @@
   };
 
   networking = {
-    hostName = "homelab";
+    hostName = "${specialArgs.hostname}";
     networkmanager.enable = true;
     firewall = {
       enable = true;
@@ -79,9 +80,8 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  users.users.satya = {
+  users.users.${specialArgs.username} = {
     isNormalUser = true;
-    description = "Satyajit Sahoo";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -90,7 +90,7 @@
     uid = 1000;
   };
 
-  services.getty.autologinUser = "satya";
+  services.getty.autologinUser = "${specialArgs.username}";
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -143,8 +143,8 @@
     settings = {
       global = {
         "workgroup" = "WORKGROUP";
-        "server string" = "homelab";
-        "netbios name" = "homelab";
+        "server string" = "${specialArgs.hostname}";
+        "netbios name" = "${specialArgs.hostname}";
         "smb encrypt" = "required";
         "security" = "user";
         "browseable" = "yes";
@@ -157,16 +157,16 @@
         "guest ok" = "no";
         "create mask" = "0644";
         "directory mask" = "0755";
-        "force user" = "satya";
+        "force user" = "${specialArgs.username}";
       };
       "Nix" = {
-        "path" = "/home/satya/.nix";
+        "path" = "${config.users.users.${specialArgs.username}.home}/.nix";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";
         "create mask" = "0644";
         "directory mask" = "0755";
-        "force user" = "satya";
+        "force user" = "${specialArgs.username}";
       };
     };
   };
@@ -217,13 +217,13 @@
         environment = {
           APPDATA = "/mnt/External/AppData";
           EXTERNAL = "/mnt/External";
-          DOMAIN = "satya164.homes";
-          PUID = "${toString config.users.users.satya.uid}";
-          PGID = "${toString config.ids.gids.${toString config.users.users.satya.group}}";
+          DOMAIN = "${specialArgs.domain}";
+          PUID = "${toString config.users.users.${specialArgs.username}.uid}";
+          PGID = "${toString config.ids.gids.${toString config.users.users.${specialArgs.username}.group}}";
           TZ = "Europe/Warsaw";
         };
         labels = {
-          "traefik.http.routers.portainer.rule" = "Host(`portainer.satya164.homes`)";
+          "traefik.http.routers.portainer.rule" = "Host(`portainer.${specialArgs.domain}`)";
           "traefik.http.services.portainer.loadbalancer.server.port" = "9000";
         };
         extraOptions = [ "--network=traefik" ];

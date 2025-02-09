@@ -8,6 +8,11 @@
     {
       nixosConfigurations.homelab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {
+          hostname = "homelab";
+          username = "satya";
+          domain = "satya164.homes";
+        };
         modules = [ ./configuration.nix ];
       };
     };
