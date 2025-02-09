@@ -13,7 +13,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems = {
-    "/mnt/External" = {
+    "${specialArgs.external}" = {
       device = "/dev/disk/by-uuid/9a5cdc5e-362f-eb4e-9f9a-8ca6ed0d6671";
       fsType = "ext4";
       options = [
@@ -51,7 +51,7 @@
     };
   };
 
-  time.timeZone = "Europe/Warsaw";
+  time.timeZone = "${specialArgs.timezone}";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -151,7 +151,7 @@
       };
 
       "External" = {
-        "path" = "/mnt/External";
+        "path" = "${specialArgs.external}";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";
@@ -199,7 +199,7 @@
     enable = true;
     daemon.settings = {
       userland-proxy = false;
-      data-root = "/mnt/External/Docker";
+      data-root = "${specialArgs.external}/Docker";
     };
   };
 
@@ -211,16 +211,16 @@
         hostname = "portainer";
         ports = [ "9000:9000" ];
         volumes = [
-          "/mnt/External/AppData/portainer:/data"
+          "${specialArgs.external}/AppData/portainer:/data"
           "/var/run/docker.sock:/var/run/docker.sock"
         ];
         environment = {
-          APPDATA = "/mnt/External/AppData";
-          EXTERNAL = "/mnt/External";
+          APPDATA = "${specialArgs.external}/AppData";
+          EXTERNAL = "${specialArgs.external}";
           DOMAIN = "${specialArgs.domain}";
           PUID = "${toString config.users.users.${specialArgs.username}.uid}";
           PGID = "${toString config.ids.gids.${toString config.users.users.${specialArgs.username}.group}}";
-          TZ = "Europe/Warsaw";
+          TZ = "${specialArgs.timezone}";
         };
         labels = {
           "traefik.http.routers.portainer.rule" = "Host(`portainer.${specialArgs.domain}`)";

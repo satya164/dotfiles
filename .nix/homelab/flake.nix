@@ -12,6 +12,8 @@
           hostname = "homelab";
           username = "satya";
           domain = "satya164.homes";
+          timezone = "Europe/Warsaw";
+          external = "/mnt/External";
         };
         modules = [ ./configuration.nix ];
       };
