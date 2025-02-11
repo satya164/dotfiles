@@ -157,7 +157,11 @@ if [[ -x $(command -v eza) ]]; then alias ls="eza --icons=auto"; fi
 
 # Setup podman if available
 if [[ -x $(command -v podman) ]]; then
-  export DOCKER_HOST="unix://$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')"
+  PODMAN_SOCKET=$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}' 2>/dev/null)
+
+  if [[ -n "$PODMAN_SOCKET" ]]; then
+    export DOCKER_HOST="unix://$PODMAN_SOCKET"
+  fi
 fi
 
 # Setup rbenv if available
@@ -170,7 +174,7 @@ if [[ -z "$SDKMAN_DIR" && -x $(command -v brew) ]]; then
   export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 fi
 
-if [[ ! -z "$SDKMAN_DIR" && -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
+if [[ -n "$SDKMAN_DIR" && -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
   source "$SDKMAN_DIR/bin/sdkman-init.sh"
 fi
 
