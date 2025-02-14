@@ -113,6 +113,7 @@
     jq # json parser
     fd # find replacement
     fzf # fuzzy finder
+    zoxide # cd replacement
     yazi # file manager
     ncdu # disk usage
     tailscale
