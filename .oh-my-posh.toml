@@ -13,7 +13,7 @@ final_space = true
     style = 'plain'
     background = 'transparent'
     foreground = 'cyan'
-    template = '{{ .Path }}'
+    template = '<b>{{ .Path }}</b>'
 
     [blocks.segments.properties]
       style = 'folder'
@@ -22,7 +22,18 @@ final_space = true
     type = 'git'
     style = 'plain'
     background = 'transparent'
-    template = ' <magenta>{{ .HEAD }}</><yellow>{{ if or (.Working.Changed) (.Staging.Changed) }} *{{ end }}</><cyan>{{ if gt .Behind 0 }} ⇣{{ end }}{{ if gt .Ahead 0 }} ⇡{{ end }}</>'
+    foreground_templates = [
+      "{{ if or (.Working.Changed) (.Staging.Changed) }}yellow{{ end }}",
+      "{{ if or (gt .Ahead 0) (gt .Behind 0) }}yellow{{ end }}",
+      "{{ if gt .Ahead 0 }}blue{{ end }}",
+      "{{ if gt .Behind 0 }}blue{{ end }}",
+      "{{ if .Detached }}red{{ end }}",
+      "{{ if .Merge }}red{{ end }}",
+      "{{ if .CherryPick }}red{{ end }}",
+      "{{ if .Revert }}red{{ end }}",
+      "magenta"
+    ]
+    template = ' <b>{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }} <red>[{{ if (gt .Working.Untracked 0) }}?{{ end }}{{ if (gt .Working.Modified 0) }}!{{ end }}{{ if .Staging.Changed }}+{{ end }}{{ if .Merge }}={{ end }}]</>{{ end }}</b>'
 
     [blocks.segments.properties]
       commit_icon = '@'
@@ -37,7 +48,7 @@ final_space = true
     style = 'plain'
     foreground = 'yellow'
     background = 'transparent'
-    template = '{{ .FormattedMs }}'
+    template = '<b>{{ .FormattedMs }}</b>'
 
 [[blocks]]
   type = 'prompt'
@@ -60,4 +71,4 @@ final_space = true
     "{{if eq .Code 0}}green{{end}}",
   ]
   background = 'transparent'
-  template = '❯ '
+  template = '❯'
