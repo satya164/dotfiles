@@ -3,6 +3,10 @@ if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
   builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi
 
+if [[ -x $(command -v brew) ]] then
+  eval "$($(which brew) shellenv)"
+fi
+
 # Enable autocompletions
 autoload -Uz compinit
 
@@ -24,6 +28,7 @@ autoload -Uz zrecompile
 # Save history so we get auto suggestions
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
+HISTDUP=erase
 SAVEHIST=$HISTSIZE
 
 # Stop zsh autocorrect from suggesting undesired completions
@@ -36,8 +41,11 @@ setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
 setopt hist_expire_dups_first # expire duplicate entries first when trimming history
+setopt hist_find_no_dups # don't display duplicate entries in history
+setopt hist_ignore_space # ignore commands starting with space
 setopt hist_ignore_all_dups # remove older duplicate entries from history
 setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt hist_save_no_dups # don't save duplicate entries in history
 setopt hist_verify # don't execute immediately upon history expansion
 setopt inc_append_history # save history entries as soon as they are entered
 setopt share_history # share history between different instances
@@ -134,7 +142,7 @@ if [[ -f $HOME/.zsh_local.zsh ]]; then source $HOME/.zsh_local.zsh; fi
 
 # Setup keybindings for fuzzy finder and zoxide
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
-if [[ -x $(command -v zoxide) ]]; then eval "$(zoxide init zsh)"; fi
+if [[ -x $(command -v zoxide) ]]; then eval "$(zoxide init --cmd cd zsh)"; fi
 
 # Use fd for fzf if available
 if [[ -x $(command -v fd) ]]; then
