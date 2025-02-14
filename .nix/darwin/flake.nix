@@ -6,24 +6,11 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      nix-darwin,
-      nixpkgs,
-      ...
-    }:
-
-    let
-      configuration = nix-darwin.lib.darwinSystem {
+    inputs@{ self, nix-darwin, ... }:
+    {
+      darwinConfigurations.default = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [ ./configuration.nix ];
-      };
-    in
-    {
-      darwinConfigurations = {
-        macbook = configuration;
-        "INV-0068" = configuration;
-        "INV-0281" = configuration;
       };
     };
 }
