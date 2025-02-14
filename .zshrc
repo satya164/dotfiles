@@ -28,6 +28,12 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 
+FZF_DEFAULT_OPTS=" \
+--color=bg+:#424762,spinner:#b0bec5,hl:#f78c6c \
+--color=fg:#bfc7d5,header:#ff9e80,info:#82aaff,pointer:#a5adce \
+--color=marker:#89ddff,fg+:#eeffff,prompt:#c792ea,hl+:#ff9e80 \
+--color=selected-bg:#424762"
+
 # Install and load plugins
 plugins=(
   Aloxaf/fzf-tab
@@ -112,6 +118,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # colorize filenames
 zstyle ':completion:*' menu no # disable menu completion for fzf-tab
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # preview directory contents with cd
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath' # preview directory contents with zoxide
+zstyle ':fzf-tab:*' use-fzf-default-opts yes # use FZF_DEFAULT_OPTS for fzf-tab
 
 # Keybindings
 bindkey '^[[A' history-substring-search-up # up arrow
