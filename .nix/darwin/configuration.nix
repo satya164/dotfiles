@@ -37,6 +37,8 @@
   homebrew = {
     enable = true;
     onActivation.cleanup = "zap"; # remove brews not in the list
+    onActivation.autoUpdate = true;
+    onActivation.upgrade = true;
     taps = [
       "sdkman/tap"
       "nikitabobko/tap"
