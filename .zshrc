@@ -196,7 +196,7 @@ if [[ -n "$SDKMAN_DIR" && -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
-  alias nix-rebuild="nix run --extra-experimental-features 'nix-command flakes' nix-darwin -- switch --flake $HOME/.nix/darwin#default"
+  alias nix-rebuild="darwin-rebuild switch --flake $HOME/.nix/darwin#default"
 fi
 
 if [[ $(uname) == "Linux" && -f "$HOME/.nix/$(hostname)/flake.nix" ]]; then
