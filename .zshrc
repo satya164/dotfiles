@@ -170,10 +170,6 @@ if [[ -x $(command -v fd) ]]; then
   }
 fi
 
-# Setup aliases for alternative commands
-if [[ -x $(command -v z) ]]; then alias cd="z"; fi
-if [[ -x $(command -v eza) ]]; then alias ls="eza --icons=auto"; fi
-
 # Setup podman if available
 if [[ -x $(command -v podman) ]]; then
   PODMAN_SOCKET=$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}' 2>/dev/null)
