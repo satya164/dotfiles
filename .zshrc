@@ -3,10 +3,6 @@ if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
   builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi
 
-if [[ -x /opt/homebrew/bin/brew ]] then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
 # Set up git bare repository for dotfiles
 alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"
 
@@ -184,17 +180,18 @@ if [[ -x $(command -v podman) ]]; then
 fi
 
 # Setup rbenv if available
+# This is not in .zprofile because it's not needed for non-interactive shells
 if [[ -x $(command -v rbenv) ]]; then
   eval "$(rbenv init - --no-rehash zsh)"
 fi
 
 # Setup sdkman if available
-if [[ -z "$SDKMAN_DIR" && -x $(command -v brew) ]]; then
-  export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-fi
+if [[ -x $(command -v brew) ]]; then
+  export SDKMAN_DIR=$(brew --prefix sdkman-cli 2>/dev/null)/libexec
 
-if [[ -n "$SDKMAN_DIR" && -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
-  source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
+    source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  fi
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
