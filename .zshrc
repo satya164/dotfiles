@@ -34,6 +34,12 @@ FZF_DEFAULT_OPTS=" \
 --color=marker:#89ddff,fg+:#eeffff,prompt:#c792ea,hl+:#ff9e80 \
 --color=selected-bg:#424762"
 
+# Enable hooks
+autoload -U add-zsh-hook
+
+# Enable zsh recompilation
+autoload -Uz zrecompile
+
 # Install and load plugins
 plugins=(
   Aloxaf/fzf-tab
@@ -66,12 +72,6 @@ done
 
 # Load spaceship prompt
 source $PLUGIN_DIR/spaceship-prompt/spaceship.zsh
-
-# Enable hooks
-autoload -U add-zsh-hook
-
-# Enable zsh recompilation
-autoload -Uz zrecompile
 
 # Enable autocompletions
 autoload -Uz compinit
@@ -202,8 +202,6 @@ fi
 if [[ $(uname) == "Linux" && -f "$HOME/.nix/$(hostname)/flake.nix" ]]; then
   alias nix-rebuild="sudo nixos-rebuild switch --flake $HOME/.nix/$(hostname)"
 fi
-
-export BAT_THEME="OneHalfDark"
 
 # Use correct node version based on .nvmrc
 switch-node() {
