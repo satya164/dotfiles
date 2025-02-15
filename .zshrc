@@ -150,7 +150,8 @@ alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"
 if [[ -f $HOME/.zsh_secrets.zsh ]]; then source $HOME/.zsh_secrets.zsh; fi
 if [[ -f $HOME/.zsh_local.zsh ]]; then source $HOME/.zsh_local.zsh; fi
 
-# Setup keybindings for fuzzy finder and zoxide
+
+# Setup fuzzy finder and zoxide
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
 if [[ -x $(command -v zoxide) ]]; then eval "$(zoxide init --cmd cd zsh)"; fi
 
@@ -167,6 +168,13 @@ if [[ -x $(command -v fd) ]]; then
   _fzf_compgen_dir() {
     fd --type d --hidden --exclude .git --exclude .npm --exclude .cache . "$1"
   }
+fi
+
+# Setup bat if available
+if [[ -x $(command -v bat) ]]; then
+  export BAT_THEME="base16"
+
+  alias cat="bat --style=plain --paging=never"
 fi
 
 # Setup podman if available

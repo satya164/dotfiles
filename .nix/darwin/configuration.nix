@@ -18,6 +18,7 @@
     fd # find replacement
     fzf # fuzzy finder
     zoxide # cd replacement
+    bat # cat replacement
     yazi # file manager
     ncdu # disk usage
     hyperfine # benchmarking tool
