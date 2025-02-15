@@ -47,7 +47,6 @@ plugins=(
   zsh-users/zsh-autosuggestions
   zsh-users/zsh-history-substring-search
   zsh-users/zsh-completions
-  t413/zsh-background-notify
   rapgenic/zsh-git-complete-urls
   buonomo/yarn-completion
   spaceship-prompt/spaceship-prompt
