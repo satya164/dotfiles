@@ -7,6 +7,13 @@ if [[ -x $(command -v brew) ]] then
   eval "$($(which brew) shellenv)"
 fi
 
+# Set up git bare repository for dotfiles
+alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"
+
+# Load local secrets and configurations
+if [[ -f $HOME/.zsh_secrets.zsh ]]; then source $HOME/.zsh_secrets.zsh; fi
+if [[ -f $HOME/.zsh_local.zsh ]]; then source $HOME/.zsh_local.zsh; fi
+
 # Language
 export LANGUAGE=en
 export LANG=en_US.UTF-8
@@ -140,12 +147,6 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
 
   chpwd
 fi
-
-alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"
-
-if [[ -f $HOME/.zsh_secrets.zsh ]]; then source $HOME/.zsh_secrets.zsh; fi
-if [[ -f $HOME/.zsh_local.zsh ]]; then source $HOME/.zsh_local.zsh; fi
-
 
 # Setup fuzzy finder and zoxide
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
