@@ -144,7 +144,7 @@ export LC_ALL=en_US.UTF-8
 
 export EDITOR=nano
 
-alias dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"
 
 if [[ -f $HOME/.zsh_secrets.zsh ]]; then source $HOME/.zsh_secrets.zsh; fi
 if [[ -f $HOME/.zsh_local.zsh ]]; then source $HOME/.zsh_local.zsh; fi
