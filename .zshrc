@@ -6,6 +6,15 @@ fi
 # Set up git bare repository for dotfiles
 alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"
 
+# Setup aliases for nix
+if [[ $(uname) == "Darwin" ]]; then
+  alias nix-rebuild="darwin-rebuild switch --flake $HOME/.nix/darwin#default"
+fi
+
+if [[ $(uname) == "Linux" && -f "$HOME/.nix/$(hostname)/flake.nix" ]]; then
+  alias nix-rebuild="sudo nixos-rebuild switch --flake $HOME/.nix/$(hostname)"
+fi
+
 # Load local secrets and configurations
 if [[ -f $HOME/.zsh_secrets.zsh ]]; then source $HOME/.zsh_secrets.zsh; fi
 if [[ -f $HOME/.zsh_local.zsh ]]; then source $HOME/.zsh_local.zsh; fi
@@ -192,14 +201,6 @@ if [[ -x $(command -v brew) ]]; then
   if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
     source "$SDKMAN_DIR/bin/sdkman-init.sh"
   fi
-fi
-
-if [[ $(uname) == "Darwin" ]]; then
-  alias nix-rebuild="darwin-rebuild switch --flake $HOME/.nix/darwin#default"
-fi
-
-if [[ $(uname) == "Linux" && -f "$HOME/.nix/$(hostname)/flake.nix" ]]; then
-  alias nix-rebuild="sudo nixos-rebuild switch --flake $HOME/.nix/$(hostname)"
 fi
 
 # Use correct node version based on .nvmrc
