@@ -3,8 +3,8 @@ if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
   builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi
 
-if [[ -x $(command -v brew) ]] then
-  eval "$($(which brew) shellenv)"
+if [[ -x /opt/homebrew/bin/brew ]] then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Set up git bare repository for dotfiles
