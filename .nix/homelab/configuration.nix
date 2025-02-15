@@ -116,6 +116,7 @@
     zoxide # cd replacement
     yazi # file manager
     ncdu # disk usage
+    hyperfine # benchmarking tool
     tailscale
     docker-compose
     lazydocker

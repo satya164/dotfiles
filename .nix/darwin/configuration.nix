@@ -20,6 +20,7 @@
     zoxide # cd replacement
     yazi # file manager
     ncdu # disk usage
+    hyperfine # benchmarking tool
     pinentry_mac # gpg agent
     scrcpy # android screen mirroring
     watchman
