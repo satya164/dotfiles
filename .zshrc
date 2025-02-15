@@ -77,10 +77,12 @@ source $PLUGIN_DIR/spaceship-prompt/spaceship.zsh
 autoload -Uz compinit
 
 typeset -i updated_at=$(date +'%j' -r $HOME/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' $HOME/.zcompdump 2>/dev/null)
-if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
-else
+typeset -i today=$(date +'%j')
+
+if [[ $updated_at -eq $today ]]; then
   compinit -C -i
+else
+  compinit -i
 fi
 
 zmodload -i zsh/complist
