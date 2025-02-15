@@ -7,6 +7,13 @@ if [[ -x $(command -v brew) ]] then
   eval "$($(which brew) shellenv)"
 fi
 
+# Language
+export LANGUAGE=en
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+export EDITOR=nano
+
 # Theme
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
@@ -47,7 +54,6 @@ plugins=(
   zsh-users/zsh-autosuggestions
   zsh-users/zsh-history-substring-search
   zsh-users/zsh-completions
-  rapgenic/zsh-git-complete-urls
   buonomo/yarn-completion
   spaceship-prompt/spaceship-prompt
 )
@@ -134,16 +140,6 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
 
   chpwd
 fi
-
-# Zsh notify configuration
-export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
-
-# Language
-export LANGUAGE=en
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-export EDITOR=nano
 
 alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"
 
