@@ -145,7 +145,10 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
   chpwd
 fi
 
-# Setup fuzzy finder and zoxide
+# Setup zoxide as a replacement for cd
+if [[ -x $(command -v zoxide) ]]; then eval "$(zoxide init --cmd cd zsh)"; fi
+
+# Setup fuzzy finder
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#424762,spinner:#b0bec5,hl:#f78c6c \
 --color=fg:#bfc7d5,header:#ff9e80,info:#82aaff,pointer:#a5adce \
@@ -153,20 +156,19 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#424762"
 
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
-if [[ -x $(command -v zoxide) ]]; then eval "$(zoxide init --cmd cd zsh)"; fi
 
-# Use fd for fzf if available
+# Use fd instead of find for fzf if available
 if [[ -x $(command -v fd) ]]; then
-  export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git --exclude .npm --exclude .cache'
+  export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git --exclude .npm --exclude .cache"
+  export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git"
 
   _fzf_compgen_path() {
-    fd --hidden --exclude .git --exclude .npm --exclude .cache . "$1"
+    fd --hidden --exclude .git . "$1"
   }
 
   _fzf_compgen_dir() {
-    fd --type d --hidden --exclude .git --exclude .npm --exclude .cache . "$1"
+    fd --type d --hidden --exclude .git . "$1"
   }
 fi
 
