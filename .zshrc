@@ -47,12 +47,6 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 
-FZF_DEFAULT_OPTS=" \
---color=bg+:#424762,spinner:#b0bec5,hl:#f78c6c \
---color=fg:#bfc7d5,header:#ff9e80,info:#82aaff,pointer:#a5adce \
---color=marker:#89ddff,fg+:#eeffff,prompt:#c792ea,hl+:#ff9e80 \
---color=selected-bg:#424762"
-
 # Enable hooks
 autoload -U add-zsh-hook
 
@@ -93,10 +87,8 @@ source $PLUGIN_DIR/spaceship-prompt/spaceship.zsh
 # Enable autocompletions
 autoload -Uz compinit
 
-typeset -i updated_at=$(date +'%j' -r $HOME/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' $HOME/.zcompdump 2>/dev/null)
-typeset -i today=$(date +'%j')
-
-if [[ $updated_at -eq $today ]]; then
+# Load completions from cache if it's updated today
+if [[ $(date +'%j' -r $HOME/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' $HOME/.zcompdump 2>/dev/null) -eq $(date +'%j') ]]; then
   compinit -C -i
 else
   compinit -i
@@ -154,6 +146,12 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
 fi
 
 # Setup fuzzy finder and zoxide
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#424762,spinner:#b0bec5,hl:#f78c6c \
+--color=fg:#bfc7d5,header:#ff9e80,info:#82aaff,pointer:#a5adce \
+--color=marker:#89ddff,fg+:#eeffff,prompt:#c792ea,hl+:#ff9e80 \
+--color=selected-bg:#424762"
+
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
 if [[ -x $(command -v zoxide) ]]; then eval "$(zoxide init --cmd cd zsh)"; fi
 
@@ -195,9 +193,9 @@ fi
 # Setup sdkman if available
 if [[ -x $(command -v brew) ]]; then
   sdk() {
-    export SDKMAN_DIR=$(brew --prefix sdkman-cli 2>/dev/null)/libexec
-
     unset -f sdk
+
+    export SDKMAN_DIR="$(brew --prefix sdkman-cli 2>/dev/null)/libexec"
 
     if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
       source "$SDKMAN_DIR/bin/sdkman-init.sh"
