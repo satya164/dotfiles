@@ -178,15 +178,11 @@ if [[ -x $(command -v bat) ]]; then
 fi
 
 # Setup lazydocker to use podman if available
-if [[ -x $(command -v podman) ]]; then
+if [[ -x $(command -v podman) && -z $DOCKER_HOST ]]; then
   lazydocker() {
-    PODMAN_SOCKET=$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}' 2>/dev/null)
+    local podman_socket="$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}' 2>/dev/null)"
 
-    if [[ -n "$PODMAN_SOCKET" ]]; then
-      export DOCKER_HOST="unix://$PODMAN_SOCKET"
-    fi
-
-    command lazydocker $@
+    DOCKER_HOST="unix://${podman_socket}" command lazydocker $@
   }
 fi
 
