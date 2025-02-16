@@ -179,13 +179,17 @@ if [[ -x $(command -v bat) ]]; then
   alias cat="bat --style=plain --paging=never"
 fi
 
-# Setup podman if available
+# Setup lazydocker to use podman if available
 if [[ -x $(command -v podman) ]]; then
-  PODMAN_SOCKET=$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}' 2>/dev/null)
+  lazydocker() {
+    PODMAN_SOCKET=$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}' 2>/dev/null)
 
-  if [[ -n "$PODMAN_SOCKET" ]]; then
-    export DOCKER_HOST="unix://$PODMAN_SOCKET"
-  fi
+    if [[ -n "$PODMAN_SOCKET" ]]; then
+      export DOCKER_HOST="unix://$PODMAN_SOCKET"
+    fi
+
+    command lazydocker $@
+  }
 fi
 
 # Setup rbenv if available
