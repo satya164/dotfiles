@@ -105,10 +105,10 @@ fi
 zmodload -i zsh/complist
 
 # Save history so we get auto suggestions
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=100000
-HISTDUP=erase
-SAVEHIST=$HISTSIZE
+HISTFILE=$HOME/.zsh_history # path to the history file
+HISTSIZE=100000 # number of history items to store in memory
+HISTDUP=erase # remove older duplicate entries from history
+SAVEHIST=$HISTSIZE # number of history items to save to the history file
 
 # Stop zsh autocorrect from suggesting undesired completions
 CORRECT_IGNORE_FILE=".*"
