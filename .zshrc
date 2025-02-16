@@ -192,19 +192,25 @@ if [[ -x $(command -v podman) ]]; then
   }
 fi
 
+# Setup sdkman if available
+if [[ -x $(command -v brew) ]]; then
+  sdk() {
+    export SDKMAN_DIR=$(brew --prefix sdkman-cli 2>/dev/null)/libexec
+
+    unset -f sdk
+
+    if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
+      source "$SDKMAN_DIR/bin/sdkman-init.sh"
+    fi
+
+    sdk $@
+  }
+fi
+
 # Setup rbenv if available
 # This is not in .zprofile because it's not needed for non-interactive shells
 if [[ -x $(command -v rbenv) ]]; then
   eval "$(rbenv init - --no-rehash zsh)"
-fi
-
-# Setup sdkman if available
-if [[ -x $(command -v brew) ]]; then
-  export SDKMAN_DIR=$(brew --prefix sdkman-cli 2>/dev/null)/libexec
-
-  if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
-    source "$SDKMAN_DIR/bin/sdkman-init.sh"
-  fi
 fi
 
 # Use correct node version based on .nvmrc
