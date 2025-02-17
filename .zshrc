@@ -213,22 +213,20 @@ if [[ -x $(command -v rbenv) ]]; then
 fi
 
 # Setup n version manager if available
-if [[ -x $(command -v n) ]]; then
-  export N_PREFIX="$HOME/.n"
-  export PATH="$N_PREFIX/bin:$PATH"
+export N_PREFIX="$HOME/.n"
+export PATH="$N_PREFIX/bin:$PATH"
 
-  # Use correct node version based on .nvmrc
-  switch-node() {
-    if [[ -f ".nvmrc" ]]; then
-      local node_auto_version="v$(n ls-remote auto --all 2>/dev/null | head -n 1)"
-      local node_active_version="$(node --version 2>/dev/null)"
+# Use correct node version based on .nvmrc
+switch-node() {
+  if [[ -x $(command -v n) && -f ".nvmrc" ]]; then
+    local node_auto_version="v$(n ls-remote auto --all 2>/dev/null | head -n 1)"
+    local node_active_version="$(node --version 2>/dev/null)"
 
-      if [[ "$node_auto_version" != "$node_active_version" ]]; then
-        n auto
-      fi
+    if [[ "$node_auto_version" != "$node_active_version" ]]; then
+      n auto
     fi
-  }
+  fi
+}
 
-  add-zsh-hook chpwd switch-node
-  switch-node
-fi
+add-zsh-hook chpwd switch-node
+switch-node
