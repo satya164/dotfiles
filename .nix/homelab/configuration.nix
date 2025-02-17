@@ -110,6 +110,7 @@
     gitmux
     tmux
     tree
+    btop # activity monitor
     jq # json parser
     fd # find replacement
     fzf # fuzzy finder
