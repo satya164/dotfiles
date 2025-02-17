@@ -119,7 +119,6 @@
     ncdu # disk usage
     hyperfine # benchmarking tool
     tailscale
-    docker-compose
     lazydocker
   ];
 
