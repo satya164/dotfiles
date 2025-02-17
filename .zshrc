@@ -219,7 +219,7 @@ if [[ -x $(command -v n) ]]; then
 
   # Use correct node version based on .nvmrc
   switch-node() {
-    if [[ (( $+commands[n] )) && -f ".nvmrc" ]]; then
+    if [[ -f ".nvmrc" ]]; then
       local node_auto_version="v$(n ls-remote auto --all 2>/dev/null | head -n 1)"
       local node_active_version="$(node --version 2>/dev/null)"
 
