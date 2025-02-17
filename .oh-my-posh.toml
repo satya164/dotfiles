@@ -33,7 +33,7 @@ final_space = true
       "{{ if .Revert }}red{{ end }}",
       "magenta"
     ]
-    template = ' <b>{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }} <red>[{{ if (gt .Working.Untracked 0) }}?{{ end }}{{ if (gt .Working.Modified 0) }}!{{ end }}{{ if .Staging.Changed }}+{{ end }}{{ if .Merge }}={{ end }}]</>{{ end }}</b>'
+    template = ' <b>{{ .HEAD }}{{ if or (gt .Ahead 0) (gt .Behind 0) (.Working.Changed) (.Staging.Changed) }}<red> [{{ if (gt .Ahead 0) }}⇡{{ end }}{{ if (gt .Behind 0) }}⇣{{ end }}{{ if (gt .Working.Untracked 0) }}?{{ end }}{{ if (gt .Working.Modified 0) }}!{{ end }}{{ if .Staging.Changed }}+{{ end }}{{ if .Merge }}={{ end }}]</>{{ end }}</b>'
 
     [blocks.segments.properties]
       commit_icon = '@'
