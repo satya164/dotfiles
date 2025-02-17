@@ -19,6 +19,9 @@ fi
 if [[ -f $HOME/.zsh_secrets.zsh ]]; then source $HOME/.zsh_secrets.zsh; fi
 if [[ -f $HOME/.zsh_local.zsh ]]; then source $HOME/.zsh_local.zsh; fi
 
+# Add local bin directory to path
+export PATH="$HOME/.bin:$PATH";
+
 # Language
 export LANGUAGE=en
 export LANG=en_US.UTF-8
@@ -209,17 +212,23 @@ if [[ -x $(command -v rbenv) ]]; then
   eval "$(rbenv init - --no-rehash zsh)"
 fi
 
-# Use correct node version based on .nvmrc
-switch-node() {
-  if [[ (( $+commands[n] )) && -f ".nvmrc" ]]; then
-    local node_auto_version="v$(n ls-remote auto --all 2>/dev/null | head -n 1)"
-    local node_active_version="$(node --version 2>/dev/null)"
+# Setup n version manager if available
+if [[ -x $(command -v n) ]]; then
+  export N_PREFIX="$HOME/.n"
+  export PATH="$N_PREFIX/bin:$PATH"
 
-    if [[ "$node_auto_version" != "$node_active_version" ]]; then
-      n auto
+  # Use correct node version based on .nvmrc
+  switch-node() {
+    if [[ (( $+commands[n] )) && -f ".nvmrc" ]]; then
+      local node_auto_version="v$(n ls-remote auto --all 2>/dev/null | head -n 1)"
+      local node_active_version="$(node --version 2>/dev/null)"
+
+      if [[ "$node_auto_version" != "$node_active_version" ]]; then
+        n auto
+      fi
     fi
-  fi
-}
+  }
 
-add-zsh-hook chpwd switch-node
-switch-node
+  add-zsh-hook chpwd switch-node
+  switch-node
+fi
