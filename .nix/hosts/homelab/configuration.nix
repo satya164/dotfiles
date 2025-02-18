@@ -1,13 +1,22 @@
 {
   config,
   pkgs,
-  lib,
   specialArgs,
   ...
 }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ../../common/packages.nix
+    ./hardware-configuration.nix
+  ];
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -92,36 +101,9 @@
 
   services.getty.autologinUser = "${specialArgs.username}";
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [
     gcc
-    nixfmt-rfc-style
-    nano
-    neovim
-    wget
-    git
-    git-extras
-    git-lfs
-    gitmux
-    tmux
-    tree
-    btop # activity monitor
-    jq # json parser
-    fd # find replacement
-    fzf # fuzzy finder
-    zoxide # cd replacement
-    bat # cat replacement
-    yazi # file manager
-    ncdu # disk usage
-    hyperfine # benchmarking tool
     tailscale
-    lazydocker
   ];
 
   programs.gnupg.agent = {

@@ -1,27 +1,12 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ../../common/packages.nix
+  ];
+
   environment.systemPackages = with pkgs; [
-    nixfmt-rfc-style
-    nano
-    neovim
-    wget
-    git
-    git-extras
-    git-lfs
-    gitmux
-    tmux
-    tree
     gnupg
-    jq # json parser
-    mosh # ssh replacement
-    fd # find replacement
-    fzf # fuzzy finder
-    zoxide # cd replacement
-    bat # cat replacement
-    yazi # file manager
-    ncdu # disk usage
-    hyperfine # benchmarking tool
     pinentry_mac # gpg agent
     scrcpy # android screen mirroring
     watchman
@@ -34,7 +19,6 @@
     podman
     podman-compose
     vfkit # needed for podman
-    lazydocker
     gh
   ];
 
