@@ -100,6 +100,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    gcc
     nixfmt-rfc-style
     nano
     neovim
