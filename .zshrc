@@ -139,6 +139,9 @@ bindkey '^[[A' history-substring-search-up # up arrow
 bindkey '^[[B' history-substring-search-down # down arrow
 bindkey '^[[3~' delete-char # delete key
 
+# Disable paste highlighting for syntax-highlighting plugin
+zle_highlight+=(paste:none)
+
 # Open new tabs in same directory
 if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
   function chpwd {
