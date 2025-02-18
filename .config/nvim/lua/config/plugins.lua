@@ -1,5 +1,6 @@
 return {
   {"drewtempelmeyer/palenight.vim"},
+  {"prichrd/netrw.nvim"},
   {"williamboman/mason.nvim"},
   {"williamboman/mason-lspconfig.nvim"},
   {"neovim/nvim-lspconfig"},
