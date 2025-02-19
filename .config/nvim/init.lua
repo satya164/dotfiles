@@ -2,7 +2,9 @@ require("config.lazy")
 require("config.lsp")
 require("config.options")
 require("config.keymap")
+require("config.colors")
 
+-- Setup plugins
 require("nvim-treesitter.configs").setup {
   ensure_installed = {
     "c",
@@ -26,10 +28,6 @@ require("nvim-treesitter.configs").setup {
 }
 
 require('gitsigns').setup()
-
--- Theme
-vim.opt.background = "dark"
-vim.cmd.colorscheme "palenight"
 
 -- File associations
 vim.filetype.add {
