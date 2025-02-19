@@ -11,6 +11,8 @@ vim.opt.clipboard = "unnamedplus" -- use the system clipboard
 -- Search
 vim.opt.smartcase = true -- ignore case when pattern has no uppercase characters
 vim.opt.ignorecase = true -- ignore case when searching
+vim.opt.incsearch = true -- show search matches as you type
+vim.opt.hlsearch = false -- disable highlighting search results
 
 -- Indentation
 vim.opt.tabstop = 2 -- number of spaces that a <Tab> in the file counts for
@@ -29,3 +31,10 @@ vim.g.netrw_banner = 0 -- disable netrw banner
 vim.g.netrw_keepdir = 0 -- close netrw when opening a file
 vim.g.netrw_liststyle = 3 -- use tree style listing
 vim.g.netrw_sort_sequence = "[\\/]$,*" -- sort folders first
+
+-- Undo
+vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undo" -- set undo directory
+vim.opt.undofile = true -- enable persistent undo
+vim.opt.swapfile = false -- disable swap files
+vim.opt.backup = false -- disable backup files
+
