@@ -1,6 +1,6 @@
 return {
   {"drewtempelmeyer/palenight.vim"},
-  {"prichrd/netrw.nvim"},
+  {"github/copilot.vim"},
   {"williamboman/mason.nvim"},
   {"williamboman/mason-lspconfig.nvim"},
   {"neovim/nvim-lspconfig"},
@@ -34,6 +34,14 @@ return {
   },
   {"windwp/nvim-autopairs",
     lazy = true
+  },{
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim"
+    }
   },
   {"folke/which-key.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
