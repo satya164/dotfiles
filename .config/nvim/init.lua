@@ -27,6 +27,11 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
+require("neo-tree").setup {
+  close_if_last_window = true,
+  open_files_using_relative_paths = true,
+}
+
 require('lualine').setup {
   options = {
     section_separators = '',
