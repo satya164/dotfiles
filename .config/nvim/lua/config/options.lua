@@ -3,6 +3,7 @@
 vim.opt.termguicolors = true -- enable 24-bit RGB color in the TUI
 vim.opt.number = true -- show line numbers
 vim.opt.signcolumn = "yes" -- reserve space in gutter to avoid layout shift
+vim.opt.cursorline = true -- highlight the current line
 
 -- Editor
 vim.opt.backspace = "indent,eol,start" -- allow backspacing over everything in insert mode
@@ -37,4 +38,3 @@ vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undo" -- set undo director
 vim.opt.undofile = true -- enable persistent undo
 vim.opt.swapfile = false -- disable swap files
 vim.opt.backup = false -- disable backup files
-
