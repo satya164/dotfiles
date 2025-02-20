@@ -9,18 +9,24 @@ lspconfig_defaults.capabilities =
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = function(event)
-    local opts = { buffer = event.buf }
+    local wk = require("which-key")
 
-    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-    vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-    vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-    vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-    vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-    vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-    vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-    vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-    vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-    vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+    wk.add({
+      {
+        mode = "n",
+        buffer = event.buf,
+        { "K", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Hover" },
+        { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Go to Definition" },
+        { "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Go to Declaration" },
+        { "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Go to Implementation" },
+        { "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Go to Type Definition" },
+        { "gr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Go to References" },
+        { "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", desc = "Signature Help" },
+        { "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
+        { "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", desc = "Format", mode = { "n", "x" } },
+        { "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
+      },
+    })
   end,
 })
 
