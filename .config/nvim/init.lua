@@ -30,6 +30,22 @@ require("nvim-treesitter.configs").setup({
 require("neo-tree").setup({
   close_if_last_window = true,
   open_files_using_relative_paths = true,
+  filesystem = {
+    filtered_items = {
+      visible = true,
+      hide_gitignored = true,
+      hide_hidden = false,
+      hide_dotfiles = false,
+    },
+    follow_current_file = {
+      enabled = true,
+    },
+    window = {
+      mappings = {
+        ["<leftrelease>"] = "open",
+      },
+    },
+  },
 })
 
 require("lualine").setup({
