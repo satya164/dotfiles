@@ -4,6 +4,9 @@ vim.opt.termguicolors = true -- enable 24-bit RGB color in the TUI
 vim.opt.number = true -- show line numbers
 vim.opt.signcolumn = "yes" -- reserve space in gutter to avoid layout shift
 vim.opt.cursorline = true -- highlight the current line
+vim.opt.showcmd = false -- hide the command shown at the bottom right
+vim.opt.showmode = false -- hide the mode text at the bottom left
+vim.opt.ruler = false -- hide cursor position at the bottom right
 
 -- Editor
 vim.opt.backspace = "indent,eol,start" -- allow backspacing over everything in insert mode

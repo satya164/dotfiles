@@ -27,6 +27,18 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
+require('lualine').setup {
+  options = {
+    section_separators = '',
+    component_separators = ''
+  },
+  extensions = {
+    'lazy',
+    'mason',
+    'neo-tree',
+  },
+}
+
 require('gitsigns').setup()
 
 -- File associations
