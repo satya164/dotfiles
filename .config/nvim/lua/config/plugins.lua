@@ -7,6 +7,7 @@ return {
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/nvim-cmp" },
   { "dense-analysis/ale" },
+  { "sbdchd/neoformat" },
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
   { "nvim-tree/nvim-web-devicons" },

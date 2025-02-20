@@ -76,3 +76,12 @@ vim.filetype.add({
     prettierrc = "yaml",
   },
 })
+
+-- Autocommands
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = {
+    "*.lua",
+    "*.nix",
+  },
+  command = "Neoformat",
+})
