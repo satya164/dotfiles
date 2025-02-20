@@ -21,7 +21,21 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.swraid.mdadmConf = ''
+    ARRAY /dev/md0 metadata=1.2 UUID=a95ded5d:6e0ec42f:af087785:10409b86
+    MAILADDR satyajit.happy@gmail.com
+  '';
+
   fileSystems = {
+    "${specialArgs.storage}" = {
+      device = "/dev/md0";
+      fsType = "ext4";
+      options = [
+        "rw"
+        "user"
+        "nofail"
+      ];
+    };
     "${specialArgs.external}" = {
       device = "/dev/disk/by-uuid/9a5cdc5e-362f-eb4e-9f9a-8ca6ed0d6671";
       fsType = "ext4";
@@ -102,6 +116,7 @@
   services.getty.autologinUser = "${specialArgs.username}";
 
   environment.systemPackages = with pkgs; [
+    mdadm
     gcc
     tailscale
   ];
@@ -136,8 +151,8 @@
         "browseable" = "yes";
       };
 
-      "External" = {
-        "path" = "${specialArgs.external}";
+      "nix" = {
+        "path" = "${config.users.users.${specialArgs.username}.home}/.nix";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";
@@ -145,8 +160,17 @@
         "directory mask" = "0755";
         "force user" = "${specialArgs.username}";
       };
-      "Nix" = {
-        "path" = "${config.users.users.${specialArgs.username}.home}/.nix";
+      "storage" = {
+        "path" = "${specialArgs.storage}";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "${specialArgs.username}";
+      };
+      "external" = {
+        "path" = "${specialArgs.external}";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";
@@ -202,7 +226,7 @@
         ];
         environment = {
           APPDATA = "${specialArgs.external}/AppData";
-          EXTERNAL = "${specialArgs.external}";
+          STORAGE = "${specialArgs.external}";
           DOMAIN = "${specialArgs.domain}";
           PUID = "${toString config.users.users.${specialArgs.username}.uid}";
           PGID = "${toString config.ids.gids.${toString config.users.users.${specialArgs.username}.group}}";
