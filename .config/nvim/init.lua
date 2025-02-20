@@ -5,7 +5,7 @@ require("config.keymap")
 require("config.colors")
 
 -- Setup plugins
-require("nvim-treesitter.configs").setup {
+require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "c",
     "lua",
@@ -25,29 +25,29 @@ require("nvim-treesitter.configs").setup {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
-}
+})
 
-require("neo-tree").setup {
+require("neo-tree").setup({
   close_if_last_window = true,
   open_files_using_relative_paths = true,
-}
+})
 
-require('lualine').setup {
+require("lualine").setup({
   options = {
-    section_separators = '',
-    component_separators = ''
+    section_separators = "",
+    component_separators = "",
   },
   extensions = {
-    'lazy',
-    'mason',
-    'neo-tree',
+    "lazy",
+    "mason",
+    "neo-tree",
   },
-}
+})
 
-require('gitsigns').setup()
+require("gitsigns").setup()
 
 -- File associations
-vim.filetype.add {
+vim.filetype.add({
   filename = {
     Podfile = "ruby",
   },
@@ -58,5 +58,5 @@ vim.filetype.add {
     wgsl = "wgsl",
     eslintrc = "yaml",
     prettierrc = "yaml",
-  }
-}
+  },
+})

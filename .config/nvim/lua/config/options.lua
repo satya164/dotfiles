@@ -1,4 +1,3 @@
-
 -- UI
 vim.opt.termguicolors = true -- enable 24-bit RGB color in the TUI
 vim.opt.number = true -- show line numbers

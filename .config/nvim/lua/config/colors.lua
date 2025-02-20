@@ -1,5 +1,5 @@
 vim.opt.background = "dark"
-vim.cmd.colorscheme "palenight"
+vim.cmd.colorscheme("palenight")
 
 vim.cmd([[highlight WinSeparator guifg=#2a2d3d]])
 vim.cmd([[highlight NeoTreeNormal guibg=#262939]])

@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
+    stylua
     nano
     neovim
     wget
