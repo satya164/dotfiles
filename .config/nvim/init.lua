@@ -48,6 +48,14 @@ require("neo-tree").setup({
   },
 })
 
+vim.g.barbar_auto_setup = false
+
+require("barbar").setup({
+  sidebar_filetypes = {
+    ["neo-tree"] = true,
+  },
+})
+
 require("lualine").setup({
   options = {
     section_separators = "",
