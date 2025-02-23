@@ -137,6 +137,13 @@
 
   services.tailscale.enable = true;
 
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "0 5 * * *      root    rsync -avzog --delete --exclude 'Docker' ${specialArgs.external}/ ${specialArgs.storage} >> /var/log/rsync.log"
+    ];
+  };
+
   services.samba = {
     package = pkgs.samba4Full;
     enable = true;
