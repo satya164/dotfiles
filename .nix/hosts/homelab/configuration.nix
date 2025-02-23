@@ -140,7 +140,7 @@
   services.cron = {
     enable = true;
     systemCronJobs = [
-      "0 5 * * *      root    rsync -avzog --delete --exclude 'Docker' ${specialArgs.external}/ ${specialArgs.storage} >> /var/log/rsync.log"
+      "0 5 * * *      root    rsync -avzog --delete --exclude 'docker' ${specialArgs.storage}/ ${specialArgs.external} >> /var/log/rsync.log"
     ];
   };
 
@@ -169,15 +169,6 @@
       };
       "storage" = {
         "path" = "${specialArgs.storage}";
-        "browseable" = "yes";
-        "read only" = "no";
-        "guest ok" = "no";
-        "create mask" = "0644";
-        "directory mask" = "0755";
-        "force user" = "${specialArgs.username}";
-      };
-      "external" = {
-        "path" = "${specialArgs.external}";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";
@@ -216,7 +207,7 @@
     enable = true;
     daemon.settings = {
       userland-proxy = false;
-      data-root = "${specialArgs.external}/Docker";
+      data-root = "${specialArgs.storage}/docker";
     };
   };
 
@@ -228,12 +219,12 @@
         hostname = "portainer";
         ports = [ "9000:9000" ];
         volumes = [
-          "${specialArgs.external}/AppData/portainer:/data"
+          "${specialArgs.storage}/AppData/portainer:/data"
           "/var/run/docker.sock:/var/run/docker.sock"
         ];
         environment = {
-          APPDATA = "${specialArgs.external}/AppData";
-          STORAGE = "${specialArgs.external}";
+          APPDATA = "${specialArgs.storage}/AppData";
+          STORAGE = "${specialArgs.storage}";
           DOMAIN = "${specialArgs.domain}";
           PUID = "${toString config.users.users.${specialArgs.username}.uid}";
           PGID = "${toString config.ids.gids.${toString config.users.users.${specialArgs.username}.group}}";
