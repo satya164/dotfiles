@@ -189,7 +189,7 @@ if [[ -x $(command -v bat) ]]; then
 fi
 
 # Setup lazydocker to use podman if available
-if [[ -x $(command -v podman) && -z $DOCKER_HOST ]]; then
+if [[ -z $DOCKER_HOST && -x $(command -v podman) ]]; then
   lazydocker() {
     local podman_socket="$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}' 2>/dev/null)"
 
@@ -198,19 +198,23 @@ if [[ -x $(command -v podman) && -z $DOCKER_HOST ]]; then
 fi
 
 # Setup sdkman if available
-if [[ -x $(command -v brew) ]]; then
-  sdk() {
-    unset -f sdk
-
-    export SDKMAN_DIR="$(brew --prefix sdkman-cli 2>/dev/null)/libexec"
-
-    if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
-      source "$SDKMAN_DIR/bin/sdkman-init.sh"
-    fi
-
-    sdk $@
-  }
+if [[ -n $SDKMAN_DIR ]]; then
+  export PATH="$SDKMAN_DIR/candidates/java/current/bin:$PATH"
 fi
+
+sdk() {
+  unset -f sdk
+
+  if [[ -z $SDKMAN_DIR && -x $(command -v brew) ]]; then
+    export SDKMAN_DIR="$(brew --prefix sdkman-cli 2>/dev/null)/libexec"
+  fi
+
+  if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
+    source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  fi
+
+  sdk $@
+}
 
 # Setup rbenv if available
 # This is not in .zprofile because it's not needed for non-interactive shells
