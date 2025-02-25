@@ -23,7 +23,7 @@ if [[ -f $HOME/.zsh_secrets.zsh ]]; then source $HOME/.zsh_secrets.zsh; fi
 if [[ -f $HOME/.zsh_local.zsh ]]; then source $HOME/.zsh_local.zsh; fi
 
 # Add local bin directory to path
-export PATH="$HOME/.bin:$PATH";
+export PATH="$HOME/.local/bin:$PATH";
 
 # Language
 export LANGUAGE=en
