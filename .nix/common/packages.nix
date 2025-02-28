@@ -1,7 +1,10 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
+    nixd
     nixfmt-rfc-style
     stylua
     nano

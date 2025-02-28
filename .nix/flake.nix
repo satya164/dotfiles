@@ -7,12 +7,20 @@
 
   outputs =
     inputs@{
-      self,
       nixpkgs,
       nix-darwin,
       ...
     }:
     {
+      nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+
+      nix.nixPath = [
+        "nixpkgs=${nixpkgs}"
+      ];
+
       nixosConfigurations.homelab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {

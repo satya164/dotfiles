@@ -30,6 +30,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+-- Mason setup
 require("mason").setup({})
 require("mason-lspconfig").setup({
   handlers = {
@@ -39,9 +40,22 @@ require("mason-lspconfig").setup({
   },
 })
 
----
+-- Nix LSP setup
+require("lspconfig").nixd.setup({
+  cmd = { "nixd" },
+  settings = {
+    nixd = {
+      nixpkgs = {
+        expr = "import <nixpkgs> { }",
+      },
+      formatting = {
+        command = { "nixfmt" },
+      },
+    },
+  },
+})
+
 -- Autocompletion config
----
 local cmp = require("cmp")
 
 cmp.setup({
