@@ -63,7 +63,6 @@ require("lualine").setup({
   },
   extensions = {
     "lazy",
-    "mason",
     "neo-tree",
   },
 })
