@@ -38,6 +38,7 @@ in
   users.defaultUserShell = pkgs.zsh;
 
   environment.systemPackages = with pkgs; [
+    killall
     tailscale
   ];
 

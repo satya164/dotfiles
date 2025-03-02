@@ -27,14 +27,17 @@ in
     hostName = "${constants.hostname}";
   };
 
+  security.rtkit.enable = true;
+
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
+
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   services.flatpak.enable = true;
-
-  programs.kdeconnect.enable = true;
-
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -69,7 +72,24 @@ in
     google-chrome
     vscode
     ghostty
+    overskride
+    iwgtk
+    swaynotificationcenter
+    cliphist
+    rofi-wayland
+    waybar
+    hyprpaper
+    hyprpolkitagent
+    hyprpicker
+    hypridle
+    hyprlock
+    hyprland-qt-support
+    xdg-desktop-portal-hyprland
+    wl-clipboard
   ];
+
+  programs.kdeconnect.enable = true;
+  programs.hyprland.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
