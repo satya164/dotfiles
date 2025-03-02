@@ -9,7 +9,7 @@ alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"
 mv $HOME/.zshrc $HOME/.zshrc.bak
 mv $HOME/.bashrc $HOME/.bashrc.bak
 echo ".dot.git" >> .gitignore
-git clone --bare git@github.com:satya164/dot.git $HOME/.dot.git
+git clone --bare git@github.com:satya164/dotfiles.git $HOME/.dot.git
 dot config --local status.showUntrackedFiles no
 ```
 
