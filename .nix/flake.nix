@@ -18,6 +18,16 @@
         modules = [ ./hosts/homelab/configuration.nix ];
       };
 
+      nixosConfigurations.hypr = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          hostname = "hypr";
+          username = "satya";
+          timezone = "Europe/Warsaw";
+        };
+        modules = [ ./hosts/hypr/configuration.nix ];
+      };
+
       darwinConfigurations.default = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
