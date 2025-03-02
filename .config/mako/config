@@ -1,0 +1,43 @@
+# Notification history and sorting
+max-history=10
+max-visible=10
+history=1
+sort=+time
+
+# Notification actions
+on-button-left=invoke-default-action
+on-button-middle=dismiss-group
+on-button-right=dismiss
+on-touch=invoke-default-action
+actions=1
+
+# Appearance: font, colors, layout
+font=Fira Code Nerd Font 10
+background-color=#2a2d3d
+text-color=#bfc7d5
+border-color=#82b1ff
+progress-color=over #82aaff
+
+# Appearance: spacing and borders
+outer-margin=0
+margin=10
+padding=10
+border-size=2
+border-radius=5
+
+# Appearance: icons
+icons=1
+max-icon-size=31
+icon-location=left
+
+# Notification formatting
+format= <b>%s</b>\n%b
+text-alignment=left
+
+# Timing and behavior
+default-timeout=10000
+ignore-timeout=0
+
+# Positioning
+layer=top
+anchor=top-right

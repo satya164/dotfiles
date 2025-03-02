@@ -1,0 +1,88 @@
+@define-color bg #2a2d3d;
+@define-color fg #bfc7d5;
+@define-color hover-bg #424762;
+@define-color accent #82aaff;
+@define-color battery-charging #c3e88d;
+@define-color battery-warning #f78c6c;
+
+#waybar {
+  font-family: 'Fira Code Nerd Font', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  background: @bg;
+  color: @fg;
+  margin: 0;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  margin: 5px;
+}
+
+.module {
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+.module:hover {
+  background-color: @hover-bg;
+}
+
+#workspaces {
+  padding: 0 5px;
+}
+
+#workspaces:hover {
+  background-color: transparent;
+}
+
+#workspaces button {
+  border: none;
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+  box-shadow: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0 5px;
+  transition: none;
+  color: @hover-bg;
+}
+
+#workspaces button.active {
+  box-shadow: none;
+  text-shadow: none;
+  color: inherit;
+}
+
+#workspaces button:hover {
+  box-shadow: none;
+  text-shadow: none;
+  color: @accent;
+}
+
+#workspaces button.urgent {
+  color: @urgent;
+}
+
+#bluetooth {
+  font-size: 15px;
+}
+
+#battery.charging {
+  color: @battery-charging;
+}
+
+#battery.warning:not(.charging) {
+  color: @battery-warning;
+}
+
+tooltip {
+  border: none;
+  background-color: @bg;
+  color: @fg;
+  padding: 5px 10px;
+  margin: 0;
+  border-radius: 0 0 5px 5px;
+}

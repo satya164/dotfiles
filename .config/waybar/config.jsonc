@@ -1,0 +1,62 @@
+{
+  "height": 35,
+  "spacing": 4,
+  "modules-left": ["hyprland/window"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "wireplumber",
+    "bluetooth",
+    "network",
+    "battery",
+    "hyprland/workspaces"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": ""
+    }
+  },
+  "clock": {
+    "format": "{:%a, %b %d %R}",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+  "wireplumber": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰖁",
+    "format-icons": ["", "", ""]
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": "󰂄  {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-warning": "󰂃  {capacity}%",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  },
+  "bluetooth": {
+    "format-on": "󰂯",
+    "format-off": "󰂲",
+    "format-disabled": "",
+    "format-connected": "󰂱",
+    "tooltip-format": "{num_connections} connected",
+    "tooltip-format-connected": "{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
+    "on-click": "overskride"
+  },
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": "  {ipaddr}/{cidr}",
+    "tooltip-format": "  {ifname} via {gwaddr}",
+    "format-linked": "   {ifname} (No IP)",
+    "format-disconnected": "  Disconnected"
+  }
+}

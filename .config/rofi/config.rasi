@@ -1,0 +1,14 @@
+configuration {
+  modes: [window,drun];
+  display-window: "";
+  display-drun: "";
+  show-icons: true;
+  font: "Fira Code Nerd Font 11";
+
+  timeout {
+    action: "kb-cancel";
+    delay:  0;
+  }
+}
+
+@theme "palenight"

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   constants = {
@@ -27,19 +27,24 @@ in
     hostName = "${constants.hostname}";
   };
 
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  security.rtkit.enable = true;
+
+  security.pam.services.ly.enableGnomeKeyring = true;
+
+  services.displayManager.ly.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   services.flatpak.enable = true;
-
-  programs.kdeconnect.enable = true;
-
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+
+  services.gvfs = {
+    enable = true;
+    package = lib.mkForce pkgs.gnome.gvfs;
   };
 
   services.syncthing = {
@@ -66,10 +71,39 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    google-chrome
-    vscode
+    adwaita-icon-theme
+    bibata-cursors
+    celluloid
+    cliphist
     ghostty
+    glib
+    google-chrome
+    hyprcursor
+    hypridle
+    hyprland-qt-support
+    hyprlock
+    hyprpaper
+    hyprpicker
+    hyprpolkitagent
+    hyprshot
+    iwgtk
+    libnotify
+    mako
+    nautilus
+    nwg-look
+    overskride
+    playerctl
+    rofi-wayland
+    vscode
+    waybar
+    wev
+    wl-clipboard
+    wlogout
+    xdg-user-dirs
+    xdg-desktop-portal-hyprland
   ];
+
+  programs.hyprland.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -83,6 +117,13 @@ in
       sansSerif = [ "Noto Sans" ];
       serif = [ "Noto Serif" ];
     };
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+    ];
   };
 
   system.stateVersion = "25.05";
