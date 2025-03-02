@@ -29,10 +29,3 @@ echo 'alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"' >> $HOME/.zsh
 source $HOME/.zshrc
 dot config --local status.showUntrackedFiles no
 ```
-
-To make iTerm2 use the config from this repo:
-
-```sh
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.iterm2_config"
-defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-```
