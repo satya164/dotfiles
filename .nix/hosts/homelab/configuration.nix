@@ -15,7 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.swraid.mdadmConf = ''
-    ARRAY /dev/md0 metadata=1.2 UUID=a95ded5d:6e0ec42f:af087785:10409b86
+    ARRAY /dev/md0 metadata=1.2 spares=1 UUID=a95ded5d:6e0ec42f:af087785:10409b86
     MAILADDR satyajit.happy@gmail.com
   '';
 
