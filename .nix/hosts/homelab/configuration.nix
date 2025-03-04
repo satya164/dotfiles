@@ -7,6 +7,7 @@
 
 {
   imports = [
+    ../../common/nix.nix
     ../../common/packages.nix
     ./hardware-configuration.nix
   ];

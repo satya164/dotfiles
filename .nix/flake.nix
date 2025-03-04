@@ -12,18 +12,11 @@
       ...
     }:
     {
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-
-      nix.nixPath = [
-        "nixpkgs=${nixpkgs}"
-      ];
-
       nixosConfigurations.homelab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
+          inherit inputs;
+
           hostname = "homelab";
           username = "satya";
           domain = "satya164.homes";
@@ -36,6 +29,9 @@
 
       darwinConfigurations.default = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
+        specialArgs = {
+          inherit inputs;
+        };
         modules = [ ./hosts/darwin/configuration.nix ];
       };
     };
