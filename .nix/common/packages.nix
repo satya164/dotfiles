@@ -10,6 +10,7 @@
     stylua
     typescript-language-server
     nodejs
+    gcc
     nano
     neovim
     wget

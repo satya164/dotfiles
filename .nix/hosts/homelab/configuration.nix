@@ -116,7 +116,6 @@ in
 
   environment.systemPackages = with pkgs; [
     mdadm
-    gcc
     tailscale
   ];
 

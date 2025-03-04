@@ -69,20 +69,27 @@
 
   users.users.satya = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       kdePackages.kate
     ];
   };
 
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "${specialArgs.username}";
-
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
-    ghostty
-    git
+    kitty
+    wofi
+    waybar
+    hyprpaper
+  ];
+
+  fonts.packages = with pkgs; [
+    fira-code
+    fira-code-nerdfont
   ];
 
   programs.gnupg.agent = {
