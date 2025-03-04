@@ -9,4 +9,6 @@
   nix.nixPath = [
     "nixpkgs=${inputs.nixpkgs}"
   ];
+
+  nix.optimise.automatic = true;
 }
