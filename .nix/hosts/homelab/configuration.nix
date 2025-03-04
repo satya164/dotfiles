@@ -1,10 +1,15 @@
-{
-  config,
-  pkgs,
-  specialArgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
+let
+  constants = {
+    hostname = "homelab";
+    username = "satya";
+    timezone = "Europe/Warsaw";
+    domain = "satya164.homes";
+    storage = "/mnt/storage";
+    external = "/mnt/external";
+  };
+in
 {
   imports = [
     ../../common/nix.nix
@@ -21,7 +26,7 @@
   '';
 
   fileSystems = {
-    "${specialArgs.storage}" = {
+    "${constants.storage}" = {
       device = "/dev/md0";
       fsType = "ext4";
       options = [
@@ -30,7 +35,7 @@
         "nofail"
       ];
     };
-    "${specialArgs.external}" = {
+    "${constants.external}" = {
       device = "/dev/disk/by-uuid/9a5cdc5e-362f-eb4e-9f9a-8ca6ed0d6671";
       fsType = "ext4";
       options = [
@@ -42,7 +47,7 @@
   };
 
   networking = {
-    hostName = "${specialArgs.hostname}";
+    hostName = "homelab";
     networkmanager.enable = true;
     firewall = {
       enable = true;
@@ -68,7 +73,7 @@
     };
   };
 
-  time.timeZone = "${specialArgs.timezone}";
+  time.timeZone = "${constants.timezone}";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -97,7 +102,7 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  users.users.${specialArgs.username} = {
+  users.users.${constants.username} = {
     isNormalUser = true;
     extraGroups = [
       "networkmanager"
@@ -107,7 +112,7 @@
     uid = 1000;
   };
 
-  services.getty.autologinUser = "${specialArgs.username}";
+  services.getty.autologinUser = "${constants.username}";
 
   environment.systemPackages = with pkgs; [
     mdadm
@@ -132,7 +137,7 @@
   services.cron = {
     enable = true;
     systemCronJobs = [
-      "0 5 * * *      root    rsync -avzog --delete --exclude 'docker' ${specialArgs.storage}/ ${specialArgs.external} >> /var/log/rsync.log"
+      "0 5 * * *      root    rsync -avzog --delete --exclude 'docker' ${constants.storage}/ ${constants.external} >> /var/log/rsync.log"
     ];
   };
 
@@ -143,30 +148,30 @@
     settings = {
       global = {
         "workgroup" = "WORKGROUP";
-        "server string" = "${specialArgs.hostname}";
-        "netbios name" = "${specialArgs.hostname}";
+        "server string" = "${constants.hostname}";
+        "netbios name" = "${constants.hostname}";
         "smb encrypt" = "required";
         "security" = "user";
         "browseable" = "yes";
       };
 
       "nix" = {
-        "path" = "${config.users.users.${specialArgs.username}.home}/.nix";
+        "path" = "${config.users.users.${constants.username}.home}/.nix";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";
         "create mask" = "0644";
         "directory mask" = "0755";
-        "force user" = "${specialArgs.username}";
+        "force user" = "${constants.username}";
       };
       "storage" = {
-        "path" = "${specialArgs.storage}";
+        "path" = "${constants.storage}";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";
         "create mask" = "0644";
         "directory mask" = "0755";
-        "force user" = "${specialArgs.username}";
+        "force user" = "${constants.username}";
       };
     };
   };
@@ -199,7 +204,7 @@
     enable = true;
     daemon.settings = {
       userland-proxy = false;
-      data-root = "${specialArgs.storage}/docker";
+      data-root = "${constants.storage}/docker";
     };
   };
 
@@ -211,19 +216,19 @@
         hostname = "portainer";
         ports = [ "9000:9000" ];
         volumes = [
-          "${specialArgs.storage}/AppData/portainer:/data"
+          "${constants.storage}/AppData/portainer:/data"
           "/var/run/docker.sock:/var/run/docker.sock"
         ];
         environment = {
-          APPDATA = "${specialArgs.storage}/AppData";
-          STORAGE = "${specialArgs.storage}";
-          DOMAIN = "${specialArgs.domain}";
-          PUID = "${toString config.users.users.${specialArgs.username}.uid}";
-          PGID = "${toString config.ids.gids.${toString config.users.users.${specialArgs.username}.group}}";
-          TZ = "${specialArgs.timezone}";
+          APPDATA = "${constants.storage}/AppData";
+          STORAGE = "${constants.storage}";
+          DOMAIN = "${constants.domain}";
+          PUID = "${toString config.users.users.${constants.username}.uid}";
+          PGID = "${toString config.ids.gids.${toString config.users.users.${constants.username}.group}}";
+          TZ = "${constants.timezone}";
         };
         labels = {
-          "traefik.http.routers.portainer.rule" = "Host(`portainer.${specialArgs.domain}`)";
+          "traefik.http.routers.portainer.rule" = "Host(`portainer.${constants.domain}`)";
           "traefik.http.services.portainer.loadbalancer.server.port" = "9000";
         };
         extraOptions = [ "--network=traefik" ];

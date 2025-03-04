@@ -14,24 +14,13 @@
     {
       nixosConfigurations.homelab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-
-          hostname = "homelab";
-          username = "satya";
-          domain = "satya164.homes";
-          timezone = "Europe/Warsaw";
-          storage = "/mnt/storage";
-          external = "/mnt/external";
-        };
+        specialArgs = { inherit inputs; };
         modules = [ ./hosts/homelab/configuration.nix ];
       };
 
       darwinConfigurations.default = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        specialArgs = {
-          inherit inputs;
-        };
+        specialArgs = { inherit inputs; };
         modules = [ ./hosts/darwin/configuration.nix ];
       };
     };
