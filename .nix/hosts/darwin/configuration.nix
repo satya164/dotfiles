@@ -67,9 +67,33 @@
 
   system.defaults = {
     dock.autohide = true;
+    dock.mineffect = "scale";
+    dock.minimize-to-application = true;
     dock.mru-spaces = false;
+    dock.wvous-bl-corner = 11; # Launchpad
+    dock.wvous-br-corner = 4; # Show Desktop
+    dock.wvous-tl-corner = 2; # Mission Control
+    dock.wvous-tr-corner = null;
     finder.AppleShowAllExtensions = true;
+    finder.FXDefaultSearchScope = "SCcf"; # Search current folder
+    finder.FXEnableExtensionChangeWarning = false;
+    finder.FXRemoveOldTrashItems = true;
+    finder.NewWindowTarget = "Home";
+    magicmouse.MouseButtonMode = "TwoButton";
+    menuExtraClock.Show24Hour = true;
+    menuExtraClock.ShowDate = 0; # Show date when space is available
     screencapture.location = "~/Desktop";
+    spaces.spans-displays = true;
+    trackpad.Clicking = true;
+    WindowManager.EnableStandardClickToShowDesktop = false;
+    WindowManager.EnableTiledWindowMargins = false;
+    NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
+    NSGlobalDomain.AppleEnableMouseSwipeNavigateWithScrolls = false;
+    NSGlobalDomain.AppleEnableSwipeNavigateWithScrolls = false;
+    NSGlobalDomain.AppleScrollerPagingBehavior = true;
+    NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
+    NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = false;
+    NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
   };
 
   system.stateVersion = 4;
