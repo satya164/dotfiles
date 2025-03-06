@@ -4,6 +4,9 @@ return {
   { "neovim/nvim-lspconfig" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/nvim-cmp" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-cmdline" },
   { "dense-analysis/ale" },
   { "sbdchd/neoformat" },
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
@@ -21,6 +24,14 @@ return {
   { "numToStr/Comment.nvim", lazy = true },
   { "windwp/nvim-ts-autotag", lazy = true },
   { "windwp/nvim-autopairs", lazy = true },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",

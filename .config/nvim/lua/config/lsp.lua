@@ -92,9 +92,8 @@ cmp.setup({
     { name = "nvim_lsp" },
   },
   mapping = cmp.mapping.preset.insert({
-    -- `Enter` key to confirm completion
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
-
+    -- Enter key to confirm completion
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
     -- Ctrl+. to trigger completion menu
     ["<C-.>"] = cmp.mapping.complete(),
   }),
@@ -102,5 +101,24 @@ cmp.setup({
     expand = function(args)
       vim.snippet.expand(args.body)
     end,
+  },
+})
+
+cmp.setup.cmdline({ "/", "?" }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer" },
+  },
+})
+
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    { name = "cmdline" },
+  }),
+  matching = {
+    disallow_symbol_nonprefix_matching = false,
   },
 })
