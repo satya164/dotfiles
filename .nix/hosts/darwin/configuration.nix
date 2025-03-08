@@ -87,6 +87,8 @@
     trackpad.Clicking = true;
     WindowManager.EnableStandardClickToShowDesktop = false;
     WindowManager.EnableTiledWindowMargins = false;
+    WindowManager.EnableTilingByEdgeDrag = true;
+    WindowManager.EnableTopTilingByEdgeDrag = true;
     NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
     NSGlobalDomain.AppleEnableMouseSwipeNavigateWithScrolls = false;
     NSGlobalDomain.AppleEnableSwipeNavigateWithScrolls = false;
