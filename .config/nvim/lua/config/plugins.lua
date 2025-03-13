@@ -11,6 +11,13 @@ return {
   { "sbdchd/neoformat" },
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
   { "nvim-tree/nvim-web-devicons" },
   {
     "romgrk/barbar.nvim",
