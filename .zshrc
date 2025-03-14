@@ -30,7 +30,7 @@ export LANGUAGE=en
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export EDITOR=nano
+export EDITOR=nvim
 
 # Theme
 SPACESHIP_PROMPT_ORDER=(

@@ -13,9 +13,13 @@ export CLICOLOR=1
 
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-export EDITOR=/usr/bin/nano
+export LANGUAGE=en
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+export EDITOR=nvim
+
+alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"
 
 if [ -f ~/.git-completion.sh ]; then
   . ~/.git-completion.sh
@@ -23,6 +27,3 @@ fi
 
 if [ -f ~/.bash_secrets.sh ]; then source ~/.bash_secrets.sh; fi
 if [ -f ~/.bash_local.sh ]; then source ~/.bash_local.sh; fi
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"

@@ -10,7 +10,6 @@
 [commit]
   gpgsign = true
 [core]
-  editor = nano
   excludesfile = ~/.gitignore_global
 [delta]
   navigate = true
