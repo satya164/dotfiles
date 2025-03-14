@@ -27,6 +27,7 @@ return {
     },
   },
   { "lewis6991/gitsigns.nvim", lazy = true },
+  { "f-person/git-blame.nvim", event = "VeryLazy" },
   { "sindrets/diffview.nvim", lazy = true },
   { "numToStr/Comment.nvim", lazy = true },
   { "windwp/nvim-ts-autotag", lazy = true },
