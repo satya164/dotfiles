@@ -30,6 +30,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+-- Enable inlay hints
+vim.lsp.inlay_hint.enable(true)
+
 -- Nix LSP setup
 require("lspconfig").nixd.setup({
   cmd = { "nixd" },
@@ -82,7 +85,34 @@ require("lspconfig").lua_ls.setup({
 })
 
 -- TypeScript LSP setup
-require("lspconfig").ts_ls.setup({})
+require("lspconfig").ts_ls.setup({
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = false,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        includeInlayPropertyDeclarationTypeHints = false,
+        includeInlayFunctionLikeReturnTypeHints = false,
+        includeInlayEnumMemberValueHints = false,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = false,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        includeInlayPropertyDeclarationTypeHints = false,
+        includeInlayFunctionLikeReturnTypeHints = false,
+        includeInlayEnumMemberValueHints = false,
+      },
+    },
+  },
+})
 
 -- Autocompletion config
 local cmp = require("cmp")
