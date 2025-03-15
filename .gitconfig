@@ -1,16 +1,22 @@
 [user]
   name = Satyajit Sahoo
   email = satyajit.happy@gmail.com
+[core]
+  excludesfile = ~/.gitignore_global
 [init]
   defaultBranch = main
+[status]
+  submoduleSummary = true
+[pull]
+  rebase = true
 [push]
   default = current
   autoSetupRemote = true
   followTags = true
 [commit]
   gpgsign = true
-[core]
-  excludesfile = ~/.gitignore_global
+[branch]
+	sort = -committerdate
 [delta]
   navigate = true
   line-numbers = true
@@ -19,10 +25,6 @@
   colorMoved = default
 [merge]
   conflictstyle = diff3
-[status]
-  submoduleSummary = true
-[pull]
-  rebase = true
 [help]
   autocorrect = 30
 
