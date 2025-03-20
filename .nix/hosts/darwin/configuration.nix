@@ -83,7 +83,7 @@
     menuExtraClock.Show24Hour = true;
     menuExtraClock.ShowDate = 0; # Show date when space is available
     screencapture.location = "~/Desktop";
-    spaces.spans-displays = false;
+    spaces.spans-displays = true;
     trackpad.Clicking = true;
     WindowManager.EnableStandardClickToShowDesktop = false;
     WindowManager.EnableTiledWindowMargins = false;
