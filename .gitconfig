@@ -25,6 +25,8 @@
 	colorMoved = default
 [merge]
 	conflictstyle = diff3
+[rerere]
+	enabled = true
 [help]
 	autocorrect = 30
 
