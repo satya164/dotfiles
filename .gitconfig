@@ -15,6 +15,8 @@
 	followTags = true
 [commit]
 	gpgsign = true
+[tag]
+	gpgSign = true
 [branch]
 	sort = -committerdate
 [delta]
@@ -40,3 +42,6 @@
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	pr = "!f() { git fetch -fu ${2:-$(git remote | grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 	track = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)"
+
+[include]
+  path = ~/.gitconfig_local
