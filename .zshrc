@@ -10,7 +10,7 @@ alias dot="git --git-dir=$HOME/.dot.git/ --work-tree=$HOME"
 if [[ -f "$HOME/.nix/flake.nix" ]]; then
   case "$(uname)" in
     Darwin)
-      alias nix-rebuild="nix run --extra-experimental-features 'nix-command flakes' nix-darwin -- switch --flake $HOME/.nix#default"
+      alias nix-rebuild="darwin-rebuild switch --flake $HOME/.nix#default"
       ;;
     Linux)
       alias nix-rebuild="sudo nixos-rebuild switch --flake $HOME/.nix"
