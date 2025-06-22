@@ -45,6 +45,7 @@
       "ente-auth"
       "home-assistant"
       "maccy"
+      "muzzle"
       "obsidian"
       "pika"
       "shottr"
