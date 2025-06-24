@@ -49,7 +49,7 @@
       "obsidian"
       "pika"
       "shottr"
-      "syncthing"
+      "syncthing-app"
       "the-unarchiver"
       "expo-orbit"
     ];
