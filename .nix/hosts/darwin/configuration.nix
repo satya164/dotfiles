@@ -71,8 +71,8 @@
     dock.mineffect = "scale";
     dock.minimize-to-application = true;
     dock.mru-spaces = false;
-    dock.wvous-bl-corner = 11; # Launchpad
-    dock.wvous-br-corner = 4; # Show Desktop
+    dock.wvous-bl-corner = null;
+    dock.wvous-br-corner = null;
     dock.wvous-tl-corner = 2; # Mission Control
     dock.wvous-tr-corner = null;
     finder.AppleShowAllExtensions = true;
