@@ -71,10 +71,10 @@
     dock.mineffect = "scale";
     dock.minimize-to-application = true;
     dock.mru-spaces = false;
-    dock.wvous-bl-corner = null;
-    dock.wvous-br-corner = null;
+    dock.wvous-bl-corner = 1; # Disable
+    dock.wvous-br-corner = 1;
     dock.wvous-tl-corner = 2; # Mission Control
-    dock.wvous-tr-corner = null;
+    dock.wvous-tr-corner = 1;
     finder.AppleShowAllExtensions = true;
     finder.FXDefaultSearchScope = "SCcf"; # Search current folder
     finder.FXEnableExtensionChangeWarning = false;
