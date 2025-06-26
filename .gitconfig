@@ -42,6 +42,7 @@
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	pr = "!f() { git fetch -fu ${2:-$(git remote | grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 	track = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)"
+	cleanup = !git switch $(git remote show origin | sed -n '/HEAD branch/s/.*: //p') && git pull --prune && git branch --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" { print $1 }' | xargs -r git branch -D
 
 [include]
   path = ~/.gitconfig_local
