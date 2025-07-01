@@ -48,6 +48,7 @@
       "muzzle"
       "obsidian"
       "pika"
+      "rustdesk"
       "shottr"
       "syncthing-app"
       "the-unarchiver"
