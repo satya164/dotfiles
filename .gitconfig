@@ -1,6 +1,7 @@
 [user]
 	name = Satyajit Sahoo
 	email = satyajit.happy@gmail.com
+	signingkey = 31DAAC48ACF28F61
 [core]
 	excludesfile = ~/.gitignore_global
 [init]

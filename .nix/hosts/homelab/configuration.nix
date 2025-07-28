@@ -4,6 +4,7 @@ let
   constants = {
     hostname = "homelab";
     username = "satya";
+    fullname = "Satyajit Sahoo";
     timezone = "Europe/Warsaw";
     domain = "satya164.homes";
     storage = "/mnt/storage";
@@ -14,11 +15,9 @@ in
   imports = [
     ../../common/nix.nix
     ../../common/packages.nix
+    ../../common/linux.nix
     ./hardware-configuration.nix
   ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   boot.swraid.mdadmConf = ''
     ARRAY /dev/md0 metadata=1.2 spares=1 UUID=a95ded5d:6e0ec42f:af087785:10409b86
@@ -47,8 +46,7 @@ in
   };
 
   networking = {
-    hostName = "homelab";
-    networkmanager.enable = true;
+    hostName = "${constants.hostname}";
     firewall = {
       enable = true;
       allowPing = true;
@@ -73,34 +71,10 @@ in
     };
   };
 
-  time.timeZone = "${constants.timezone}";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pl_PL.UTF-8";
-    LC_IDENTIFICATION = "pl_PL.UTF-8";
-    LC_MEASUREMENT = "pl_PL.UTF-8";
-    LC_MONETARY = "pl_PL.UTF-8";
-    LC_NAME = "pl_PL.UTF-8";
-    LC_NUMERIC = "pl_PL.UTF-8";
-    LC_PAPER = "pl_PL.UTF-8";
-    LC_TELEPHONE = "pl_PL.UTF-8";
-    LC_TIME = "pl_PL.UTF-8";
-  };
-
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
-
-  programs.zsh = {
-    enable = true;
-  };
-
-  environment.shells = with pkgs; [ zsh ];
-
-  users.defaultUserShell = pkgs.zsh;
 
   users.users.${constants.username} = {
     isNormalUser = true;
@@ -117,22 +91,7 @@ in
   environment.systemPackages = with pkgs; [
     mdadm
     gcc
-    tailscale
   ];
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = true;
-    };
-  };
-
-  services.tailscale.enable = true;
 
   services.cron = {
     enable = true;
@@ -192,12 +151,6 @@ in
       userServices = true;
       workstation = true;
     };
-  };
-
-  services.journald = {
-    extraConfig = ''
-      SystemMaxUse=100M
-    '';
   };
 
   virtualisation.docker = {
