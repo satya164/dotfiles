@@ -38,6 +38,13 @@ in
     pulse.enable = true;
   };
 
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    user = "${constants.username}";
+    dataDir = "/home/${constants.username}";
+  };
+
   users.users.${constants.username} = {
     isNormalUser = true;
     description = "${constants.fullname}";
