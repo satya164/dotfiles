@@ -56,15 +56,11 @@ in
     ];
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   environment.systemPackages = with pkgs; [
-    (
-      google-chrome.override {
-        commandLineArgs = [
-          "--enable-features=UseOzonePlatform"
-          "--ozone-platform=wayland"
-        ];
-      }
-    )
+    google-chrome
+    vscode
     ghostty
   ];
 
