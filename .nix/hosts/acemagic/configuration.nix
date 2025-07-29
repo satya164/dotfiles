@@ -30,6 +30,8 @@ in
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  services.flatpak.enable = true;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
