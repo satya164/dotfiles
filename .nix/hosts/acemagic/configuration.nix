@@ -20,6 +20,9 @@ in
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   networking = {
     hostName = "${constants.hostname}";
   };
@@ -55,7 +58,6 @@ in
     )
     ghostty
   ];
-
 
   system.stateVersion = "25.05";
 }
