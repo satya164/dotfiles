@@ -66,5 +66,10 @@ in
     ghostty
   ];
 
+  fonts.packages = with pkgs; [
+    fira-code
+    fira-code-nerdfont
+  ];
+
   system.stateVersion = "25.05";
 }
