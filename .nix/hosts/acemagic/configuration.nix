@@ -70,8 +70,7 @@ in
   ];
 
   fonts.packages = with pkgs; [
-    fira-code
-    fira-code-nerdfont
+    nerd-fonts.fira-code
   ];
 
   system.stateVersion = "25.05";

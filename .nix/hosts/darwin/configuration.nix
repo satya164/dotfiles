@@ -1,10 +1,17 @@
 { pkgs, ... }:
 
+let
+  constants = {
+    username = "satya";
+  };
+in
 {
   imports = [
     ../../common/nix.nix
     ../../common/packages.nix
   ];
+
+  system.primaryUser = "${constants.username}";
 
   environment.systemPackages = with pkgs; [
     gnupg
@@ -57,15 +64,14 @@
   };
 
   fonts.packages = with pkgs; [
-    fira-code
-    fira-code-nerdfont
+    nerd-fonts.fira-code
   ];
 
   programs.zsh.enable = true;
 
-  security.pam.enableSudoTouchIdAuth = true;
-
-  services.nix-daemon.enable = true;
+  security.pam.services.sudo_local = {
+    touchIdAuth = true;
+  };
 
   system.defaults = {
     dock.autohide = true;
@@ -100,5 +106,5 @@
     NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
   };
 
-  system.stateVersion = 4;
+  system.stateVersion = 6;
 }
