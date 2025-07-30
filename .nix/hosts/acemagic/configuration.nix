@@ -70,8 +70,18 @@ in
   ];
 
   fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-emoji
     nerd-fonts.fira-code
   ];
+
+  fonts.fontconfig = {
+    defaultFonts = {
+      monospace = [ "Fira Code Nerd Font Mono" ];
+      sansSerif = [ "Noto Sans" ];
+      serif = [ "Noto Serif" ];
+    };
+  };
 
   system.stateVersion = "25.05";
 }
