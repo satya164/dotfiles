@@ -56,7 +56,12 @@ in
     ];
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    # Fix blurry Electron apps on Wayland
+    # May need "socket=wayland" set for flatpak apps (e.g. with Flatseal)
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    NIXOS_OZONE_WL = 1;
+  };
 
   environment.systemPackages = with pkgs; [
     google-chrome
