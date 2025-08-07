@@ -60,6 +60,7 @@ in
       "syncthing-app"
       "the-unarchiver"
       "expo-orbit"
+      "github-copilot-for-xcode"
     ];
   };
 
