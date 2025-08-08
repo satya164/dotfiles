@@ -1,0 +1,331 @@
+{
+  "[javascript]": {
+    "editor.maxTokenizationLineLength": 2500,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    }
+  },
+  "[lua]": {
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
+  },
+  "[markdown]": {
+    "editor.stickyScroll.enabled": true
+  },
+  "[nginx]": {
+    "editor.defaultFormatter": "ahmadalli.vscode-nginx-conf"
+  },
+  "[nix]": {
+    "editor.defaultFormatter": "brettm12345.nixfmt-vscode"
+  },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  },
+
+  "breadcrumbs.enabled": false,
+
+  "chat.commandCenter.enabled": false,
+
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+
+  "copilot.vision.provider": "Gemini",
+
+  "cSpell.autoFormatConfigFile": true,
+  "cSpell.enabledNotifications": {
+    "Lines too Long": false,
+    "Maximum Word Length Exceeded": false,
+    "Average Word Length too Long": false
+  },
+  "cSpell.userWords": ["bulbasaur", "mimikyu", "Pokéball", "Pressable"],
+
+  "diffEditor.diffAlgorithm": "advanced",
+  "diffEditor.experimental.showMoves": true,
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.renderSideBySide": true,
+  "diffEditor.wordWrap": "on",
+
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.accessibilitySupport": "off",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "FiraCode Nerd Font Mono, Fira Code, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
+  "editor.gotoLocation.multipleDefinitions": "gotoAndPeek",
+  "editor.guides.indentation": true,
+  "editor.inlayHints.enabled": "on",
+  "editor.inlayHints.padding": true,
+  "editor.inlineSuggest.edits.allowCodeShifting": "horizontal",
+  "editor.inlineSuggest.edits.showCollapsed": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.lightbulb.enabled": "off",
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.horizontalScrollbarSize": 8,
+  "editor.scrollbar.verticalScrollbarSize": 10,
+  "editor.scrollBeyondLastLine": false,
+  "editor.snippetSuggestions": "bottom",
+  "editor.stickyScroll.enabled": false,
+  "editor.suggest.localityBonus": true,
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+
+  "emmet.showSuggestionsAsSnippets": true,
+
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+
+  "explorer.confirmDragAndDrop": false,
+  "explorer.fileNesting.enabled": true,
+  "explorer.openEditors.visible": 1,
+
+  "files.associations": {
+    "*.flow": "javascript",
+    "*.tsx": "typescriptreact",
+    ".eslintrc": "yaml",
+    ".prettierrc": "yaml",
+    "*.nix": "nix"
+  },
+  "files.defaultLanguage": "markdown",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.history": true,
+    "**/.project": true,
+    "**/.settings": true
+  },
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+
+  "git.autofetch": true,
+  "git.mergeEditor": false,
+  "git.openRepositoryInParentFolders": "never",
+
+  "github.copilot.advanced": {},
+  "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "github.copilot.chat.edits.temporalContext.enabled": true,
+  "github.copilot.chat.generateTests.codeLens": true,
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
+  "github.copilot.editor.enableCodeActions": true,
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": true,
+    "plaintext": true,
+    "yaml": true
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+
+  "githubPullRequests.pullBranch": "never",
+
+  "gitlens.advanced.fileHistoryFollowsRenames": true,
+  "gitlens.blame.highlight.locations": ["gutter", "line"],
+  "gitlens.changes.locations": ["gutter"],
+  "gitlens.codeLens.enabled": false,
+  "gitlens.heatmap.locations": ["gutter"],
+  "gitlens.launchpad.indicator.polling.interval": 0,
+  "gitlens.menus": {
+    "editor": {
+      "blame": false,
+      "clipboard": true,
+      "compare": true,
+      "history": false,
+      "remote": false
+    },
+    "editorGroup": false,
+    "editorTab": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": true
+    },
+    "explorer": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": true
+    },
+    "scm": {
+      "authors": true
+    },
+    "scmGroup": {
+      "compare": true,
+      "openClose": true,
+      "stash": true
+    },
+    "scmGroupInline": {
+      "stash": true
+    },
+    "scmItem": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": false,
+      "stash": true
+    }
+  },
+  "gitlens.plusFeatures.enabled": false,
+  "gitlens.statusBar.enabled": false,
+
+  "implicitParentheses.enable": true,
+
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.preferGoToSourceDefinition": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.validate.enable": false,
+
+  "json.schemas": [],
+
+  "markdown-preview-github-styles.colorTheme": "light",
+
+  "material-icon-theme.activeIconPack": "react",
+  "material-icon-theme.folders.color": "#b4c2f0",
+  "material-icon-theme.hidesExplorerArrows": true,
+  "material-icon-theme.opacity": 0.75,
+  "material-icon-theme.saturation": 0.5,
+
+  "merge-conflict.diffViewPosition": "Beside",
+
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "/run/current-system/sw/bin/nixd",
+
+  "path-autocomplete.includeExtension": false,
+
+  "polacode.transparentBackground": true,
+
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+
+  "problems.decorations.enabled": false,
+
+  "react-native-tools.showUserTips": false,
+
+  "redhat.telemetry.enabled": false,
+
+  "scm.alwaysShowActions": true,
+  "scm.providerCountBadge": "auto",
+
+  "search.exclude": {
+    "**/*.code-search": true,
+    "**/.next": true,
+    "**/.yarn": true,
+    "**/bower_components": true,
+    "**/node_modules": true,
+    "**/yarn.lock": true
+  },
+  "search.globalFindClipboard": true,
+  "search.quickOpen.includeSymbols": true,
+  "search.showLineNumbers": true,
+
+  "security.workspace.trust.enabled": false,
+
+  "symbols.hidesExplorerArrows": true,
+
+  "telemetry.telemetryLevel": "off",
+
+  "terminal.explorerKind": "external",
+  "terminal.external.osxExec": "Ghostty.app",
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.fontLigatures.enabled": true,
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.suggest.enabled": true,
+
+  "typescript.autoClosingTags": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "typescript.preferGoToSourceDefinition": true,
+  "typescript.suggest.autoImports": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  "window.closeWhenEmpty": true,
+  "window.commandCenter": false,
+  "window.dialogStyle": "custom",
+  "window.newWindowDimensions": "maximized",
+  "window.openFilesInNewWindow": "default",
+  "window.restoreWindows": "all",
+  "window.systemColorTheme": "dark",
+  "window.titleBarStyle": "native",
+
+  "workbench.activityBar.location": "hidden",
+  "workbench.colorCustomizations": {
+    "editorInlayHint.background": "#323649",
+    "editorInlayHint.foreground": "#6A7095",
+    "editor.findMatchBackground": "#ffcb6b80",
+    "editor.findMatchHighlightBackground": "#ffcb6b30",
+    "editorGroupHeader.tabsBackground":  "#262939",
+    "sideBarTitle.foreground": "#00000000",
+    "tab.activeBorderTop": "#7859bc",
+    "tab.activeBackground": "#292d3e",
+    "tab.inactiveBackground": "#25293a",
+    "titleBar.activeForeground": "#939ac5",
+  },
+  "workbench.colorTheme": "Palenight (Mild Contrast)",
+  "workbench.iconTheme": "rose-pine-icons",
+  "workbench.editorAssociations": {
+    "*.copilotmd": "vscode.markdown.preview.editor",
+    "*.patch": "default"
+  },
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.layoutControl.type": "menu",
+  "workbench.panel.defaultLocation": "right",
+  "workbench.preferredLightColorTheme": "Palenight (Mild Contrast)",
+  "workbench.settings.editor": "json",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.tips.enabled": false,
+  "workbench.tree.indent": 20,
+  "workbench.tree.renderIndentGuides": "none",
+  "workbench.layoutControl.enabled": false,
+
+  "custom-ui-style.electron": {
+    "titleBarStyle": "hiddenInset"
+  },
+  "custom-ui-style.stylesheet": {
+    ".monaco-workbench": {
+      "&:not(.fullscreen)": {
+        // Allow dragging to move the window
+        ".activitybar, .statusbar, .tabs-container, :is(.sidebar, .panel.right) .composite.title": {
+          "-webkit-app-region": "drag",
+
+          // Allow clicking actions and items without dragging
+          ".content .monaco-action-bar, .statusbar-item, .tab, .action-item": {
+            "-webkit-app-region": "no-drag"
+          }
+        },
+
+        // Add space for traffic lights to activity bar
+        ".part.activitybar.left > .content": {
+          "padding-top": "33px"
+        },
+
+        // Add space for traffic lights to tab bar if left sidebar is not visible
+        "&:has(.sidebar-left.empty, .split-view-view:not(.visible) > .sidebar.left)": {
+          ".split-view-view.visible:first-child .tabs-container": {
+            "padding-left": "77px"
+          },
+        },
+      },
+    },
+  },
+}
