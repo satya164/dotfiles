@@ -274,12 +274,12 @@
     "editorInlayHint.foreground": "#6A7095",
     "editor.findMatchBackground": "#ffcb6b80",
     "editor.findMatchHighlightBackground": "#ffcb6b30",
-    "editorGroupHeader.tabsBackground":  "#262939",
+    "editorGroupHeader.tabsBackground": "#262939",
     "sideBarTitle.foreground": "#00000000",
     "tab.activeBorderTop": "#7859bc",
     "tab.activeBackground": "#292d3e",
     "tab.inactiveBackground": "#25293a",
-    "titleBar.activeForeground": "#939ac5",
+    "titleBar.activeForeground": "#939ac5"
   },
   "workbench.colorTheme": "Palenight (Mild Contrast)",
   "workbench.iconTheme": "rose-pine-icons",
@@ -299,7 +299,11 @@
   "workbench.layoutControl.enabled": false,
 
   "custom-ui-style.electron": {
-    "titleBarStyle": "hiddenInset"
+    "titleBarStyle": "hiddenInset",
+    "trafficLightPosition": {
+      "x": 12,
+      "y": 10
+    }
   },
   "custom-ui-style.stylesheet": {
     ".monaco-workbench": {
@@ -323,9 +327,9 @@
         "&:has(.sidebar-left.empty, .split-view-view:not(.visible) > .sidebar.left)": {
           ".split-view-view.visible:first-child .tabs-container": {
             "padding-left": "77px"
-          },
-        },
-      },
-    },
-  },
+          }
+        }
+      }
+    }
+  }
 }
