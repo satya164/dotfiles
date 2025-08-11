@@ -1,0 +1,65 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 10,
+      "subtext" : {
+        "size" : 10,
+        "colorSelected" : "#656D94FF",
+        "font" : "Fira Code",
+        "color" : "#656D94FF"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#97A0BDFF",
+        "font" : "FiraCode Nerd Font",
+        "color" : "#656D94FF"
+      },
+      "backgroundSelected" : "#ACBAFF26",
+      "text" : {
+        "size" : 16,
+        "colorSelected" : "#97A0BDFF",
+        "font" : "Fira Code",
+        "color" : "#97A0BDFF"
+      },
+      "iconPaddingHorizontal" : 10,
+      "roundness" : 0,
+      "paddingVertical" : 5,
+      "iconSize" : 40
+    },
+    "search" : {
+      "backgroundSelected" : "#81AAFFFF",
+      "paddingHorizontal" : 10,
+      "spacing" : 0,
+      "text" : {
+        "size" : 32,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Fira Code",
+        "color" : "#97A0BDFF"
+      },
+      "background" : "#00000000",
+      "roundness" : 8,
+      "paddingVertical" : 5
+    },
+    "window" : {
+      "color" : "#2A2D3DFF",
+      "paddingHorizontal" : 0,
+      "width" : 540,
+      "borderPadding" : 0,
+      "borderColor" : "#0000007F",
+      "blur" : 0,
+      "roundness" : 10,
+      "paddingVertical" : 5
+    },
+    "credit" : "Satyajit Sahoo",
+    "visualEffectMode" : 2,
+    "separator" : {
+      "color" : "#CBCBCBF3",
+      "thickness" : 0
+    },
+    "scrollbar" : {
+      "color" : "#81AAFFFF",
+      "thickness" : 2
+    },
+    "name" : "Palenight"
+  }
+}
