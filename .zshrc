@@ -198,16 +198,18 @@ if [[ -z $DOCKER_HOST && -x $(command -v podman) ]]; then
 fi
 
 # Setup sdkman if available
+if [[ -z $SDKMAN_DIR && -x $(command -v brew) ]]; then
+  export SDKMAN_DIR="$(brew --prefix sdkman-cli 2>/dev/null)/libexec"
+fi
+
 if [[ -n $SDKMAN_DIR ]]; then
-  export PATH="$SDKMAN_DIR/candidates/java/current/bin:$PATH"
+  export SDKMAN_CANDIDATES_DIR="$SDKMAN_DIR/candidates"
+  export JAVA_HOME="$SDKMAN_CANDIDATES_DIR/java/current"
+  export PATH="$JAVA_HOME/bin:$PATH"
 fi
 
 sdk() {
   unset -f sdk
-
-  if [[ -z $SDKMAN_DIR && -x $(command -v brew) ]]; then
-    export SDKMAN_DIR="$(brew --prefix sdkman-cli 2>/dev/null)/libexec"
-  fi
 
   if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
     source "$SDKMAN_DIR/bin/sdkman-init.sh"
@@ -215,6 +217,15 @@ sdk() {
 
   sdk $@
 }
+
+# Setup Android SDK if available
+if [[ -z $ANDROID_HOME && -d "$HOME/Library/Android/sdk" ]]; then
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+fi
+
+if [[ -n $ANDROID_HOME ]]; then
+  export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
+fi
 
 # Setup rbenv if available
 # This is not in .zprofile because it's not needed for non-interactive shells

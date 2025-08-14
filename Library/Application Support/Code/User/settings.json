@@ -116,8 +116,6 @@
   "git.autofetch": true,
   "git.mergeEditor": false,
   "git.openRepositoryInParentFolders": "never",
-
-  "github.copilot.advanced": {},
   "github.copilot.chat.agent.thinkingTool": true,
   "github.copilot.chat.codesearch.enabled": true,
   "github.copilot.chat.editor.temporalContext.enabled": true,
