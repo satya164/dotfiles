@@ -32,6 +32,8 @@ in
 
   services.flatpak.enable = true;
 
+  programs.kdeconnect.enable = true;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
