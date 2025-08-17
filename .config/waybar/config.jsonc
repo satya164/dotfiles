@@ -1,15 +1,9 @@
 {
   "height": 35,
   "spacing": 4,
-  "modules-left": ["hyprland/window"],
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": [
-    "wireplumber",
-    "bluetooth",
-    "network",
-    "battery",
-    "hyprland/workspaces"
-  ],
+  "modules-right": ["wireplumber", "bluetooth", "network", "battery"],
   "hyprland/workspaces": {
     "format": "{icon}",
     "disable-scroll": true,
