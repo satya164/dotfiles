@@ -73,10 +73,13 @@ in
   environment.systemPackages = with pkgs; [
     adwaita-icon-theme
     bibata-cursors
+    bitwarden
     celluloid
     cliphist
+    ente-auth
     feishin
     ghostty
+    gimp3
     glib
     google-chrome
     hyprcursor
@@ -92,9 +95,11 @@ in
     mako
     nautilus
     nwg-look
+    obsidian
     overskride
     playerctl
     rofi-wayland
+    rustdesk-flutter
     vscode
     waybar
     wev
