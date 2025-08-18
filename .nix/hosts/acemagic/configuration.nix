@@ -75,6 +75,7 @@ in
     bibata-cursors
     celluloid
     cliphist
+    feishin
     ghostty
     glib
     google-chrome
