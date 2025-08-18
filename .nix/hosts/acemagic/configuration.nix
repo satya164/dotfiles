@@ -100,6 +100,7 @@ in
     playerctl
     rofi-wayland
     rustdesk-flutter
+    switcheroo
     vscode
     warehouse
     waybar
