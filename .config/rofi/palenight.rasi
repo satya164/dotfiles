@@ -97,7 +97,7 @@ element-icon {
 }
 
 window {
-  background-image: linear-gradient(45deg, #33ccff, #00ff99);
+  background-image: linear-gradient(45deg, #82b1ff, #80d8ff);
   padding: 2px;
   border: 0;
   border-radius: 7px;
