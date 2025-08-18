@@ -101,6 +101,7 @@ in
     rofi-wayland
     rustdesk-flutter
     vscode
+    warehouse
     waybar
     wev
     wl-clipboard
