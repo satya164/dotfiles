@@ -71,7 +71,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    adwaita-icon-theme
     bibata-cursors
     bitwarden
     celluloid
@@ -90,14 +89,16 @@ in
     hyprpicker
     hyprpolkitagent
     hyprshot
-    iwgtk
     libnotify
     mako
     nautilus
+    networkmanagerapplet
     nwg-look
     obsidian
     overskride
     playerctl
+    qogir-icon-theme
+    qogir-theme
     rofi-wayland
     rustdesk-flutter
     switcheroo
