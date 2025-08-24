@@ -76,7 +76,10 @@ in
     celluloid
     cliphist
     ente-auth
+    eog
+    evince
     feishin
+    file-roller
     ghostty
     gimp3
     glib
