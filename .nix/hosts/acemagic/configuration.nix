@@ -139,5 +139,10 @@ in
     ];
   };
 
+  xdg.terminal-exec = {
+    enable = true;
+    settings.default = ["ghostty.desktop"];
+  };
+
   system.stateVersion = "25.05";
 }
