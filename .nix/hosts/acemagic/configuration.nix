@@ -104,6 +104,7 @@ in
     qogir-theme
     rofi-wayland
     rofimoji
+    rofi-power-menu
     rustdesk-flutter
     switcheroo
     vscode
@@ -111,7 +112,6 @@ in
     waybar
     wev
     wl-clipboard
-    wlogout
     xdg-user-dirs
     xdg-desktop-portal-hyprland
   ];
