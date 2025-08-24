@@ -105,7 +105,7 @@ window {
 
 mainbox {
   background-color: var(background);
-  padding: 0px;
+  padding: 0;
   border: 0;
   border-radius: 5px;
 }
@@ -113,7 +113,7 @@ mainbox {
 message {
   padding: 1px;
   border-color: var(separatorcolor);
-  border: 2px dash 0px 0px;
+  border: 0;
 }
 
 textbox {
@@ -121,7 +121,7 @@ textbox {
 }
 
 listview {
-  padding: 0px;
+  padding: 0;
   scrollbar: true;
   border-color: var(separatorcolor);
   spacing: 2px;
@@ -138,7 +138,7 @@ scrollbar {
 
 sidebar {
   border-color: var(separatorcolor);
-  border: 2px dash 0px 0px;
+  border: 2px dash 0 0;
 }
 
 button {
@@ -166,7 +166,7 @@ textbox-num-sep {
 
 inputbar {
   padding: 10px;
-  spacing: 0px;
+  spacing: 0;
   text-color: var(normal-foreground);
   children: [ prompt, textbox-prompt-colon, entry, overlay, num-filtered-rows,
     textbox-num-sep, num-rows, case-indicator];
@@ -199,7 +199,7 @@ prompt {
 }
 
 textbox-prompt-colon {
-  margin: 0px 12px 0 5px;
+  margin: 0 12px 0 5px;
   expand: false;
   str: "❯";
   text-color: inherit;

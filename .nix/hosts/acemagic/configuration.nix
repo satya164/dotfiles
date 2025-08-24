@@ -100,6 +100,7 @@ in
     qogir-icon-theme
     qogir-theme
     rofi-wayland
+    rofimoji
     rustdesk-flutter
     switcheroo
     vscode
