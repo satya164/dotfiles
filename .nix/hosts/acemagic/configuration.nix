@@ -75,6 +75,7 @@ in
     bitwarden
     celluloid
     cliphist
+    curtail
     ente-auth
     eog
     evince
