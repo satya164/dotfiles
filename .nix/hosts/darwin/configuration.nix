@@ -45,6 +45,8 @@ in
       "sdkman-cli"
       "rbenv"
       "ruby-build"
+      "cocoapods"
+      "xcode-build-server"
     ];
     casks = [
       "affinity-designer"
