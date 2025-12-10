@@ -32,5 +32,6 @@
     lazydocker
     imagemagick
     ffmpeg
+    termsvg
   ];
 }

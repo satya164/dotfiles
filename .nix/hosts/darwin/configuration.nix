@@ -23,7 +23,6 @@ in
     xcbeautify
     cloudflared
     yt-dlp
-    asciinema
     podman
     podman-compose
     vfkit # needed for podman
