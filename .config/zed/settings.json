@@ -24,9 +24,6 @@
     },
     "model_parameters": []
   },
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
   "base_keymap": "VSCode",
   "sticky_scroll": {
     "enabled": false
@@ -34,8 +31,11 @@
   "minimap": {
     "show": "never"
   },
-  "auto_indent_on_paste": false,
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
   "show_edit_predictions": true,
+  "auto_indent_on_paste": false,
   "ensure_final_newline_on_save": true,
   "indent_guides": {
     "enabled": true
@@ -43,7 +43,7 @@
   "inlay_hints": {
     "enabled": true
   },
-  "auto_signature_help": true,
+  "auto_signature_help": false,
   "diagnostics": {
     "inline": {
       "enabled": true
