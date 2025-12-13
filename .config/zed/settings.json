@@ -1,0 +1,92 @@
+{
+  "theme": "Palenight Theme",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "ui_font_size": 14.0,
+  "ui_font_family": ".SystemUIFont",
+  "buffer_line_height": "comfortable",
+  "buffer_font_size": 12.0,
+  "buffer_font_family": "FiraCode Nerd Font Mono",
+  "buffer_font_fallbacks": [".ZedMono", "Menlo", "Monaco", "Courier New"],
+  "agent_ui_font_size": 14.0,
+  "agent": {
+    "play_sound_when_agent_done": true,
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.5"
+    },
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.5"
+    },
+    "model_parameters": []
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "base_keymap": "VSCode",
+  "sticky_scroll": {
+    "enabled": false
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "auto_indent_on_paste": false,
+  "show_edit_predictions": true,
+  "ensure_final_newline_on_save": true,
+  "indent_guides": {
+    "enabled": true
+  },
+  "inlay_hints": {
+    "enabled": true
+  },
+  "auto_signature_help": true,
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "prettier": {
+    "allowed": true
+  },
+  "soft_wrap": "editor_width",
+  "tab_size": 2,
+  "when_closing_with_no_tabs": "close_window",
+  "title_bar": {
+    "show_menus": false,
+    "show_onboarding_banner": false
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "file_types": {
+    "nix": ["*.nix"],
+    "yaml": [".eslintrc", ".prettierrc"],
+    "javascript": ["*.flow"],
+    "typescriptreact": ["*.tsx"]
+  },
+  "languages": {
+    "Nix": {
+      "language_servers": ["nixd", "!nil"]
+    }
+  },
+  "auto_install_extensions": {
+    "palenight": true,
+    "csv": true,
+    "dockerfile": true,
+    "groovy": true,
+    "html": true,
+    "ini": true,
+    "java": true,
+    "kotlin": true,
+    "mdx": true,
+    "nix": true,
+    "pbxproj": true,
+    "swift": true,
+    "toml": true
+  }
+}
