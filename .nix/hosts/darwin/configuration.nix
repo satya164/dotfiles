@@ -48,8 +48,7 @@ in
       "xcode-build-server"
     ];
     casks = [
-      "affinity-designer"
-      "affinity-photo"
+      "affinity"
       "alfred"
       "appcleaner"
       "balenaetcher"
