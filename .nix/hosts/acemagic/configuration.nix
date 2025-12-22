@@ -72,7 +72,7 @@ in
 
   environment.systemPackages = with pkgs; [
     bibata-cursors
-    bitwarden
+    bitwarden-desktop
     celluloid
     cliphist
     curtail
@@ -103,25 +103,25 @@ in
     playerctl
     qogir-icon-theme
     qogir-theme
-    rofi-wayland
+    rofi
     rofimoji
     rofi-power-menu
     rustdesk-flutter
     switcheroo
-    vscode
     warehouse
     waybar
     wev
     wl-clipboard
     xdg-user-dirs
     xdg-desktop-portal-hyprland
+    zed-editor
   ];
 
   programs.hyprland.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     nerd-fonts.fira-code
   ];
 
