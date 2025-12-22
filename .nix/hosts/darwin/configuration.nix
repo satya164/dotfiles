@@ -84,7 +84,24 @@ in
       "the-unarchiver"
       "ticktick"
       "visual-studio-code"
+      "whatsapp"
     ];
+    masApps = {
+      "Amperfy" = 1530145038;
+      "Folder Quick Look" = 6753110395;
+      "iMovie" = 408981434;
+      "Infuse" = 1136220934;
+      "Keynote" = 409183694;
+      "Numbers" = 409203825;
+      "OneDrive" = 823766827;
+      "Pages" = 409201541;
+      "Pixel Perfect Tool" = 1512043611;
+      "Pixelmator Pro" = 1289583905;
+      "Prime Video" = 545519333;
+      "Slack" = 803453959;
+      "Steam Link" = 1246969117;
+      "Xcode" = 497799835;
+    };
   };
 
   fonts.packages = with pkgs; [
