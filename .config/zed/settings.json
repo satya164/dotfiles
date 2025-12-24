@@ -87,6 +87,7 @@
     "nix": true,
     "pbxproj": true,
     "swift": true,
-    "toml": true
+    "toml": true,
+    "git-firefly": true
   }
 }
