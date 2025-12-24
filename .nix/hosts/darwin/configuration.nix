@@ -17,6 +17,7 @@ in
     gnupg
     pinentry_mac # gpg agent
     scrcpy # android screen mirroring
+    rquickshare
     watchman
     ccache
     idb-companion
