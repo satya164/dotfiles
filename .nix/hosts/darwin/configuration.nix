@@ -53,6 +53,7 @@ in
       "alfred"
       "appcleaner"
       "balenaetcher"
+      "beeper"
       "bitwarden"
       "cleanshot"
       "cyberduck"
