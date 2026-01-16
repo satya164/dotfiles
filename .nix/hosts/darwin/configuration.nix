@@ -16,7 +16,6 @@ in
   environment.systemPackages = with pkgs; [
     gnupg
     pinentry_mac # gpg agent
-    scrcpy # android screen mirroring
     rquickshare
     watchman
     ccache
@@ -47,6 +46,7 @@ in
       "ruby-build"
       "cocoapods"
       "xcode-build-server"
+      "scrcpy"
     ];
     casks = [
       "affinity"
