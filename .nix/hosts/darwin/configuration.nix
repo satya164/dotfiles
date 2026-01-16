@@ -21,6 +21,7 @@ in
     ccache
     idb-companion
     xcbeautify
+    swiftlint
     cloudflared
     yt-dlp
     podman
