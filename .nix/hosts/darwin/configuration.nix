@@ -48,6 +48,7 @@ in
       "cocoapods"
       "xcode-build-server"
       "scrcpy"
+      "gemini-cli"
     ];
     casks = [
       "affinity"
