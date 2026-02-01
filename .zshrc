@@ -251,3 +251,120 @@ switch-node() {
 
 add-zsh-hook chpwd switch-node
 switch-node
+
+# Transparently use the correct package manager
+pm() {
+  local pm curdir input_pm input_cmd
+
+  input_pm="${0##*/}"
+
+  if [[ $input_pm == pm && ($1 == yarn || $1 == npm || $1 == pnpm) ]]; then
+    input_pm=$1
+    shift
+  fi
+
+  curdir=$PWD
+
+  local lockfile_name=""
+
+  while [[ $curdir != $HOME && $curdir != / ]]; do
+    if [[ -f "$curdir/package-lock.json" ]]; then
+      pm=npm
+      lockfile_name="package-lock.json"
+      break
+    elif [[ -f "$curdir/pnpm-lock.yaml" ]]; then
+      pm=pnpm
+      lockfile_name="pnpm-lock.yaml"
+      break
+    elif [[ -f "$curdir/yarn.lock" ]]; then
+      pm=yarn
+      lockfile_name="yarn.lock"
+      break
+    fi
+
+    curdir=$(dirname "$curdir")
+  done
+
+  if [[ -z $pm || $pm == $input_pm ]]; then
+    command $input_pm "$@"
+    return $?
+  fi
+
+  local cmd
+
+  if [[ -z $1 ]]; then
+    if [[ $input_pm == yarn ]]; then
+      cmd=install
+    else
+      command $input_pm
+      return $?
+    fi
+  else
+    cmd=$1
+    shift
+  fi
+
+  local -A map_npm=(
+    [add]=install
+    [remove]=uninstall [rm]=uninstall [del]=uninstall [delete]=uninstall
+    [why]=explain
+    [upgrade]=update
+    [ls]=list
+    [run]=run [exec]=run
+  )
+
+  local -A map_yarn=(
+    [install]=install [add]=add [remove]=remove [why]=why
+    [upgrade]=upgrade [ls]=list [run]=run [exec]=run
+  )
+
+  local -A map_pnpm=(
+    [install]=install [add]=add [remove]=remove [why]=why
+    [upgrade]=update [ls]=list [run]=run [exec]=run
+  )
+
+  local mapped
+
+  if [[ $pm == npm ]]; then
+    mapped=${map_npm[$cmd]:-$cmd}
+  elif [[ $pm == pnpm ]]; then
+    mapped=${map_pnpm[$cmd]:-$cmd}
+  else
+    mapped=${map_yarn[$cmd]:-$cmd}
+  fi
+
+  local supported=0
+
+  if [[ $pm == npm && -n ${map_npm[$cmd]+_} ]]; then
+    supported=1
+  elif [[ $pm == pnpm && -n ${map_pnpm[$cmd]+_} ]]; then
+    supported=1
+  elif [[ $pm == yarn && -n ${map_yarn[$cmd]+_} ]]; then
+    supported=1
+  fi
+
+  local is_script=0
+
+  if [[ -n $cmd && $cmd != -* && -f package.json ]]; then
+    jq -e --arg s "$cmd" '.scripts[$s] != null' package.json >/dev/null 2>&1 && is_script=1
+  fi
+
+  if [[ $supported -eq 1 || $is_script -eq 1 ]]; then
+    echo -e "\033[43;30m WARN \033[0m Found $lockfile_name, using $pm" >&2
+
+    if [[ $is_script -eq 1 && $supported -eq 0 ]]; then
+      command $pm run $cmd "$@"
+    else
+      command $pm $mapped "$@"
+    fi
+
+    return $?
+  fi
+
+  command $input_pm $cmd "$@"
+  return $?
+}
+
+alias yarn='pm yarn'
+alias npm='pm npm'
+alias pnpm='pm pnpm'
