@@ -233,24 +233,8 @@ if [[ -x $(command -v rbenv) ]]; then
   eval "$(rbenv init - --no-rehash zsh)"
 fi
 
-# Setup n version manager if available
-export N_PREFIX="$HOME/.n"
-export PATH="$N_PREFIX/bin:$PATH"
-
 # Use correct node version based on .nvmrc
-switch-node() {
-  if [[ -x $(command -v n) && -f ".nvmrc" ]]; then
-    local node_auto_version="v$(n ls-remote auto --all 2>/dev/null | head -n 1)"
-    local node_active_version="$(node --version 2>/dev/null)"
-
-    if [[ "$node_auto_version" != "$node_active_version" ]]; then
-      n auto
-    fi
-  fi
-}
-
-add-zsh-hook chpwd switch-node
-switch-node
+eval "$(fnm env --use-on-cd --shell zsh | sed 's/-unchanged/& --install-if-missing/')"
 
 # Transparently use the correct package manager
 pm() {

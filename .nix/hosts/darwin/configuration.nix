@@ -28,6 +28,7 @@ in
     podman-compose
     vfkit # needed for podman
     gh
+    fnm
   ];
 
   homebrew = {
@@ -40,7 +41,6 @@ in
       "nikitabobko/tap"
     ];
     brews = [
-      "n"
       "yarn"
       "sdkman-cli"
       "rbenv"
