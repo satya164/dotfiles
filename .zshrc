@@ -242,7 +242,9 @@ if [[ -x $(command -v rbenv) ]]; then
 fi
 
 # Use correct node version based on .nvmrc
-eval "$(fnm env --use-on-cd --shell zsh | sed 's/-unchanged/& --install-if-missing/')"
+if [[ -x $(command -v fnm) ]]; then
+  eval "$(fnm env --use-on-cd --shell zsh | sed 's/-unchanged/& --install-if-missing/')"
+fi
 
 # Transparently use the correct package manager
 pm() {
