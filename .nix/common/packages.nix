@@ -30,6 +30,7 @@
     ncdu # disk usage
     hyperfine # benchmarking tool
     lazydocker
+    lazygit
     imagemagick
     ffmpeg
     termsvg
