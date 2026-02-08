@@ -1,0 +1,33 @@
+[submodule ".zsh_plugins/fzf-tab"]
+	path = .zsh_plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
+[submodule ".zsh_plugins/fast-syntax-highlighting"]
+	path = .zsh_plugins/fast-syntax-highlighting
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting
+[submodule ".zsh_plugins/zsh-autosuggestions"]
+	path = .zsh_plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule ".zsh_plugins/zsh-history-substring-search"]
+	path = .zsh_plugins/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search
+[submodule ".zsh_plugins/zsh-completions"]
+	path = .zsh_plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+[submodule ".zsh_plugins/yarn-completion"]
+	path = .zsh_plugins/yarn-completion
+	url = https://github.com/buonomo/yarn-completion
+[submodule ".zsh_plugins/spaceship-prompt"]
+	path = .zsh_plugins/spaceship-prompt
+	url = https://github.com/spaceship-prompt/spaceship-prompt
+[submodule ".config/tmux/plugins/tmux-sensible"]
+	path = .config/tmux/plugins/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible
+[submodule ".config/tmux/plugins/tmux-yank"]
+	path = .config/tmux/plugins/tmux-yank
+	url = https://github.com/tmux-plugins/tmux-sensible
+[submodule ".config/tmux/plugins/tpm"]
+	path = .config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tmux-sensible
+[submodule ".config/tmux/plugins/vim-tmux-navigator"]
+	path = .config/tmux/plugins/vim-tmux-navigator
+	url = https://github.com/tmux-plugins/tmux-sensible

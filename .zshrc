@@ -73,17 +73,25 @@ plugins=(
 PLUGIN_DIR=$HOME/.zsh_plugins
 
 for plugin in $plugins; do
-  if [[ ! -d $PLUGIN_DIR/${plugin:t} ]]; then
-    git clone --depth 1 https://github.com/${plugin} $PLUGIN_DIR/${plugin:t}
+  local name=${plugin:t}
+  local plugin_path=$PLUGIN_DIR/$name
 
-    for f in $PLUGIN_DIR/${plugin:t}/**/*.zsh; do
-      echo "Recompiling $f"
-      zrecompile -pq "$f"
-    done
+  # Install missing or uninitialized plugin directories
+  if [[ ! -f $plugin_path/.git ]]; then
+    dot submodule update --init --depth 1 $plugin_path 2>/dev/null ||
+      dot submodule add --depth 1 https://github.com/$plugin $plugin_path
   fi
 
-  if [[ -f $PLUGIN_DIR/${plugin:t}/${plugin:t}.plugin.zsh ]]; then
-    source $PLUGIN_DIR/${plugin:t}/${plugin:t}.plugin.zsh
+  # Recompile stale .zwc files
+  for f in $plugin_path/**/*.zsh; do
+    if [[ ! -f $f.zwc || $f -nt $f.zwc ]]; then
+      zrecompile -pq "$f"
+    fi
+  done
+
+  # Source the plugin
+  if [[ -f $plugin_path/$name.plugin.zsh ]]; then
+    source $plugin_path/$name.plugin.zsh
   fi
 done
 
