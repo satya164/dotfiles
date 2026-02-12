@@ -299,22 +299,23 @@ pm() {
   fi
 
   local -A map_npm=(
-    [add]=install
-    [remove]=uninstall [rm]=uninstall [del]=uninstall [delete]=uninstall
+    [install]=install [i]=install [add]=install
+    [remove]=uninstall [r]=uninstall [rm]=uninstall [del]=uninstall [delete]=uninstall
     [why]=explain
     [upgrade]=update
+    [t]=test [test]=test
     [ls]=list
     [run]=run [exec]=run
   )
 
   local -A map_yarn=(
     [install]=install [add]=add [remove]=remove [why]=why
-    [upgrade]=upgrade [ls]=list [run]=run [exec]=run
+    [upgrade]=upgrade [test]=test [ls]=list [run]=run [exec]=run
   )
 
   local -A map_pnpm=(
-    [install]=install [add]=add [remove]=remove [why]=why
-    [upgrade]=update [ls]=list [run]=run [exec]=run
+    [install]=install [i]=install [add]=add [remove]=remove [r]=remove [why]=why
+    [upgrade]=update [t]=test [test]=test [ls]=list [run]=run [exec]=run
   )
 
   local mapped
