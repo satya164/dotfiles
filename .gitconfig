@@ -7,23 +7,29 @@
 [init]
 	defaultBranch = main
 [status]
+	showStash = true
 	submoduleSummary = true
 [pull]
+	default = current
 	rebase = true
 [push]
 	default = current
 	autoSetupRemote = true
 	followTags = true
+	recurseSubmodules = on-demand
 [commit]
 	gpgsign = true
 [tag]
 	gpgSign = true
 [branch]
 	sort = -committerdate
+[submodule]
+	recurse = true
 [delta]
 	navigate = true
 	line-numbers = true
 [diff]
+	renames = copies
 	compactionHeuristic = true
 	colorMoved = default
 [merge]
@@ -46,4 +52,4 @@
 	cleanup = !git switch $(git remote show origin | sed -n '/HEAD branch/s/.*: //p') && git pull --prune && git branch --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" { print $1 }' | xargs -r git branch -D
 
 [include]
-  path = ~/.gitconfig_local
+	path = ~/.gitconfig_local
