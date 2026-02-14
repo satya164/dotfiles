@@ -28,6 +28,8 @@ Look at the project structure and file content and determine the appropriate con
 
 After making your changes, do a thorough review to ensure there are no regressions, inconsistencies or overlooked details.
 
+If I ask a question, don't change the code until I ask you to. Instead, provide a clear and concise answer to the question.
+
 Do not try to fix IDE or linter errors before finishing the requested changes unless explicitly asked.
 
 Do not change unrelated code. Only modify what is necessary to fulfill the request.
