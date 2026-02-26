@@ -14,6 +14,7 @@
     nano
     neovim
     wget
+    delta # git diff replacement
     git
     git-extras
     git-lfs

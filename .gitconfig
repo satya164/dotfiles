@@ -3,6 +3,7 @@
 	email = satyajit.happy@gmail.com
 	signingkey = 31DAAC48ACF28F61
 [core]
+	pager = delta
 	excludesfile = ~/.gitignore_global
 [init]
 	defaultBranch = main
@@ -27,13 +28,40 @@
 	recurse = true
 [delta]
 	navigate = true
-	line-numbers = true
+	hyperlinks = true
+  width = variable
+	blame-palette = "#303246" "#3a4461"
+	dark = true
+	syntax-theme = base16
+  line-numbers = true
+  line-numbers-left-style = brightblack
+  line-numbers-right-style = brightblack
+	line-numbers-minus-style = "#9e5660"
+	line-numbers-plus-style = "#83976e"
+  line-numbers-zero-style = brightblack
+	file-style = bright-yellow
+	file-modified-label = " 󰷈"
+	file-added-label = " 󰝒"
+	file-deleted-label = " 󱀷"
+	file-renamed-label = " 󰪹"
+	file-copied-label = " 󰪸"
+  file-decoration-style = brightblack ul ol
+	hunk-header-style = line-number
+  hunk-header-decoration-style = brightblack box
+	minus-style = syntax "#3d3444"
+	minus-non-emph-style = syntax "#3d3444"
+	minus-emph-style = syntax "#5a3e4c"
+	plus-style = syntax "#383d46"
+	plus-non-emph-style = syntax "#383d46"
+	plus-emph-style = syntax "#4e5752"
+[interactive]
+  diffFilter = delta --color-only
 [diff]
 	renames = copies
 	compactionHeuristic = true
 	colorMoved = default
 [merge]
-	conflictstyle = diff3
+	conflictStyle = zdiff3
 [rerere]
 	enabled = true
 [help]
