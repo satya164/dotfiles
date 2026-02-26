@@ -363,3 +363,103 @@ pm() {
 alias yarn='pm yarn'
 alias npm='pm npm'
 alias pnpm='pm pnpm'
+
+# Helper for git worktrees
+wt() {
+  local cmd branch start root name base worktree_path
+
+  cmd=$1
+
+  # Consume the subcommand only when args exist to avoid `shift` errors.
+  (( $# )) && shift
+
+  root=$(git rev-parse --show-toplevel 2>/dev/null) || {
+    echo "wt: not inside a git repository" >&2
+    return 1
+  }
+
+  name=${root##*/}
+  base="$(dirname "$root")/${name}-worktrees"
+
+  case "$cmd" in
+    add)
+      branch=$1
+      start=${2:-HEAD}
+
+      if [[ -z $branch ]]; then
+        echo "Usage: wt add <branch> [start-point]" >&2
+        return 1
+      fi
+
+      worktree_path="$base/$branch"
+
+      mkdir -p "$(dirname "$worktree_path")" || return 1
+      git worktree add -b "$branch" "$worktree_path" "$start" >&2 || return 1
+
+      echo "$worktree_path"
+      ;;
+    rm)
+      branch=$1
+
+      if [[ -z $branch ]]; then
+        echo "Usage: wt rm <branch>" >&2
+        return 1
+      fi
+
+      worktree_path=$(git worktree list --porcelain | awk -v b="refs/heads/$branch" '
+        $1 == "worktree" { p = substr($0, 10) }
+        $1 == "branch" && $2 == b { print p; exit }
+      ')
+
+      if [[ -z $worktree_path ]]; then
+        echo "wt: no worktree for branch '$branch'" >&2
+        return 1
+      fi
+
+      if [[ $worktree_path == $root ]]; then
+        echo "wt: refusing to remove main worktree" >&2
+        return 1
+      fi
+
+      git worktree remove "$worktree_path" || return 1
+      git branch -d "$branch"
+      ;;
+    *)
+      echo "Usage: wt {add|rm}" >&2
+      return 1
+      ;;
+  esac
+}
+
+# Autocompletion for wt
+_wt() {
+  local curcontext="$curcontext" state repo_root
+  local -a commands worktree_branches
+
+  commands=(
+    'add:create branch + worktree'
+    'rm:remove branch + worktree'
+  )
+
+  _arguments -C \
+    '1:command:->command' \
+    '2:branch:->branch'
+
+  case "$state" in
+    command)
+      _describe -t commands 'wt command' commands
+      ;;
+    branch)
+      if [[ ${words[2]} == rm ]]; then
+        repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || return 0
+        worktree_branches=(${(f)"$(git worktree list --porcelain 2>/dev/null | awk -v r="$repo_root" '
+          $1 == "worktree" { p = substr($0, 10) }
+          $1 == "branch" && p != r { sub("^refs/heads/", "", $2); print $2 }
+        ')"})
+        _describe -t branches 'worktree branch' worktree_branches
+      fi
+      ;;
+  esac
+}
+
+compdef _wt wt
