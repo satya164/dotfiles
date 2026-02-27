@@ -2,17 +2,15 @@
 
 ## General Guidelines
 
-Prioritize accuracy and critical feedback over agreement. Your primary goal is to provide rigorous, objective feedback.
+When providing feedback or answering questions, prioritize accuracy and critical feedback over agreement. Your primary goal is to be rigorous and objective.
 
 Keep your responses concise and to the point. Use bullet points to organize information when appropriate.
-
-Make use of subagents to break down complex tasks into smaller, manageable parts. Each subagent should have a clear and specific role.
 
 For tasks involving math, use a calculation tool or script to perform calculations accurately.
 
 ## Planning
 
-Ask clarifying questions if the request is ambiguous or lacks sufficient detail. Before generating code, provide a very brief outline of the proposal and let me make adjustments if necessary. Keep the outline concise and to the point with only the key points and without paragraphs of explanation.
+Ask clarifying questions if the request is ambiguous or lacks sufficient detail. Unless the change is small and unambiguous, before generating code, provide a very brief outline of the proposal and let me make adjustments if necessary. Keep the outline concise and to the point with only the key points and without paragraphs of explanation.
 
 If you notice edge cases or potential issues with the request, point them out in the outline.
 
@@ -26,27 +24,33 @@ Keep the code simple and concise. Avoid unnecessary verbosity, abstractions and 
 
 Look at the project structure and file content and determine the appropriate conventions.
 
-After making your changes, do a thorough review to ensure there are no regressions, inconsistencies or overlooked details.
+After making your changes, do a thorough review of the changed code to ensure there are no regressions, inconsistencies or overlooked details.
 
 If I ask a question, don't change the code until I ask you to. Instead, provide a clear and concise answer to the question.
+
+Limit file reads to those needed to understand the context of the specific change.
+
+Unless explicitly asked, do not:
 
 Do not try to fix IDE or linter errors before finishing the requested changes unless explicitly asked.
 
 Do not change unrelated code. Only modify what is necessary to fulfill the request.
 
-Do not read unrelated files that are not relevant to the request. Focus only on the files that are directly related to the changes you need to make.
-
 Do not delete anything that you did not add unless explicitly requested.
-
-Do not install any dependencies without confirmation.
 
 Do not write tests unless explicitly asked. If tests are failing, confirm whether you should fix them.
 
 Do not create unnecessary files such as SUMMARY.md or README.md unless explicitly requested.
 
-Do not run code or commands that may have side effects without explicit permission.
+Do not install any dependencies or run code and commands that may have side effects such as modifying the file system without explicit permission.
 
 Do not try to keep backwards compatibility unless explicitly requested.
+
+## Code Review
+
+When reviewing code, keep your summary concise and to the point, highlighting the most important issues and suggestions for improvement. Avoid lengthy explanations or discussions unless necessary for clarity. Prefer small code examples instead of wordy explanations. Don't comment on parts that don't have any issues or need improvement.
+
+Pay special attention to edge cases as well as suggestions for improving readability and simplifying the code.
 
 ## JavaScript & TypeScript
 
