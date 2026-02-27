@@ -422,7 +422,7 @@ wt() {
       fi
 
       git worktree remove "$worktree_path" || return 1
-      git branch -d "$branch"
+      git branch -D "$branch"
       ;;
     *)
       echo "Usage: wt {add|rm}" >&2
@@ -463,3 +463,4 @@ _wt() {
 }
 
 compdef _wt wt
+export PATH=$PATH:$HOME/.maestro/bin
