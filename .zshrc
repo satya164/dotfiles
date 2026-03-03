@@ -365,6 +365,13 @@ alias npm='pm npm'
 alias pnpm='pm pnpm'
 
 # Helper for git worktrees
+_wt_path() {
+  git worktree list --porcelain | awk -v b="refs/heads/$1" '
+    $1 == "worktree" { p = substr($0, 10) }
+    $1 == "branch" && $2 == b { print p; exit }
+  '
+}
+
 wt() {
   local cmd branch start root name base worktree_path
 
@@ -406,10 +413,7 @@ wt() {
         return 1
       fi
 
-      worktree_path=$(git worktree list --porcelain | awk -v b="refs/heads/$branch" '
-        $1 == "worktree" { p = substr($0, 10) }
-        $1 == "branch" && $2 == b { print p; exit }
-      ')
+      worktree_path=$(_wt_path "$branch")
 
       if [[ -z $worktree_path ]]; then
         echo "wt: no worktree for branch '$branch'" >&2
@@ -424,8 +428,25 @@ wt() {
       git worktree remove "$worktree_path" || return 1
       git branch -D "$branch"
       ;;
+    switch)
+      branch=$1
+
+      if [[ -z $branch ]]; then
+        echo "Usage: wt switch <branch>" >&2
+        return 1
+      fi
+
+      worktree_path=$(_wt_path "$branch")
+
+      if [[ -z $worktree_path ]]; then
+        echo "wt: no worktree for branch '$branch'" >&2
+        return 1
+      fi
+
+      cd "$worktree_path"
+      ;;
     *)
-      echo "Usage: wt {add|rm}" >&2
+      echo "Usage: wt {add|rm|switch}" >&2
       return 1
       ;;
   esac
@@ -439,6 +460,7 @@ _wt() {
   commands=(
     'add:create branch + worktree'
     'rm:remove branch + worktree'
+    'switch:cd to a worktree'
   )
 
   _arguments -C \
@@ -450,7 +472,7 @@ _wt() {
       _describe -t commands 'wt command' commands
       ;;
     branch)
-      if [[ ${words[2]} == rm ]]; then
+      if [[ ${words[2]} == rm || ${words[2]} == switch ]]; then
         repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || return 0
         worktree_branches=(${(f)"$(git worktree list --porcelain 2>/dev/null | awk -v r="$repo_root" '
           $1 == "worktree" { p = substr($0, 10) }
