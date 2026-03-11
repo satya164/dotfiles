@@ -16,7 +16,6 @@ in
   environment.systemPackages = with pkgs; [
     gnupg
     pinentry_mac # gpg agent
-    rquickshare
     watchman
     ccache
     idb-companion
