@@ -485,4 +485,3 @@ _wt() {
 }
 
 compdef _wt wt
-export PATH=$PATH:$HOME/.maestro/bin

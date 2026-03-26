@@ -64,7 +64,6 @@ in
       "expo-orbit"
       "firefox"
       "ghostty"
-      "github-copilot-for-xcode"
       "google-chrome"
       "home-assistant"
       "hoppscotch"
