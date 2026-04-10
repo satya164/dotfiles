@@ -22,6 +22,8 @@ If I make manual changes to the code after you generate it, do not overwrite tho
 
 Keep the code simple and concise. Avoid unnecessary verbosity, abstractions and too many layers of indirection. Don't add comments that state the obvious. Avoid writing defensive code or suppress errors that are thrown. Keep the code self-explanatory and easy to read. Use new lines to separate blocks of code and logical sections. Prefer multi-line code for block statements, even if they are short.
 
+When making changes to existing code, follow the existing style and conventions of the project. Minimize the diff by making only the necessary changes to fulfill the request.
+
 Look at the project structure and file content and determine the appropriate conventions.
 
 After making your changes, do a thorough review of the changed code to ensure there are no regressions, inconsistencies or overlooked details.
@@ -29,6 +31,8 @@ After making your changes, do a thorough review of the changed code to ensure th
 If I ask a question, don't change the code until I ask you to. Instead, provide a clear and concise answer to the question.
 
 Limit file reads to those needed to understand the context of the specific change.
+
+If you add or edit tests, run them to confirm that they are passing.
 
 Unless explicitly asked, do not:
 
