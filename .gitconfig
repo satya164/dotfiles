@@ -29,25 +29,25 @@
 [delta]
 	navigate = true
 	hyperlinks = true
-  width = variable
+	width = variable
 	blame-palette = "#303246" "#3a4461"
 	dark = true
 	syntax-theme = base16
-  line-numbers = true
-  line-numbers-left-style = brightblack
-  line-numbers-right-style = brightblack
+	line-numbers = false
+	line-numbers-left-style = brightblack
+	line-numbers-right-style = brightblack
 	line-numbers-minus-style = "#9e5660"
 	line-numbers-plus-style = "#83976e"
-  line-numbers-zero-style = brightblack
+	line-numbers-zero-style = brightblack
 	file-style = bright-yellow
 	file-modified-label = " 󰷈"
 	file-added-label = " 󰝒"
 	file-deleted-label = " 󱀷"
 	file-renamed-label = " 󰪹"
 	file-copied-label = " 󰪸"
-  file-decoration-style = brightblack ul ol
+	file-decoration-style = brightblack ul ol
 	hunk-header-style = line-number
-  hunk-header-decoration-style = brightblack box
+	hunk-header-decoration-style = brightblack box
 	minus-style = syntax "#3d3444"
 	minus-non-emph-style = syntax "#3d3444"
 	minus-emph-style = syntax "#5a3e4c"
@@ -55,7 +55,7 @@
 	plus-non-emph-style = syntax "#383d46"
 	plus-emph-style = syntax "#4e5752"
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --color-only
 [diff]
 	renames = copies
 	compactionHeuristic = true
