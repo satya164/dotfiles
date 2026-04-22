@@ -405,11 +405,26 @@ wt() {
 
       echo "$worktree_path"
       ;;
-    rm)
+    move)
       branch=$1
 
       if [[ -z $branch ]]; then
-        echo "Usage: wt rm <branch>" >&2
+        echo "Usage: wt move <branch>" >&2
+        return 1
+      fi
+
+      worktree_path="$base/$branch"
+
+      mkdir -p "$(dirname "$worktree_path")" || return 1
+      git worktree add "$worktree_path" "$branch" >&2 || return 1
+
+      echo "$worktree_path"
+      ;;
+    remove)
+      branch=$1
+
+      if [[ -z $branch ]]; then
+        echo "Usage: wt remove <branch>" >&2
         return 1
       fi
 
@@ -446,7 +461,7 @@ wt() {
       cd "$worktree_path"
       ;;
     *)
-      echo "Usage: wt {add|rm|switch}" >&2
+      echo "Usage: wt {add|move|remove|switch}" >&2
       return 1
       ;;
   esac
@@ -459,7 +474,8 @@ _wt() {
 
   commands=(
     'add:create branch + worktree'
-    'rm:remove branch + worktree'
+    'move:move existing branch to a worktree'
+    'remove:remove branch + worktree'
     'switch:cd to a worktree'
   )
 
@@ -472,7 +488,21 @@ _wt() {
       _describe -t commands 'wt command' commands
       ;;
     branch)
-      if [[ ${words[2]} == rm || ${words[2]} == switch ]]; then
+      if [[ ${words[2]} == move ]]; then
+        # Complete with local branches that don't already have a worktree
+        repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || return 0
+        local -a worktree_branch_set
+        worktree_branch_set=(${(f)"$(git worktree list --porcelain 2>/dev/null | awk '$1 == "branch" { sub("^refs/heads/", "", $2); print $2 }')"})
+        local -a local_branches
+        local_branches=(${(f)"$(git for-each-ref --format='%(refname:short)' refs/heads/)"})
+        local -a available
+        for b in "${local_branches[@]}"; do
+          if (( ! ${worktree_branch_set[(Ie)$b]} )); then
+            available+=("$b")
+          fi
+        done
+        _describe -t branches 'local branch' available
+      elif [[ ${words[2]} == remove || ${words[2]} == switch ]]; then
         repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || return 0
         worktree_branches=(${(f)"$(git worktree list --porcelain 2>/dev/null | awk -v r="$repo_root" '
           $1 == "worktree" { p = substr($0, 10) }
