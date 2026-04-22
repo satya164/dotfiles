@@ -1,4 +1,7 @@
 {
+  "edit_predictions": {
+    "provider": "copilot"
+  },
   "theme": "Palenight Theme",
   "icon_theme": {
     "mode": "dark",
@@ -30,9 +33,6 @@
   },
   "minimap": {
     "show": "never"
-  },
-  "features": {
-    "edit_prediction_provider": "copilot"
   },
   "show_edit_predictions": true,
   "auto_indent_on_paste": false,
