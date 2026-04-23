@@ -10,7 +10,7 @@ For tasks involving math, use a calculation tool or script to perform calculatio
 
 ## Planning
 
-Ask clarifying questions if the request is ambiguous or lacks sufficient detail. Unless the change is small and unambiguous, before generating code, provide a very brief outline of the proposal and let me make adjustments if necessary. Keep the outline concise and to the point with only the key points and without paragraphs of explanation.
+Ask clarifying questions if the request is ambiguous or lacks sufficient detail. Unless the change is small and unambiguous, before generating code, provide a very brief outline of the proposal and let me make adjustments if necessary. Keep the outline concise and to the point with only the key points and without paragraphs of explanation. Organize the outline as a to-do list.
 
 If you notice edge cases or potential issues with the request, point them out in the outline.
 
@@ -22,9 +22,7 @@ If I make manual changes to the code after you generate it, do not overwrite tho
 
 Keep the code simple and concise. Avoid unnecessary verbosity, abstractions and too many layers of indirection. Don't add comments that state the obvious. Avoid writing defensive code or suppress errors that are thrown. Keep the code self-explanatory and easy to read. Use new lines to separate blocks of code and logical sections. Prefer multi-line code for block statements, even if they are short.
 
-When making changes to existing code, follow the existing style and conventions of the project. Minimize the diff by making only the necessary changes to fulfill the request.
-
-Look at the project structure and file content and determine the appropriate conventions.
+When making changes to existing code, follow the existing style and conventions of the project. Minimize the diff by making only the necessary changes to fulfill the request. Look at the project structure and file content and determine the appropriate conventions.
 
 After making your changes, do a thorough review of the changed code to ensure there are no regressions, inconsistencies or overlooked details.
 
@@ -32,29 +30,21 @@ If I ask a question, don't change the code until I ask you to. Instead, provide 
 
 Limit file reads to those needed to understand the context of the specific change.
 
-If you add or edit tests, run them to confirm that they are passing.
+Only modify what is necessary to fulfill the request. Avoid making unrelated changes or refactoring code that is not directly relevant to the request.
 
-Unless explicitly asked, do not:
+Fix IDE or linter errors only after you have completed the requested changes, unless explicitly asked.
 
-Do not try to fix IDE or linter errors before finishing the requested changes unless explicitly asked.
-
-Do not change unrelated code. Only modify what is necessary to fulfill the request.
-
-Do not delete anything that you did not add unless explicitly requested.
-
-Do not write tests unless explicitly asked. If tests are failing, confirm whether you should fix them.
+Write tests only if explicitly asked. If tests are failing, confirm whether you should fix them. If you add or update tests, run them to confirm that they are passing.
 
 Do not create unnecessary files such as SUMMARY.md or README.md unless explicitly requested.
-
-Do not install any dependencies or run code and commands that may have side effects such as modifying the file system without explicit permission.
 
 Do not try to keep backwards compatibility unless explicitly requested.
 
 ## Code Review
 
-When reviewing code, keep your summary concise and to the point, highlighting the most important issues and suggestions for improvement. Avoid lengthy explanations or discussions unless necessary for clarity. Prefer small code examples instead of wordy explanations. Don't comment on parts that don't have any issues or need improvement.
+When reviewing code, keep your summary concise and to the point. Avoid lengthy explanations or discussions unless necessary for clarity. Prefer small code examples instead of wordy explanations.
 
-Pay special attention to edge cases as well as suggestions for improving readability and simplifying the code.
+Only include actual issues, potential bugs, or significant potential improvements in your summary.
 
 ## JavaScript & TypeScript
 
@@ -64,4 +54,4 @@ Prefer code that works well with TypeScript. If type annotations exist, don't ad
 
 Prefer modern JavaScript syntax and features unless compatibility issues are specified. Avoid TypeScript specific syntax such as enums that are not compiled away. Prefer `type` aliases over `interface` for defining types in TypeScript, unless there is a specific reason to use `interface`.
 
-Do not use tools such as `tsx` to run TypeScript files. Latest versions of Node.js support running TypeScript files directly, so you can use `node` command to execute them. If you encounter issues with running TypeScript files, ask for clarification or suggest alternative approaches rather than trying to fix it by installing additional tools.
+Latest versions of Node.js support running TypeScript files directly. Use `node` command to execute them instead of using tools such as `tsx`. If you encounter issues with running TypeScript files, ask for clarification or suggest alternative approaches rather than trying to fix it by installing additional tools.
