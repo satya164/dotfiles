@@ -515,3 +515,127 @@ _wt() {
 }
 
 compdef _wt wt
+
+# Optimize video files using ffmpeg
+optimize_video() {
+  setopt local_options local_traps extended_glob nullglob
+
+  local scale mode=balanced fps preset crf input output file rc=0 interrupted=0
+  local -a inputs files vf_parts ffmpeg_args
+
+  # Parse options
+  while (( $# )); do
+    case "$1" in
+      --scale) scale=$2; shift 2 ;;
+      --mode)  mode=$2;  shift 2 ;;
+      --fps)   fps=$2;   shift 2 ;;
+      -*)
+        echo "optimize_video: unknown option '$1'" >&2
+        return 1
+        ;;
+      *)
+        inputs+=("$1")
+        shift
+        ;;
+    esac
+  done
+
+  if (( ${#inputs[@]} == 0 )); then
+    echo "Usage: optimize_video [--scale R] [--mode lossless|balanced|aggressive] [--fps N] <files-or-dirs...>" >&2
+    return 1
+  fi
+
+  # Resolve quality preset
+  case "$mode" in
+    lossless)   preset=slower;   crf=18 ;;
+    balanced)   preset=slower;   crf=22 ;;
+    aggressive) preset=veryslow; crf=26 ;;
+    *)
+      echo "optimize_video: invalid mode '$mode' (lossless|balanced|aggressive)" >&2
+      return 1
+      ;;
+  esac
+
+  # Collect target files (top-level only); skip already-optimized outputs
+  local exts='(mov|mp4|m4v|mkv|avi|webm|mpg|mpeg)'
+  local skip='*-optimi(s|z)ed.mp4'
+
+  for input in "${inputs[@]}"; do
+    if [[ -d $input ]]; then
+      files+=( ${input%/}/(#i)*.${~exts}~${~skip} )
+    elif [[ -f $input ]]; then
+      [[ $input == (#i)$~skip ]] && continue
+      files+=("$input")
+    else
+      echo "optimize_video: not found: $input" >&2
+    fi
+  done
+
+  if (( ${#files[@]} == 0 )); then
+    echo "optimize_video: no video files found" >&2
+    return 1
+  fi
+
+  # Build video filter chain (fps before scale resizes fewer frames)
+  [[ -n $fps ]]   && vf_parts+=("fps=$fps")
+  [[ -n $scale ]] && vf_parts+=("scale='trunc(iw/$scale/2)*2':'trunc(ih/$scale/2)*2'")
+
+  # Encode each file (abort the loop on Ctrl+C instead of moving to the next)
+  trap 'interrupted=1' INT
+
+  for file in "${files[@]}"; do
+    output="${file%.*}-optimized.mp4"
+
+    echo "=> $file" >&2
+
+    ffmpeg_args=(
+      -hide_banner -loglevel warning -stats
+      -y -i "$file"
+      -c:v libx264 -preset "$preset" -crf "$crf"
+      -pix_fmt yuv420p -movflags +faststart -an
+    )
+
+    (( ${#vf_parts[@]} )) && ffmpeg_args+=(-vf "${(j:,:)vf_parts}")
+
+    # No --fps preserves source VFR timing; with --fps the filter resamples
+    # to uniform CFR which plays smoothly at the capped rate.
+    [[ -z $fps ]] && ffmpeg_args+=(-fps_mode passthrough -enc_time_base demux)
+
+    ffmpeg "${ffmpeg_args[@]}" "$output" || rc=$?
+
+    (( interrupted )) && break
+  done
+
+  return $rc
+}
+
+# Autocompletion for optimize_video
+_optimize_video() {
+  local state
+  local -a modes
+
+  modes=(
+    'lossless:visually lossless (crf 18)'
+    'balanced:high quality (crf 22)'
+    'aggressive:smaller files (crf 26, veryslow preset)'
+  )
+
+  _arguments \
+    '(--scale)--scale[divide dimensions by ratio]:ratio' \
+    '(--mode)--mode[quality preset]:mode:->mode' \
+    '(--fps)--fps[cap framerate]:fps' \
+    '*:file or directory:->target'
+
+  case "$state" in
+    mode)
+      _describe -t modes 'mode' modes
+      ;;
+    target)
+      _alternative \
+        'files:video file:_files -g "(#i)*.(mov|mp4|m4v|mkv|avi|webm|mpg|mpeg)"' \
+        'directories:directory:_files -/'
+      ;;
+  esac
+}
+
+compdef _optimize_video optimize_video
