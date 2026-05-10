@@ -20,7 +20,7 @@ If you encounter any roadblock, ask for clarification before proceeding. Don't t
 
 If I make manual changes to the code after you generate it, do not overwrite those changes in subsequent responses. Instead, build upon them while preserving my modifications.
 
-Keep the code simple and concise. Avoid unnecessary verbosity, abstractions and too many layers of indirection. Don't add comments that state the obvious. Avoid writing defensive code or suppress errors that are thrown. Keep the code self-explanatory and easy to read. Use new lines to separate blocks of code and logical sections. Prefer multi-line code for block statements, even if they are short.
+Keep the code simple and concise. Avoid unnecessary verbosity, abstractions and too many layers of indirection. Don't create one-off helpers or helpers that call a single function. Don't add comments that state the obvious. Avoid writing defensive code or suppress errors that are thrown. Keep the code self-explanatory and easy to read. Use new lines to separate blocks of code and logical sections. Prefer multi-line code for block statements, even if they are short.
 
 When making changes to existing code, follow the existing style and conventions of the project. Minimize the diff by making only the necessary changes to fulfill the request. Look at the project structure and file content and determine the appropriate conventions.
 
@@ -42,9 +42,19 @@ Do not try to keep backwards compatibility unless explicitly requested.
 
 ## Code Review
 
-When reviewing code, keep your summary concise and to the point. Avoid lengthy explanations or discussions unless necessary for clarity. Prefer small code examples instead of wordy explanations.
+Avoid lengthy explanations or discussions unless necessary for clarity. Prefer small code examples instead of wordy explanations.
 
-Only include actual issues, potential bugs, or significant potential improvements in your summary.
+Go beyond logic bugs and evaluate whether the change conceptually makes sense for its stated intent, not just that the code is correct in isolation.
+
+When a change invokes an external standard or convention (design system, accessibility guideline, platform convention, spec, etc.), verify that the implementation actually follows it rather than assuming the author got it right.
+
+For new or modified public APIs, evaluate the surface itself: visibility, customizability, defaults, naming, and extensibility.
+
+Check that the scope of a behavior matches its intent. A change meant to affect a narrow subset should not apply globally, and a change meant to be broad should not silently exclude cases. Watch for over-application and under-application.
+
+Do not run tests, linters, or other tools to verify the code unless explicitly asked. Focus on the code itself.
+
+When providing summary of the review, describe the change concisely, and include actual issues, potential bugs, or significant potential improvements. If the diff changes a public API, highlight the change. Use bullet points and short sentences, and group them by category and severity. Avoid mentioning changes that do not have any problems.
 
 ## JavaScript & TypeScript
 
