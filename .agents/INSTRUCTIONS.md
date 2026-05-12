@@ -54,7 +54,7 @@ Check that the scope of a behavior matches its intent. A change meant to affect 
 
 Do not run tests, linters, or other tools to verify the code unless explicitly asked. Focus on the code itself.
 
-When providing summary of the review, describe the change concisely, and include actual issues, potential bugs, or significant potential improvements. If the diff changes a public API, highlight the change. Use bullet points and short sentences, and group them by category and severity. Avoid mentioning changes that do not have any problems.
+When providing summary of the review, describe the change concisely, and include actual issues, potential bugs, or significant potential improvements. If the diff changes a public API, highlight the change. Use numbered bullet points and short sentences, and group them by category and severity. Avoid mentioning changes that do not have any problems.
 
 ## JavaScript & TypeScript
 
