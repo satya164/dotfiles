@@ -372,6 +372,42 @@ _wt_path() {
   '
 }
 
+# Clone git-ignored files/dirs from one worktree to another, using CoW where supported.
+# On macOS, calls clonefile(2) directly (whole-tree, single syscall) via Python ctypes.
+# On Linux, uses cp --reflink=auto.
+_wt_clone_ignored() {
+  local src=$1 dst=$2
+  local entry parent count=0
+  local platform=$(uname -s)
+
+  [[ -d $src && -d $dst ]] || return 0
+
+  while IFS= read -r -d '' entry; do
+    entry=${entry%/}
+
+    [[ -e $src/$entry || -L $src/$entry ]] || continue
+
+    parent=${entry%/*}
+
+    if [[ $parent != $entry ]]; then
+      mkdir -p "$dst/$parent" || continue
+    fi
+
+    if [[ $platform == Darwin ]]; then
+      /usr/bin/python3 -c '
+import ctypes, sys, os
+libc = ctypes.CDLL("/usr/lib/libSystem.dylib", use_errno=True)
+libc.clonefile.argtypes = [ctypes.c_char_p, ctypes.c_char_p, ctypes.c_uint32]
+libc.clonefile.restype = ctypes.c_int
+if libc.clonefile(sys.argv[1].encode(), sys.argv[2].encode(), 0) != 0:
+    sys.exit("clonefile: " + os.strerror(ctypes.get_errno()))
+' "$src/$entry" "$dst/$entry" 2>/dev/null
+    else
+      cp -a --reflink=auto "$src/$entry" "$dst/$entry" 2>/dev/null
+    fi
+  done < <(git -C "$src" ls-files --others --ignored --exclude-standard --directory -z)
+}
+
 wt() {
   local cmd branch start root name base worktree_path
 
@@ -402,6 +438,7 @@ wt() {
 
       mkdir -p "$(dirname "$worktree_path")" || return 1
       git worktree add -b "$branch" "$worktree_path" "$start" >&2 || return 1
+      _wt_clone_ignored "$root" "$worktree_path"
 
       echo "$worktree_path"
       ;;
@@ -417,6 +454,7 @@ wt() {
 
       mkdir -p "$(dirname "$worktree_path")" || return 1
       git worktree add "$worktree_path" "$branch" >&2 || return 1
+      _wt_clone_ignored "$root" "$worktree_path"
 
       echo "$worktree_path"
       ;;
