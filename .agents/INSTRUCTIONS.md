@@ -24,7 +24,7 @@ Keep the code simple and concise. Avoid unnecessary verbosity, abstractions and 
 
 When making changes to existing code, follow the existing style and conventions of the project. Minimize the diff by making only the necessary changes to fulfill the request. Look at the project structure and file content and determine the appropriate conventions.
 
-After making your changes, do a thorough review of the changed code to ensure there are no regressions, inconsistencies or overlooked details.
+After making your changes, do a thorough review of the changed code to ensure there are no regressions, inconsistencies or overlooked details.Ensure they follow the guidelines outlined in the "Code Review" section below.
 
 If I ask a question, don't change the code until I ask you to. Instead, provide a clear and concise answer to the question.
 
@@ -32,7 +32,7 @@ Limit file reads to those needed to understand the context of the specific chang
 
 Only modify what is necessary to fulfill the request. Avoid making unrelated changes or refactoring code that is not directly relevant to the request.
 
-Fix IDE or linter errors only after you have completed the requested changes, unless explicitly asked.
+Fix IDE or linter errors only after you have completed the requested changes, unless explicitly asked. If you add or change code, ensure all verification steps such as linter, formatter, type checker, and tests are passing after your changes.
 
 Write tests only if explicitly asked. If tests are failing, confirm whether you should fix them. If you add or update tests, run them to confirm that they are passing.
 
@@ -48,9 +48,17 @@ Go beyond logic bugs and evaluate whether the change conceptually makes sense fo
 
 When a change invokes an external standard or convention (design system, accessibility guideline, platform convention, spec, etc.), verify that the implementation actually follows it rather than assuming the author got it right.
 
-For new or modified public APIs, evaluate the surface itself: visibility, customizability, defaults, naming, and extensibility.
+For new or modified public APIs, evaluate the surface itself: visibility, customizability, defaults, naming, and extensibility. Ensure public APIs and types don't leak implementation details.
 
 Check that the scope of a behavior matches its intent. A change meant to affect a narrow subset should not apply globally, and a change meant to be broad should not silently exclude cases. Watch for over-application and under-application.
+
+TypeScript: ensure the code is type-safe; ensure the code does not use `any` type, `as` assertions, or non-null assertions (`!`) etc.; avoid broad types like `object`, `Function`, `{}`, `Record<string, unknown>` unless intentional; comments ignoring type errors should be justified and not used to bypass type checking - `@ts-ignore` should not be used, only `@ts-expect-error` accompanied by a comment explaining why the error is expected and cannot be resolved; ensure complex conditions, overloads or other type logic is not used if simpler approaches can work.
+
+React: ensure the code uses hooks correctly - dependency arrays should not include values that are potentially unstable, the React rules of hooks should be followed and not ignored; component should not have side effects during rendering; state should not have multiple sources of truth, and derived from props and state when necessary; `React.Children`, `cloneElement`, reading React elements directly etc. should be avoided as they don't compose and are not type-safe; memoization should be justified - only for expensive calculations or if the value needs to be stable; ensure async operations handled cancellation or races when relevant; check a11y - labels, riles, focus order, keyboard interactions, disabled, loading states, etc.
+
+Tests: ensure tests verify public behavior, not implementation details; ensure they cover happy paths, edge cases, and error states; ensure mocking is avoided unless absolutely necessary; ensure test titles are descriptive and describe the user-facing behavior being tested.
+
+Documentation: verify examples match the actual API; check headings are hierarchical and links are valid; ensure it documents public behavior, not implementation details.
 
 Do not run tests, linters, or other tools to verify the code unless explicitly asked. Focus on the code itself.
 
