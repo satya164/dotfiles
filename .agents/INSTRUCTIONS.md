@@ -58,6 +58,8 @@ React: ensure the code uses hooks correctly - dependency arrays should not inclu
 
 Tests: ensure tests verify public behavior, not implementation details; ensure they cover happy paths, edge cases, and error states; ensure mocking is avoided unless absolutely necessary; ensure test titles are descriptive and describe the user-facing behavior being tested.
 
+Animations & layout: check there are no potential unnecessary layout shifts; ensure only `transform` and `opacity` properties are animated unless absolutely necessary; check the animations follow FLIP technique when relevant; ensure animations are interruptible - handle rapid state changes, gestures, cancellation, etc. without visual glitches; duration and easing feel natural for the type of animation and context and follow platform conventions.
+
 Documentation: verify examples match the actual API; check headings are hierarchical and links are valid; ensure it documents public behavior, not implementation details.
 
 Do not run tests, linters, or other tools to verify the code unless explicitly asked. Focus on the code itself.
