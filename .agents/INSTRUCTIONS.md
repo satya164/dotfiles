@@ -62,8 +62,6 @@ Animations & layout: check there are no potential unnecessary layout shifts; ens
 
 Documentation: verify examples match the actual API; check headings are hierarchical and links are valid; ensure it documents public behavior, not implementation details.
 
-Do not run tests, linters, or other tools to verify the code unless explicitly asked. Focus on the code itself.
-
 When providing summary of the review, describe the change concisely, and include actual issues, potential bugs, or significant potential improvements. If the diff changes a public API, highlight the change. Use numbered bullet points and short sentences, and group them by category and severity. Avoid mentioning changes that do not have any problems.
 
 ## JavaScript & TypeScript
