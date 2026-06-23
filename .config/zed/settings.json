@@ -1,78 +1,129 @@
 {
-  "edit_predictions": {
-    "provider": "copilot"
-  },
   "theme": "Palenight Theme",
   "icon_theme": {
     "mode": "dark",
     "light": "Zed (Default)",
-    "dark": "Zed (Default)"
+    "dark": "Zed (Default)",
   },
+  "experimental.theme_overrides": {
+    "terminal.background": "#2a2d3dff",
+    "terminal.foreground": "#bfc7d5ff",
+    "terminal.bright_foreground": "#b0bec5ff",
+    "terminal.dim_foreground": "#697098ff",
+    "terminal.ansi.black": "#697098ff",
+    "terminal.ansi.bright_black": "#697098ff",
+    "terminal.ansi.red": "#f78c6cff",
+    "terminal.ansi.bright_red": "#ff9e80ff",
+    "terminal.ansi.green": "#c3e88dff",
+    "terminal.ansi.bright_green": "#c5e1a5ff",
+    "terminal.ansi.yellow": "#ffcb6bff",
+    "terminal.ansi.bright_yellow": "#ffd54fff",
+    "terminal.ansi.blue": "#82aaffff",
+    "terminal.ansi.bright_blue": "#82b1ffff",
+    "terminal.ansi.magenta": "#c792eaff",
+    "terminal.ansi.bright_magenta": "#ea80fcff",
+    "terminal.ansi.cyan": "#89ddffff",
+    "terminal.ansi.bright_cyan": "#80d8ffff",
+    "terminal.ansi.white": "#a5adceff",
+    "terminal.ansi.bright_white": "#b0bec5ff",
+  },
+
   "ui_font_size": 14.0,
   "ui_font_family": ".SystemUIFont",
-  "buffer_line_height": "comfortable",
+  "agent_ui_font_size": 14.0,
   "buffer_font_size": 12.0,
   "buffer_font_family": "FiraCode Nerd Font Mono",
   "buffer_font_fallbacks": [".ZedMono", "Menlo", "Monaco", "Courier New"],
-  "agent_ui_font_size": 14.0,
+  "buffer_line_height": "comfortable",
+
+  "title_bar": {
+    "show_menus": false,
+    "show_onboarding_banner": false,
+  },
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
   "agent": {
-    "play_sound_when_agent_done": true,
+    "dock": "right",
+    "play_sound_when_agent_done": "always",
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "gpt-5.5",
     },
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "gpt-5.5",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
-  "base_keymap": "VSCode",
-  "sticky_scroll": {
-    "enabled": false
+
+  "agent_servers": {
+    "codex-acp": {
+      "type": "registry",
+    },
   },
-  "minimap": {
-    "show": "never"
+  "edit_predictions": {
+    "provider": "copilot",
   },
   "show_edit_predictions": true,
-  "auto_indent_on_paste": false,
+
+  "base_keymap": "VSCode",
+  "scroll_beyond_last_line": "off",
+  "sticky_scroll": {
+    "enabled": false,
+  },
+  "minimap": {
+    "show": "never",
+  },
+  "soft_wrap": "editor_width",
+  "tab_size": 2,
+  "auto_indent_on_paste": true,
   "ensure_final_newline_on_save": true,
+  "when_closing_with_no_tabs": "close_window",
+
   "indent_guides": {
-    "enabled": true
+    "enabled": true,
   },
   "inlay_hints": {
-    "enabled": true
+    "enabled": true,
+    "show_value_hints": true,
+    "show_other_hints": true,
+    "show_type_hints": false,
   },
   "auto_signature_help": false,
   "diagnostics": {
     "inline": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
+  },
+
+  "git": {
+    "enable_diff": true,
+    "enable_status": true,
   },
   "prettier": {
-    "allowed": true
+    "allowed": true,
   },
-  "soft_wrap": "editor_width",
-  "tab_size": 2,
-  "when_closing_with_no_tabs": "close_window",
-  "title_bar": {
-    "show_menus": false,
-    "show_onboarding_banner": false
-  },
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  },
+
   "file_types": {
     "nix": ["*.nix"],
     "yaml": [".eslintrc", ".prettierrc"],
     "javascript": ["*.flow"],
-    "typescriptreact": ["*.tsx"]
+    "typescriptreact": ["*.tsx"],
   },
   "languages": {
     "Nix": {
-      "language_servers": ["nixd", "!nil"]
-    }
+      "language_servers": ["nixd", "!nil"],
+    },
   },
   "auto_install_extensions": {
     "palenight": true,
@@ -88,6 +139,11 @@
     "pbxproj": true,
     "swift": true,
     "toml": true,
-    "git-firefly": true
-  }
+    "git-firefly": true,
+  },
+
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
 }
