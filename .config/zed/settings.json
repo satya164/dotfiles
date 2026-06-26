@@ -1,31 +1,41 @@
 {
+  "terminal": {
+    "show_count_badge": false,
+    "dock": "right",
+  },
   "theme": "Palenight Theme",
   "icon_theme": {
     "mode": "dark",
     "light": "Zed (Default)",
     "dark": "Zed (Default)",
   },
-  "experimental.theme_overrides": {
-    "terminal.background": "#2a2d3dff",
-    "terminal.foreground": "#bfc7d5ff",
-    "terminal.bright_foreground": "#b0bec5ff",
-    "terminal.dim_foreground": "#697098ff",
-    "terminal.ansi.black": "#697098ff",
-    "terminal.ansi.bright_black": "#697098ff",
-    "terminal.ansi.red": "#f78c6cff",
-    "terminal.ansi.bright_red": "#ff9e80ff",
-    "terminal.ansi.green": "#c3e88dff",
-    "terminal.ansi.bright_green": "#c5e1a5ff",
-    "terminal.ansi.yellow": "#ffcb6bff",
-    "terminal.ansi.bright_yellow": "#ffd54fff",
-    "terminal.ansi.blue": "#82aaffff",
-    "terminal.ansi.bright_blue": "#82b1ffff",
-    "terminal.ansi.magenta": "#c792eaff",
-    "terminal.ansi.bright_magenta": "#ea80fcff",
-    "terminal.ansi.cyan": "#89ddffff",
-    "terminal.ansi.bright_cyan": "#80d8ffff",
-    "terminal.ansi.white": "#a5adceff",
-    "terminal.ansi.bright_white": "#b0bec5ff",
+  "theme_overrides": {
+    "Palenight Theme": {
+      "search.match_background": "#514b48",
+      "search.active_match_background": "#a78a80",
+      "element.background": "#11131Aff",
+      "terminal.background": "#2a2d3dff",
+      "terminal.foreground": "#bfc7d5ff",
+      "terminal.bright_foreground": "#b0bec5ff",
+      "terminal.dim_foreground": "#697098ff",
+      "terminal.ansi.background": "#2a2d3dff",
+      "terminal.ansi.black": "#697098ff",
+      "terminal.ansi.bright_black": "#697098ff",
+      "terminal.ansi.red": "#f78c6cff",
+      "terminal.ansi.bright_red": "#ff9e80ff",
+      "terminal.ansi.green": "#c3e88dff",
+      "terminal.ansi.bright_green": "#c5e1a5ff",
+      "terminal.ansi.yellow": "#ffcb6bff",
+      "terminal.ansi.bright_yellow": "#ffd54fff",
+      "terminal.ansi.blue": "#82aaffff",
+      "terminal.ansi.bright_blue": "#82b1ffff",
+      "terminal.ansi.magenta": "#c792eaff",
+      "terminal.ansi.bright_magenta": "#ea80fcff",
+      "terminal.ansi.cyan": "#89ddffff",
+      "terminal.ansi.bright_cyan": "#80d8ffff",
+      "terminal.ansi.white": "#a5adceff",
+      "terminal.ansi.bright_white": "#b0bec5ff",
+    },
   },
 
   "ui_font_size": 14.0,
@@ -53,6 +63,10 @@
     "dock": "left",
   },
   "agent": {
+    "sidebar_side": "right",
+    "thinking_display": "always_collapsed",
+    "expand_terminal_card": false,
+    "expand_edit_card": false,
     "dock": "right",
     "play_sound_when_agent_done": "always",
     "inline_assistant_model": {
@@ -68,6 +82,9 @@
 
   "agent_servers": {
     "claude-acp": {
+      "default_config_options": {
+        "mode": "auto",
+      },
       "type": "registry",
     },
     "codex-acp": {
