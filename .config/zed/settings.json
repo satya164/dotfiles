@@ -60,6 +60,7 @@
     "dock": "left",
   },
   "git_panel": {
+    "tree_view": false,
     "dock": "left",
   },
   "agent": {
@@ -83,11 +84,17 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
+        "model": "opus[1m]",
+        "effort": "high",
         "mode": "auto",
       },
       "type": "registry",
     },
     "codex-acp": {
+      "default_config_options": {
+        "model": "gpt-5.6-sol",
+        "mode": "agent-full-access"
+      },
       "type": "registry",
     },
     "github-copilot-cli": {
@@ -129,10 +136,29 @@
     },
   },
 
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    }
+  },
+
   "git": {
     "enable_diff": true,
     "enable_status": true,
   },
+  "diff_view_style": "unified",
   "prettier": {
     "allowed": true,
   },
