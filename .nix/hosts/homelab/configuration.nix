@@ -151,27 +151,27 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {
-      portainer = {
-        image = "portainer/portainer-ce:latest";
-        hostname = "portainer";
-        ports = [ "9000:9000" ];
+      dockhand = {
+        image = "fnsys/dockhand:latest";
+        hostname = "dockhand";
+        ports = [ "9000:3000" ];
         volumes = [
-          "${constants.storage}/AppData/portainer:/data"
+          "${constants.storage}/AppData/dockhand:${constants.storage}/AppData/dockhand"
           "/var/run/docker.sock:/var/run/docker.sock"
         ];
         environment = {
-          APPDATA = "${constants.storage}/AppData";
-          STORAGE = "${constants.storage}";
-          DOMAIN = "${constants.domain}";
+          DATA_DIR = "${constants.storage}/AppData/dockhand";
           PUID = "${toString config.users.users.${constants.username}.uid}";
           PGID = "${toString config.ids.gids.${toString config.users.users.${constants.username}.group}}";
-          TZ = "${constants.timezone}";
         };
         labels = {
-          "traefik.http.routers.portainer.rule" = "Host(`portainer.${constants.domain}`)";
-          "traefik.http.services.portainer.loadbalancer.server.port" = "9000";
+          "traefik.http.routers.dockhand.rule" = "Host(`dockhand.${constants.domain}`)";
+          "traefik.http.services.dockhand.loadbalancer.server.port" = "3000";
         };
-        extraOptions = [ "--network=traefik" ];
+        extraOptions = [
+          "--group-add=${toString config.ids.gids.docker}"
+          "--network=traefik"
+        ];
       };
     };
   };
