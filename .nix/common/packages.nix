@@ -5,7 +5,7 @@
 
   environment.systemPackages = with pkgs; [
     nixd
-    nixfmt-rfc-style
+    nixfmt
     lua-language-server
     stylua
     typescript-language-server

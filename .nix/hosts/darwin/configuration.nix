@@ -36,8 +36,14 @@ in
     onActivation.autoUpdate = true;
     onActivation.upgrade = true;
     taps = [
-      "sdkman/tap"
-      "nikitabobko/tap"
+      {
+        name = "sdkman/tap";
+        trusted = true;
+      }
+      {
+        name = "nikitabobko/tap";
+        trusted = true;
+      }
     ];
     brews = [
       "yarn"
@@ -81,7 +87,9 @@ in
       "rustdesk"
       "surfshark"
       "syncthing-app"
-      "thaw@beta"
+      "tailscale-app"
+      "telegram"
+      "thaw"
       "the-unarchiver"
       "ticktick"
       "visual-studio-code"

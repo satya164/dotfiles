@@ -72,7 +72,6 @@ in
 
   environment.systemPackages = with pkgs; [
     bibata-cursors
-    bitwarden-desktop
     celluloid
     cliphist
     curtail
