@@ -66,6 +66,8 @@ Keep the code simple, concise and self-explanatory. Avoid unnecessary abstractio
 
 When code comments are necessary, ensure they explain the "why" in detail. Keep comment lines similar length and separated by punctuation when possible. Ensure existing comments are updated if the accompanying code changes and the comment is no longer accurate.
 
+Don't change or reword existing comments unless they are inaccurate or misleading. If you change a comment, ensure the previous writing style is preserved and only minimal changes are made to fix inaccuracies.
+
 When making changes to existing code, follow the existing style and conventions of the project. Only modify what is necessary to fulfill the request, and avoid unrelated changes or refactoring.
 
 After making your changes, do a thorough review of the changed code to ensure there are no regressions, inconsistencies or overlooked details. Ensure they follow the guidelines outlined in the "Code Review" section below.
