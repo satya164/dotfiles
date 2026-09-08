@@ -99,63 +99,11 @@ Tests:
 
 ## JavaScript & TypeScript
 
-Prefer code that works well with TypeScript. If type annotations exist, don't add JSDoc annotations for types already covered by TypeScript. Avoid using `any` type, `as` assertions, and non-null assertions (`!`). If type errors cannot be resolved, ask rather than using these features to bypass type checking. When types errors need to be suppressed, use `@ts-expect-error` with a comment describing why it needs to be suppressed. Avoid unnecessary checks for things that are already guaranteed by the type system.
+Prefer code that works well with TypeScript. If type annotations exist, don't add JSDoc annotations for types already covered by TypeScript. Avoid using `any` type, `as` assertions, and non-null assertions (`!`). If type errors cannot be resolved, ask rather than using these features to bypass type checking. When types errors need to be suppressed, use `@ts-expect-error` with a comment describing why it needs to be suppressed. Avoid unnecessary checks for things that are already guaranteed by the type system. Avoid broad types like `object`, `Function`, `{}`, and `Record<string, unknown>` unless intentional.
 
 Prefer modern JavaScript syntax and features unless compatibility issues are specified. Avoid TypeScript specific syntax such as enums that are not compiled away. Prefer `type` aliases over `interface` for defining types in TypeScript, unless there is a specific reason to use `interface`.
 
 Latest versions of Node.js support running TypeScript files directly. Use `node` command to execute them instead of using tools such as `tsx`. If you encounter issues with running TypeScript files, ask rather than installing additional tools.
-
-## Code Review
-
-Go beyond logic bugs. Evaluate whether the change conceptually makes sense for its stated intent, rather than only whether the code is correct in isolation.
-
-When a change invokes an external standard or convention (design system, accessibility guideline, platform convention, spec, etc.), verify that the implementation actually follows it rather than assuming the author got it right.
-
-For new or modified public APIs, evaluate the surface itself: visibility, customizability, defaults, naming, and extensibility. Ensure public APIs, types, and their documentation don't leak implementation details.
-
-Check that the scope of a behavior matches its intent. A change meant to affect a narrow subset should not apply globally, and a change meant to be broad should not silently exclude cases. Watch for over-application and under-application.
-
-Inspect the diff to see if it can be minimized, or can use a simpler approach to achieve the same result.
-
-TypeScript:
-
-- follow the "JavaScript & TypeScript" section above
-- avoid broad types like `object`, `Function`, `{}`, `Record<string, unknown>` unless intentional
-- don't reach for complex conditions, overloads or other type logic when a simpler approach works
-
-React:
-
-- keep potentially unstable values out of dependency arrays
-- follow the rules of hooks rather than ignoring them
-- don't run side effects during rendering
-- give state one source of truth, and derive it from props and state when necessary
-- avoid `React.Children`, `cloneElement` and reading React elements directly, as they don't compose and are not type-safe
-- justify memoization, using it only for expensive calculations or when the value needs to be stable
-- handle cancellation and races in async operations when relevant
-- check a11y - labels, roles, focus order, keyboard interactions, disabled and loading states
-
-Animations & layout:
-
-- avoid unnecessary layout shifts
-- animate only `transform` and `opacity` unless absolutely necessary
-- follow the FLIP technique when relevant
-- keep animations interruptible - handle rapid state changes, gestures and cancellation without visual glitches
-- make duration and easing feel natural for the type of animation and context, and follow platform conventions
-
-Documentation:
-
-- verify examples match the actual API
-- keep headings hierarchical and links valid
-
-When providing a summary of the review, describe the change concisely, and include only actual issues, potential bugs, or significant improvements. If the diff changes a public API, highlight the change. Group the points by category and severity.
-
-## Authored Text
-
-These rules cover issues, pull requests, commits, docs and emails written in my voice.
-
-Text addressed to people uses "I" and "me", or "we" and "us" where that reads more naturally. Never "the user", "the author" or "one".
-
-Documentation uses a neutral factual voice, with no I, we or you, apart from direct instructions like "Run yarn build".
 
 ## Environment
 
