@@ -18,6 +18,7 @@ in
     pinentry_mac # gpg agent
     watchman
     ccache
+    clang-tools
     idb-companion
     xcbeautify
     swiftlint
@@ -70,6 +71,7 @@ in
       "firefox"
       "ghostty"
       "google-chrome"
+      "harper-desktop"
       "home-assistant"
       "hoppscotch"
       "iina"
