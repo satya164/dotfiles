@@ -1,8 +1,8 @@
--- Add cmp_nvim_lsp capabilities settings to lspconfig
+-- Add cmp_nvim_lsp capabilities settings to all language servers
 -- This should be executed before you configure any language server
-local lspconfig_defaults = require("lspconfig").util.default_config
-lspconfig_defaults.capabilities =
-  vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+vim.lsp.config("*", {
+  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
 
 -- This is where you enable features that only work
 -- if there is a language server active in the file
@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.lsp.inlay_hint.enable(true)
 
 -- Nix LSP setup
-require("lspconfig").nixd.setup({
+vim.lsp.config("nixd", {
   cmd = { "nixd" },
   settings = {
     nixd = {
@@ -49,13 +49,13 @@ require("lspconfig").nixd.setup({
 })
 
 -- Lua LSP setup
-require("lspconfig").lua_ls.setup({
+vim.lsp.config("lua_ls", {
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
       if
         path ~= vim.fn.stdpath("config")
-        and (vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc"))
+        and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
       then
         return
       end
@@ -85,7 +85,7 @@ require("lspconfig").lua_ls.setup({
 })
 
 -- TypeScript LSP setup
-require("lspconfig").ts_ls.setup({
+vim.lsp.config("ts_ls", {
   settings = {
     typescript = {
       inlayHints = {
@@ -113,6 +113,8 @@ require("lspconfig").ts_ls.setup({
     },
   },
 })
+
+vim.lsp.enable({ "nixd", "lua_ls", "ts_ls" })
 
 -- Autocompletion config
 local cmp = require("cmp")

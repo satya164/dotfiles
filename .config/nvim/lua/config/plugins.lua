@@ -7,10 +7,20 @@ return {
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
-  { "dense-analysis/ale" },
+  {
+    "dense-analysis/ale",
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "lua", "nix", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        callback = function(event)
+          vim.b[event.buf].ale_disable_lsp = true
+        end,
+      })
+    end,
+  },
   { "sbdchd/neoformat" },
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+  { "nvim-treesitter/nvim-treesitter", branch = "main", lazy = false, build = ":TSUpdate" },
   {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = {
@@ -21,6 +31,9 @@ return {
   { "nvim-tree/nvim-web-devicons" },
   {
     "romgrk/barbar.nvim",
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
     dependencies = {
       "lewis6991/gitsigns.nvim",
       "nvim-tree/nvim-web-devicons",

@@ -5,32 +5,49 @@ require("config.keymap")
 require("config.colors")
 
 -- Setup plugins
-require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "c",
-    "lua",
-    "vim",
-    "vimdoc",
-    "bash",
-    "query",
-    "gitignore",
-    "dockerfile",
-    "markdown",
-    "markdown_inline",
-    "html",
-    "css",
-    "javascript",
-    "typescript",
-    "json",
-    "yaml",
-    "nix"
-  },
-  sync_install = false,
-  auto_install = true,
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
+local treesitter = require("nvim-treesitter")
+
+treesitter.install({
+  "c",
+  "lua",
+  "vim",
+  "vimdoc",
+  "bash",
+  "query",
+  "regex",
+  "gitignore",
+  "dockerfile",
+  "markdown",
+  "markdown_inline",
+  "html",
+  "css",
+  "javascript",
+  "typescript",
+  "json",
+  "yaml",
+  "nix",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(event)
+    local lang = vim.treesitter.language.get_lang(event.match)
+    if not lang or not vim.list_contains(treesitter.get_available(), lang) then
+      return
+    end
+
+    treesitter.install({ lang }):await(function(err, installed)
+      if err then
+        error(err)
+      end
+      if installed then
+        vim.schedule(function()
+          if vim.api.nvim_buf_is_valid(event.buf) and vim.bo[event.buf].filetype == event.match then
+            vim.treesitter.start(event.buf, lang)
+          end
+        end)
+      end
+    end)
+  end,
 })
 
 require("noice").setup({
@@ -70,8 +87,6 @@ require("neo-tree").setup({
     },
   },
 })
-
-vim.g.barbar_auto_setup = false
 
 require("barbar").setup({
   sidebar_filetypes = {
