@@ -13,6 +13,7 @@
     gcc
     nano
     neovim
+    tree-sitter
     wget
     delta # git diff replacement
     git

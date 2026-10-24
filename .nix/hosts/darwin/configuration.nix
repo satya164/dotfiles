@@ -20,6 +20,7 @@ in
     ccache
     clang-tools
     idb-companion
+    xcodes
     xcbeautify
     swiftlint
     cloudflared
