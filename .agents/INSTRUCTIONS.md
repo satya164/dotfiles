@@ -18,7 +18,7 @@ For tasks involving math, use a calculation tool or script to perform calculatio
 
 Lead with the answer - the command, the file path, the verdict. No opening like "Let me..." and no closing recap or "Let me know if...".
 
-A simple answer is 1 to 3 sentences of prose, with no headings or bullets. Use numbered lists for multiple steps or findings - one point per item, a sentence or two each.
+A simple answer is 1 to 3 sentences of prose, with no headings or bullets. Use numbered lists for multiple steps or findings - one point per item, a sentence or two each. Use continuous numbering for bullet points across the entire response. Separate questions or decisions for the user into it's own section at the end.
 
 State errors plainly: the cause, then the fix.
 
@@ -62,11 +62,13 @@ If you notice edge cases or potential issues with the request, point them out in
 
 If I make manual changes to the code after you generate it, do not overwrite those changes in subsequent responses. Instead, build upon them while preserving my modifications.
 
-Keep the code simple, concise and self-explanatory. Avoid unnecessary abstractions and layers of indirection. Don't create one-off helpers or helpers that call a single function. Don't add comments that state the obvious. Avoid writing defensive code or suppressing errors that are thrown. Use new lines to separate blocks of code and logical sections. Prefer multi-line code for block statements, even if they are short.
+Keep the code simple, concise and self-explanatory. Avoid unnecessary abstractions and layers of indirection. Don't create one-off helpers or helpers that call a single function. Don't add comments that state the obvious. Avoid writing defensive code or suppressing errors that are thrown. Be gratuitous with new lines to separate blocks of code, logical sections as well as different types of statements or multi-line expressions. Prefer multi-line code for block statements, even if they are short.
 
 When code comments are necessary, ensure they explain the "why" in detail. Keep comment lines similar length and separated by punctuation when possible. Ensure existing comments are updated if the accompanying code changes and the comment is no longer accurate.
 
 Don't change or reword existing comments unless they are inaccurate or misleading. If you change a comment, ensure the previous writing style is preserved and only minimal changes are made to fix inaccuracies.
+
+When suggesting performance changes, leave out ones that don't provide a noticeable benefit, or weaken a safety property.
 
 When making changes to existing code, follow the existing style and conventions of the project. Only modify what is necessary to fulfill the request, and avoid unrelated changes or refactoring.
 
@@ -101,7 +103,9 @@ Tests:
 
 Prefer code that works well with TypeScript. If type annotations exist, don't add JSDoc annotations for types already covered by TypeScript. Avoid using `any` type, `as` assertions, and non-null assertions (`!`). If type errors cannot be resolved, ask rather than using these features to bypass type checking. When types errors need to be suppressed, use `@ts-expect-error` with a comment describing why it needs to be suppressed. Avoid unnecessary checks for things that are already guaranteed by the type system. Avoid broad types like `object`, `Function`, `{}`, and `Record<string, unknown>` unless intentional.
 
-Prefer modern JavaScript syntax and features unless compatibility issues are specified. Avoid TypeScript specific syntax such as enums that are not compiled away. Prefer `type` aliases over `interface` for defining types in TypeScript, unless there is a specific reason to use `interface`.
+Prefer modern JavaScript syntax and features unless compatibility issues are specified. Avoid TypeScript specific syntax such as enums that are not compiled away. Avoid IIFEs unless necessary.
+
+Prefer `type` aliases over `interface` for defining types in TypeScript, unless there is a specific reason to use `interface`. Declare type aliases at module top level with the file's other types, not inside function bodies, even when only one function uses them.
 
 Latest versions of Node.js support running TypeScript files directly. Use `node` command to execute them instead of using tools such as `tsx`. If you encounter issues with running TypeScript files, ask rather than installing additional tools.
 
@@ -112,6 +116,8 @@ If the project has a `README.md` or `CONTRIBUTING.md` file, read it to understan
 If there is a `.nvmrc` or `.node-version` file, use the specified Node.js version.
 
 Determine the package manager based on the `packageManager` field in `package.json`, or the lock file present (e.g., `package-lock.json` for npm, `yarn.lock` for Yarn, `pnpm-lock.yaml` for pnpm) and use it consistently. When running commands and scripts, use the appropriate package manager commands (e.g., `npm install`, `yarn add`, `npm run lint`, `yarn test`) - first check the `scripts` section of `package.json` for existing scripts that you can use.
+
+When working on mobile development, run your own instance of iOS simulator or Android emulator, as well as bundler or dev server to avoid conflicts with other sessions. Avoid writing files in the project folder while interacting with the simulator or emulator to avoid issues due to fast refresh, hot reloading, watch mode etc. Clean up any simulators or emulators you create after you're done.
 
 ## Reproducing Issues
 
