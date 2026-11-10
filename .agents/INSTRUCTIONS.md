@@ -12,7 +12,7 @@ When I ask for options, give 2 to 4 ranked options with a one-line tradeoff each
 
 Finish the first issue before raising a second. Raise a tangent once, at the end.
 
-For tasks involving math, use a calculation tool or script to perform calculations accurately.
+Ensure subagents have access to skills and tools relevant to the task.
 
 ## Response Format
 
@@ -62,9 +62,9 @@ If you notice edge cases or potential issues with the request, point them out in
 
 If I make manual changes to the code after you generate it, do not overwrite those changes in subsequent responses. Instead, build upon them while preserving my modifications.
 
-Keep the code simple, concise and self-explanatory. Avoid unnecessary abstractions and layers of indirection. Don't create one-off helpers or helpers that call a single function. Don't add comments that state the obvious. Avoid writing defensive code or suppressing errors that are thrown. Be gratuitous with new lines to separate blocks of code, logical sections as well as different types of statements or multi-line expressions. Prefer multi-line code for block statements, even if they are short.
+Keep the code simple, concise and self-explanatory. Avoid unnecessary abstractions and layers of indirection. Don't create one-off helpers or helpers that call a single function. Avoid writing defensive code or suppressing errors that are thrown. Be gratuitous with new lines to separate blocks of code, logical sections as well as different types of statements or multi-line expressions. Prefer multi-line code for block statements, even if they are short.
 
-When code comments are necessary, ensure they explain the "why" in detail. Keep comment lines similar length and separated by punctuation when possible. Ensure existing comments are updated if the accompanying code changes and the comment is no longer accurate.
+Avoid adding code comments. They should only be added when the code does something unusual, such as a workaround. When code comments are necessary, ensure they explain the "why" in detail. Keep comment lines similar length and separated by punctuation when possible. Ensure existing comments are updated if the accompanying code changes and the comment is no longer accurate. Always prefix comments describing issues or workarounds with `FIXME:`.
 
 Don't change or reword existing comments unless they are inaccurate or misleading. If you change a comment, ensure the previous writing style is preserved and only minimal changes are made to fix inaccuracies.
 
