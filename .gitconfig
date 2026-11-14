@@ -5,6 +5,8 @@
 [core]
 	pager = delta
 	excludesfile = ~/.gitignore_global
+[submodule]
+	recurse = true
 [init]
 	defaultBranch = main
 [status]
@@ -17,7 +19,7 @@
 	default = current
 	autoSetupRemote = true
 	followTags = true
-	recurseSubmodules = on-demand
+	recurseSubmodules = no
 [commit]
 	gpgsign = true
 [tag]
@@ -26,8 +28,6 @@
 	format = ssh
 [branch]
 	sort = -committerdate
-[submodule]
-	recurse = true
 [delta]
 	navigate = true
 	hyperlinks = true
