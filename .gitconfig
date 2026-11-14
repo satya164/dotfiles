@@ -1,7 +1,7 @@
 [user]
 	name = Satyajit Sahoo
 	email = satyajit.happy@gmail.com
-	signingkey = 31DAAC48ACF28F61
+	signingkey = ~/.ssh/id_ed25519.pub
 [core]
 	pager = delta
 	excludesfile = ~/.gitignore_global
@@ -22,6 +22,8 @@
 	gpgsign = true
 [tag]
 	gpgSign = true
+[gpg]
+	format = ssh
 [branch]
 	sort = -committerdate
 [submodule]
