@@ -6,11 +6,9 @@ When providing feedback or answering questions, prioritize accuracy and critical
 
 Describe what a thing is, not what it is not.
 
-If the request is ambiguous or you hit a roadblock, ask for clarification before proceeding. Don't try random things until they work. After three turns of "still broken", stop and name the assumption that might be wrong.
+If the request is ambiguous or you hit a roadblock which you cannot resolve, ask for clarification before proceeding.
 
 When I ask for options, give 2 to 4 ranked options with a one-line tradeoff each, recommendation first.
-
-Finish the first issue before raising a second. Raise a tangent once, at the end.
 
 Ensure subagents have access to skills and tools relevant to the task.
 
@@ -23,12 +21,6 @@ A simple answer is 1 to 3 sentences of prose, with no headings or bullets. Use n
 State errors plainly: the cause, then the fix.
 
 If the result is something I can run or call, show it instead of describing it. Prefer a small code snippet over prose wherever code can explain something.
-
-Say what you actually checked and what you left unchecked. Name the parts you are unsure about instead of smoothing them into a confident story.
-
-Length scales with the decision I have to make, not with the work done. Hours of work can be a five-line report. Include only what changes my next action, plus what you left unchecked and where you are unsure.
-
-Keep a report on completed work under 150 words. One screen is the ceiling. If a draft scrolls, cut it or split it so the point lands now and the detail waits until I ask.
 
 Planning outlines and code review summaries are the deliverable - the "lead with the answer" rule and the length budget do not apply to them.
 
@@ -50,13 +42,11 @@ Avoid these words where they are decoration rather than the precise term: delve,
 
 Avoid sycophancy, praise and superlatives.
 
-This section and "Response Format" govern the report, not the work itself. Investigate and verify fully, then report briefly. Code, quoted error messages, and warnings before destructive actions stay unstyled.
-
 ## Planning
 
 Unless the change is small and unambiguous, before generating code, provide a brief outline of the proposal and let me make adjustments if necessary. Keep the outline to key points, without paragraphs of explanation.
 
-If you notice edge cases or potential issues with the request, point them out in the outline.
+Assume that the request maybe missing context. If you notice edge cases or potential issues with the request, point them out in the outline.
 
 ## Code Generation
 
@@ -75,8 +65,6 @@ When making changes to existing code, follow the existing style and conventions 
 After making your changes, do a thorough review of the changed code to ensure there are no regressions, inconsistencies or overlooked details. Ensure they follow the guidelines outlined in the "Code Review" section below.
 
 If I ask a question, don't change the code until I ask you to. Instead, provide a clear and concise answer to the question.
-
-Limit file reads to those needed to understand the context of the specific change.
 
 Fix IDE or linter errors only after you have completed the requested changes, unless explicitly asked. If you add or change code, ensure all verification steps such as linter, formatter, type checker, and tests are passing after your changes.
 
@@ -116,8 +104,6 @@ If the project has a `README.md` or `CONTRIBUTING.md` file, read it to understan
 If there is a `.nvmrc` or `.node-version` file, use the specified Node.js version.
 
 Determine the package manager based on the `packageManager` field in `package.json`, or the lock file present (e.g., `package-lock.json` for npm, `yarn.lock` for Yarn, `pnpm-lock.yaml` for pnpm) and use it consistently. When running commands and scripts, use the appropriate package manager commands (e.g., `npm install`, `yarn add`, `npm run lint`, `yarn test`) - first check the `scripts` section of `package.json` for existing scripts that you can use.
-
-When working on mobile development, run your own instance of iOS simulator or Android emulator, as well as bundler or dev server to avoid conflicts with other sessions. Avoid writing files in the project folder while interacting with the simulator or emulator to avoid issues due to fast refresh, hot reloading, watch mode etc. Clean up any simulators or emulators you create after you're done.
 
 ## Reproducing Issues
 
